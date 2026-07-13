@@ -1,0 +1,58 @@
+
+.parent{
+    -fx-background-image: url("/org/example/sriptor/assets/BackgroundLogin.png");
+
+
+}
+.form{
+    -fx-padding: 10px 10px;
+
+    -fx-background-color: rgba(47, 47, 47, 0.7);
+
+}
+.formHeader{
+    -fx-font-family: Satoshi;
+    -fx-font-size: 34px;
+    -fx-font:bold;
+
+
+}
+.logoHeader{
+    -fx-background-image: url("/org/example/sriptor/assets/BackgroundLogin.png");
+}
+
+
+
+/* form */
+.input-container-group{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D2D6DC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 4px 8px;
+
+}
+
+.input-field-nested{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 6px 4px;
+    -fx-text-fill: #000000;
+
+
+}
+
+.input-field-nested *.prompt{
+    -fx-text-fill: black;
+    -fx-opacity: 1.0;
+}
+.button{
+    -fx-background-color: #3083DC;
+    -fx-text-fill: #ffffff;
+}
+.button:hover{
+    -fx-background-color: #ACDDE7;
+    -fx-text-fill: #2f2f2f;
+}
