@@ -25,7 +25,13 @@
             <artifactId>javafx-fxml</artifactId>
             <version>21.0.6</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>local-driver</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ojdbc17.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
