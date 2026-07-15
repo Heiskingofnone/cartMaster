@@ -2,7 +2,16 @@ package org.example.sriptor.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 
 //Controls verification at the front end level. Takes input from form the form and stores it in variables for later use for confirmation
 public class loginController {
@@ -11,8 +20,30 @@ public class loginController {
     @FXML //Connects loginController + fxml in order to acknowledge object instance
     private TextField loginPassword;//an instance of a textfield is acknowledged
 
-    private void onSubmit(ActionEvent event){
+    public void onSubmit(ActionEvent event){
         String username = loginUsername.getText();
         String password = loginPassword.getText();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        try{
+            posSetWindow(stage);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    public void posSetWindow(Stage stage) throws IOException {
+        Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/pos.fxml")));
+        Scene scene = new Scene(root);
+        String iconPath = "/org/example/sriptor/assets/logo.png";
+        String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/style.css")).toExternalForm();
+
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(cssStyle);
+        stage.setTitle("CartMaster");
+        stage.setScene(scene);
+        stage.show();
     }
 }
