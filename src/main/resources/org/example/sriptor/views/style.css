@@ -7,7 +7,9 @@
 .form{
     -fx-padding: 10px 10px;
 
-    -fx-background-color: rgba(47, 47, 47, 0.7);
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-alignment: center;
+
 
 }
 .formHeader{
@@ -38,7 +40,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 6px 4px;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #3083DC;
 
 
 }
@@ -54,4 +56,16 @@
 .button:hover{
     -fx-background-color: #ACDDE7;
     -fx-text-fill: #2f2f2f;
+}
+
+
+/*POS view*/
+.navbar{
+    -fx-background-color:#3083DC ;
+}
+#sidePanel{
+    -fx-background-color: #ffffff;
+}
+#cartListScrollPanel{
+    -fx-background-color: #ffffff;
 }

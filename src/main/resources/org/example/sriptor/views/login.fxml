@@ -7,52 +7,57 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="980.0" styleClass="parent" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.loginController">
    <children>
-      <VBox alignment="CENTER" layoutX="290.0" layoutY="101.0" prefHeight="400.0" prefWidth="400.0" spacing="15.0" style="-fx-background-radius: 50;" styleClass="form" stylesheets="@style.css">
+      <StackPane layoutY="89.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="formHeader" stylesheets="@style.css">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="15.0" style="-fx-background-radius: 50;" styleClass="form" stylesheets="@style.css">
                <children>
-                  <ImageView id="logoHeader" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logoHeader">
-                     <image>
-                        <Image url="@../assets/logo.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cart Master" textAlignment="CENTER" wrappingWidth="196.13000106811523">
-                     <font>
-                        <Font name="Satoshi Bold" size="34.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="340.0" spacing="8.0" styleClass="input-container-group" stylesheets="@style.css">
-               <children>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextField fx:id="loginUsername" prefHeight="46.0" prefWidth="251.0" promptText="Username" styleClass="input-field-nested" stylesheets="@style.css" HBox.hgrow="ALWAYS" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="formHeader" stylesheets="@style.css">
+                     <children>
+                        <ImageView id="logoHeader" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logoHeader">
+                           <image>
+                              <Image url="@../assets/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#3083dc" strokeType="OUTSIDE" strokeWidth="0.0" text="Cart Master" textAlignment="CENTER" wrappingWidth="196.13000106811523">
+                           <font>
+                              <Font name="Satoshi Bold" size="34.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="340.0" spacing="8.0" styleClass="input-container-group" stylesheets="@style.css">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField fx:id="loginUsername" prefHeight="46.0" prefWidth="251.0" promptText="Username" styleClass="input-field-nested" stylesheets="@style.css" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefHeight="55.0" prefWidth="340.0" styleClass="input-container-group" stylesheets="@style.css">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField fx:id="loginPassword" prefHeight="46.0" prefWidth="251.0" promptText="Password" styleClass="input-field-nested" stylesheets="@style.css" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="247.0" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="loginButton" onAction="#onSubmit" prefHeight="26.0" prefWidth="100.0" stylesheets="@style.css" text="Login" textFill="#f2f2f2" />
+                     </children>
+                  </HBox>
                </children>
                <padding>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefHeight="55.0" prefWidth="340.0" styleClass="input-container-group" stylesheets="@style.css">
-               <children>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextField fx:id="loginPassword" prefHeight="46.0" prefWidth="251.0" promptText="Password" styleClass="input-field-nested" stylesheets="@style.css" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="247.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="loginButton" onAction="#onSubmit" prefHeight="26.0" prefWidth="100.0" stylesheets="@style.css" text="Login" textFill="#f2f2f2" />
-               </children>
-            </HBox>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
+      </StackPane>
    </children>
 </AnchorPane>
