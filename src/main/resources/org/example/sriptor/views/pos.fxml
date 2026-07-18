@@ -17,11 +17,11 @@
    <children>
       <SplitPane dividerPositions="0.7433537832310838" layoutX="597.0" layoutY="169.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #F3F4F9 ;;" stylesheets="@style.css">
                <children>
-                  <ScrollPane layoutX="243.0" layoutY="113.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
+                  <ScrollPane fitToWidth="true" layoutX="243.0" layoutY="113.0" prefHeight="200.0" prefWidth="200.0" styleClass="leftParentPanel" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
                      <content>
-                        <GridPane prefHeight="572.0" prefWidth="723.0">
+                        <GridPane fx:id="productGrid" prefHeight="579.0" prefWidth="702.0" styleClass="leftParentPanel" stylesheets="@style.css">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,6 +34,9 @@
                           </rowConstraints>
                         </GridPane>
                      </content>
+                     <padding>
+                        <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                     </padding>
                   </ScrollPane>
                </children>
             </AnchorPane>

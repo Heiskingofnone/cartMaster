@@ -116,24 +116,10 @@
 
 }
 /*                */
-.leftScrollPanel{
-    -fx-background-radius: 10;
-    -fx-background-color: rgba(255, 255, 255, 0.7);
-    -fx-background-insets: 0;
-    -fx-border-color: #F3F4F9 ;
-    -fx-border-radius: 10;
 
+.leftParentPanel{
+    -fx-background-color:#F8FAFC;
 }
-.leftScrollPanel .scroll-bar:vertical, .rightScrollPanel .scroll-bar:horizontal{
-    -fx-background-color: transparent;
-    -fx-pref-height: 8px;
-    -fx-pref-width: 8px;
-}
-.leftScrollPanel .scroll-bar .track{
-    -fx-background-color: #F3F4F9;
-    -fx-background-radius: 8px;
-}
-
 
 #posActionButtons{
 
@@ -147,4 +133,10 @@
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-border-color: #F8FAFC;
+}
+.productBox:hover{
+    -fx-border-width: 1px;
+    -fx-border-color: #3083DC;
 }
