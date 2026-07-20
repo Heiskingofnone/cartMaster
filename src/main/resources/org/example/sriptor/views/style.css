@@ -1,23 +1,25 @@
 
 .parent{
     -fx-background-image: url("/org/example/sriptor/assets/BackgroundLogin.png");
-
-
 }
+
 .form{
-    -fx-padding: 10px 10px;
-
-    -fx-background-color: rgba(255, 255, 255, 0.7);
-    -fx-alignment: center;
-
-
+    -fx-padding: 30;
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgbs(0,0,0,0.25),15,0,0,5);
+    -fx-display: none;
 }
+
 .formHeader{
     -fx-font-family: Satoshi;
     -fx-font:34px bold;
-
-
+    /*
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    */
 }
+
 .logoHeader{
     -fx-background-image: url("/org/example/sriptor/assets/BackgroundLogin.png");
 }
@@ -26,13 +28,12 @@
 
 /* form */
 .input-container-group{
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: #D2D6DC;
-    -fx-border-width: 1px;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-padding: 4px 8px;
-
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #CCCCCC;
+    -fx-font-size: 17px;
+    -fx-font-color: black;
+    -fx-padding: 5;
 }
 
 .input-field-nested{
@@ -40,9 +41,6 @@
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 6px 4px;
-    -fx-text-fill: #3083DC;
-
-
 }
 
 .input-field-nested *.prompt{
@@ -50,12 +48,51 @@
     -fx-opacity: 1.0;
 }
 .button{
-    -fx-background-color: #3083DC;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-radius: 10px;
+    -FX-border: 1.5px solid #4CAF50;
+    -fx-cursor: hand;
+    /*ANIMATIONS*/
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-transition: all 0.25s;
 }
 .button:hover{
-    -fx-background-color: #ACDDE7;
-    -fx-text-fill: #2f2f2f;
+    -fx-background-color: #2E7D32;
+    -fx-scale-y: 1.06;
+    -fx-scale-x: 1.06;
+}
+.button:pressed{
+    -fx-background-color: #1B5E20;
+    -fx-scale-x: 0.98;
+    -fx-scale:y: 0.98;
+}
+/*Signup link to signup page*/
+#noAccountLable{
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-family: "Sagoe UI";
+}
+#signUpLink{
+    -fx-fill: #3B82F6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+/*Signup link to signup page*/
+#noAccountLable{
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-family: "Sagoe UI";
+}
+#signUpLink{
+    -fx-fill: #3B82F6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
 }
 
 
