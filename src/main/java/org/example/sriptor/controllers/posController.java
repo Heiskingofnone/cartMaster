@@ -1,8 +1,6 @@
 package org.example.sriptor.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -10,10 +8,8 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import org.example.sriptor.models.product;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +85,8 @@ public class posController {
                 saleItemPriceText.setText(saleItemPrice);
             }
             saleItemList.add(saleItemCard, column, row);
+            saleItemList.setHgap(7.5);
+            saleItemList.setVgap(5);
         } catch (IOException e) {
             e.printStackTrace();
         }

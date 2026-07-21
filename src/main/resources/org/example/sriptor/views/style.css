@@ -165,3 +165,17 @@
     -fx-font-weight: bold;
     -fx-font-family: "Segoe UI";
 }
+
+
+/* Sale Item Card*/
+#saleItemCard{
+    -fx-border-width: 1px;
+    -fx-border-color: #F8FAFC;
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+#saleItemCard:hover{
+    -fx-border-width: 1px;
+    -fx-border-color: #3083DC;
+}
