@@ -54,11 +54,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="317.0" prefHeight="42.0" prefWidth="380.0" spacing="5.0">
                      <children>
-                        <Text id="noAccountLable" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
+                        <Text id="noAccountLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
                         <Text id="signUpLink" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" />
                      </children>
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </HBox>
                </children>

@@ -87,7 +87,7 @@
                         </AnchorPane>
                         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="286.0" prefWidth="321.0" styleClass="rightScrollPanel" stylesheets="@style.css" VBox.vgrow="ALWAYS">
                            <content>
-                              <GridPane id="cartListScrollPanel" prefHeight="280.0" prefWidth="273.0" styleClass="rightGridPanel" stylesheets="@style.css">
+                              <GridPane id="cartListScrollPanel" fx:id="saleItemList" prefHeight="280.0" prefWidth="273.0" styleClass="rightGridPanel" stylesheets="@style.css">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

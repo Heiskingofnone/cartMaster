@@ -140,3 +140,28 @@
     -fx-border-width: 1px;
     -fx-border-color: #3083DC;
 }
+
+/*Signup link to signup page*/
+#noAccountLabel{
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-family: "Sagoe UI";
+}
+#signUpLink{
+    -fx-fill: #3B82F6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+/*Signup link to signup page*/
+#noAccountLabel{
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-family: "Sagoe UI";
+}
+#signUpLink{
+    -fx-fill: #3B82F6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}

@@ -2,6 +2,7 @@ package org.example.sriptor.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -54,6 +55,10 @@ public class posController {
                     productGrid.add(productCard, column, row);
                     productGrid.setHgap(25);
                     productGrid.setVgap(25);
+                    //Here we created an instance of productSelectcontroller and named it childController and load the controls of this parent method
+                    productSelectController childController = loader.getController();
+                    //then we pass posController into our setPoscontroller function
+                    childController.setPosController(this);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -61,6 +66,37 @@ public class posController {
 
         }
     }
+
+    @FXML
+    public GridPane saleItemList = new GridPane();
+
+    private int column = 1;
+    private int row = 1;
+    public void addItemToCart(String saleItemName, String saleItemPrice){
+        ++row;
+        saleItemList.getColumnConstraints().clear();
+        saleItemList.getRowConstraints().clear();
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/saleItem.fxml")));
+            AnchorPane saleItemCard = loader.load();
+            Text saleItemNameText = (Text) saleItemCard.lookup("#saleItemName");
+            Text saleItemPriceText = (Text) saleItemCard.lookup("#saleItemPrice");
+
+            if(saleItemNameText != null){
+                saleItemNameText.setText(saleItemName);
+            }
+            if(saleItemPriceText != null){
+                saleItemPriceText.setText(saleItemPrice);
+            }
+            saleItemList.add(saleItemCard, column, row);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 }
 
 

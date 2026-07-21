@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="180.0" prefWidth="150.0" styleClass="productBox" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="productCard" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#productSelect" prefHeight="180.0" prefWidth="150.0" styleClass="productBox" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.productSelectController">
    <children>
       <VBox alignment="CENTER" layoutX="25.0" prefHeight="180.0" prefWidth="150.0" spacing="2.0" styleClass="productBox" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
