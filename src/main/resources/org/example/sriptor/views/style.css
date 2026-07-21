@@ -55,7 +55,7 @@
 }
 .button:hover{
     -fx-background-color: #ACDDE7;
-    -fx-text-fill: #2f2f2f;
+    -fx-text-fill: #3083DC;
 }
 
 
@@ -137,6 +137,45 @@
     -fx-border-color: #F8FAFC;
 }
 .productBox:hover{
+    -fx-border-width: 1px;
+    -fx-border-color: #3083DC;
+}
+
+/*Signup link to signup page*/
+#noAccountLabel{
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-family: "Sagoe UI";
+}
+#signUpLink{
+    -fx-fill: #3B82F6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+/*Signup link to signup page*/
+#noAccountLabel{
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-family: "Sagoe UI";
+}
+#signUpLink{
+    -fx-fill: #3B82F6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+
+
+/* Sale Item Card*/
+#saleItemCard{
+    -fx-border-width: 1px;
+    -fx-border-color: #F8FAFC;
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+#saleItemCard:hover{
     -fx-border-width: 1px;
     -fx-border-color: #3083DC;
 }
