@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import org.example.sriptor.models.product;
 
 import java.io.IOException;
@@ -16,9 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class posController {
-    private Stage stage;
-    private Parent root;
-    private Scene scene;
+
     @FXML
     public GridPane productGrid;
     public void initialize(){

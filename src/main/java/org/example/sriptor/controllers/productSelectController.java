@@ -2,15 +2,11 @@ package org.example.sriptor.controllers;
 //import org.example.sriptor.models.product;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import org.example.sriptor.models.product;
 
 import java.io.IOException;
-import java.util.Objects;
 
 
 
