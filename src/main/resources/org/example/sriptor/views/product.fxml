@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="productCard" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#productSelect" prefHeight="180.0" prefWidth="150.0" styleClass="productBox" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.productSelectController">
+   <children>
+      <VBox alignment="CENTER" layoutX="25.0" prefHeight="180.0" prefWidth="150.0" spacing="2.0" styleClass="productBox" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="setImage" fitHeight="122.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+               <image>
+                  <Image url="@../assets/DefaultImage.png" />
+               </image></ImageView>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fx:id="productNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="product name" wrappingWidth="139.22900009155273" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <Text fx:id="productPriceText" strokeType="OUTSIDE" strokeWidth="0.0" text="product price" wrappingWidth="139.22900009155273" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
