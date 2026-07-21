@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="saleItemCard" fx:id="saleItemCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="saleItemCard" fx:id="saleItemCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.productSelectController">
    <children>
       <HBox alignment="CENTER" layoutX="36.0" layoutY="-25.0" prefHeight="50.0" prefWidth="380.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,9 +20,9 @@
             <Text id="saleItemName" fx:id="saleItemId" strokeType="OUTSIDE" strokeWidth="0.0" text="Product name" textAlignment="CENTER" wrappingWidth="83.13000106811523" />
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Button id="quantityDecreaseButton" mnemonicParsing="false" prefHeight="9.0" prefWidth="3.0" text="-" />
-                  <Text id="saleItemQuantity" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="23.435999870300293" />
-                  <Button id="quantityIncreaseButton" mnemonicParsing="false" prefHeight="9.0" prefWidth="3.0" text="+" />
+                  <Button id="quantityDecreaseButton" mnemonicParsing="false" onAction="#decreaseQuantity" prefHeight="9.0" prefWidth="3.0" text="-" />
+                  <Text id="saleItemQuantity" fx:id="productQuantityText" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="23.435999870300293" />
+                  <Button id="quantityIncreaseButton" mnemonicParsing="false" onAction="#increaseQuantity" prefHeight="9.0" prefWidth="3.0" text="+" />
                </children>
             </HBox>
             <Text id="saleItemPrice" fx:id="saleItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="price" textAlignment="CENTER" wrappingWidth="98.13000106811523" />

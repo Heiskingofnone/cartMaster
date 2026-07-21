@@ -1,17 +1,21 @@
 package org.example.sriptor.controllers;
 //import org.example.sriptor.models.product;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 
 
 
 public class productSelectController {
-    public String saleItemName;
+    //public String saleItemName;
+    //public String saleItemPrice;
+    //public String saleItemQuantity;
     posController posController;
     //above we created an instance of posController
     //below we created a setter that takes the controller as a parameter and sets the controller as the parameter
@@ -27,15 +31,55 @@ public class productSelectController {
         Text selectedProductName = (Text) clickedCard.lookup("#productNameText");
         Text selectedProductPrice = (Text) clickedCard.lookup("#productPriceText");
 
-        if(selectedProductName != null) {
-            String saleItemName = selectedProductName.getText();
-            String saleItemPrice = selectedProductPrice.getText();
 
-            System.out.println(saleItemName);
-            System.out.println(saleItemPrice);
+        if(selectedProductName != null) {
+           String saleItemName = selectedProductName.getText();
+           String saleItemPrice = selectedProductPrice.getText();
+
+
+
             posController.addItemToCart(saleItemName,saleItemPrice);
         }
 
+    }
+    @FXML
+    private Text productQuantityText;
+    @FXML
+    public void increaseQuantity(ActionEvent event){
+        int quantity = 1;
+        try {
+
+
+            if (productQuantityText != null) {
+                String saleItemQuantity = productQuantityText.getText();
+                quantity = Integer.parseInt(saleItemQuantity);
+                ++quantity;
+                saleItemQuantity = Integer.toString(quantity);
+                productQuantityText.setText(saleItemQuantity);
+            }
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void decreaseQuantity(ActionEvent event){
+        int quantity = 1;
+        try {
+
+            if (productQuantityText != null){
+                String saleItemQuantity = productQuantityText.getText();
+                quantity = Integer.parseInt(saleItemQuantity);
+                if(quantity > 1){
+                --quantity;}
+                saleItemQuantity = Integer.toString(quantity);
+                productQuantityText.setText(saleItemQuantity);
+            }
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
