@@ -1,12 +1,8 @@
 package org.example.sriptor.controllers;
-//import org.example.sriptor.models.product;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import java.io.IOException;
 
@@ -14,7 +10,6 @@ import java.io.IOException;
 
 public class productSelectController {
     //public String saleItemName;
-    //public String saleItemPrice;
     //public String saleItemQuantity;
     posController posController;
     //above we created an instance of posController
@@ -36,20 +31,23 @@ public class productSelectController {
            String saleItemName = selectedProductName.getText();
            String saleItemPrice = selectedProductPrice.getText();
 
-
-
             posController.addItemToCart(saleItemName,saleItemPrice);
         }
 
     }
+    public String getPriceForItem(String priceOfSelectedItem){
+        return priceOfSelectedItem;
+    }
     @FXML
     private Text productQuantityText;
     @FXML
+    private Text saleItemPrice;
+    @FXML
     public void increaseQuantity(ActionEvent event){
+
         int quantity = 1;
-        try {
 
-
+        try{
             if (productQuantityText != null) {
                 String saleItemQuantity = productQuantityText.getText();
                 quantity = Integer.parseInt(saleItemQuantity);
@@ -57,8 +55,6 @@ public class productSelectController {
                 saleItemQuantity = Integer.toString(quantity);
                 productQuantityText.setText(saleItemQuantity);
             }
-
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -75,8 +71,6 @@ public class productSelectController {
                 saleItemQuantity = Integer.toString(quantity);
                 productQuantityText.setText(saleItemQuantity);
             }
-
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -16,33 +16,33 @@ public class posController {
 
     @FXML
     public GridPane productGrid;
-    public void initialize(){
+    public void initialize() {
         int columns = 5;
         List<product> productList = new ArrayList<>();
         productGrid.getChildren().clear();
         productGrid.getColumnConstraints().clear();
         productGrid.getRowConstraints().clear();
-        for(int i = 0; i <= 50; ++i){
+        for (int i = 0; i <= 50; ++i) {
             productList.add(new product("Kivo Gari", "5.42"));
         }
-        for(int i = 0; i <productList.size(); ++i) {
+        for (int i = 0; i < productList.size(); ++i) {
 
-                product currentProduct = productList.get(i);
+            product currentProduct = productList.get(i);
 
 
-                int column = i % columns;
-                int row = i / columns;
-                try{
-                    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/product.fxml")));
-                    AnchorPane productCard = loader.load();
-                    Text productNameText = (Text) productCard.lookup("#productNameText");
-                    Text productPriceText = (Text) productCard.lookup("#productPriceText");
-                    if(productNameText !=null){
-                        productNameText.setText(currentProduct.getProductName());
-                    }
-                    if(productPriceText !=null){
-                        productPriceText.setText("GHS " + currentProduct.getProductPrice());
-                    }
+            int column = i % columns;
+            int row = i / columns;
+            try {
+                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/product.fxml")));
+                AnchorPane productCard = loader.load();
+                Text productNameText = (Text) productCard.lookup("#productNameText");
+                Text productPriceText = (Text) productCard.lookup("#productPriceText");
+                if (productNameText != null) {
+                    productNameText.setText(currentProduct.getProductName());
+                }
+                if (productPriceText != null) {
+                    productPriceText.setText(currentProduct.getProductPrice());
+                }
                     productGrid.add(productCard, column, row);
                     productGrid.setHgap(25);
                     productGrid.setVgap(25);
@@ -51,9 +51,10 @@ public class posController {
                     //then we pass posController into our setPoscontroller function
                     childController.setPosController(this);
 
-                } catch (IOException e) {
+                } catch(IOException e){
                     e.printStackTrace();
                 }
+
 
         }
     }
