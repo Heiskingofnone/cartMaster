@@ -22,7 +22,7 @@ public class product {
     }
     public void setImage(){
 
-        Image image = new Image(getClass().getResourceAsStream("/org/example/sriptor/assets/DefaultImage.png"));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/example/sriptor/assets/DefaultImage.png")));
         ImageView imageView = new ImageView();
         imageView.setImage(image);
     }
