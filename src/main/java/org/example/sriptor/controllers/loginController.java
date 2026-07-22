@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,6 +40,28 @@ public class loginController {
         String iconPath = "/org/example/sriptor/assets/logo.png";
         String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/style.css")).toExternalForm();
 
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(cssStyle);
+        stage.setTitle("CartMaster");
+        stage.setScene(scene);
+        stage.setMaximized(true);//Sets the window to maximized on default
+        stage.show();
+    }
+    @FXML
+    public void toSignUpPage(MouseEvent event) throws IOException{
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try{
+            signupSetpage(stage);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void signupSetpage(Stage stage) throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.fxml")));
+        Scene scene = new Scene(root);
+        String iconPath = "/org/example/sriptor/assets/logo.png";
+        String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/style.css")).toExternalForm();
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
         scene.getStylesheets().clear();
         scene.getStylesheets().add(cssStyle);

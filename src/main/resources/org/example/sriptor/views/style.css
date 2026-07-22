@@ -6,7 +6,7 @@
 }
 .form{
     -fx-padding: 10px 10px;
-
+    -fx-background-radius: 25px;
     -fx-background-color: rgba(255, 255, 255, 0.7);
     -fx-alignment: center;
 
@@ -14,8 +14,9 @@
 }
 .formHeader{
     -fx-font-family: Satoshi;
-    -fx-font:34px bold;
-
+    -fx-font-style: bold;
+    -fx-font-size: 34px;
+    -fx-fill: #003152;
 
 }
 .logoHeader{
@@ -40,7 +41,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 6px 4px;
-    -fx-text-fill: #3083DC;
+    -fx-text-fill: #003152;
 
 
 }
@@ -50,18 +51,18 @@
     -fx-opacity: 1.0;
 }
 .button{
-    -fx-background-color: #3083DC;
+    -fx-background-color: #003152;
     -fx-text-fill: #ffffff;
 }
 .button:hover{
-    -fx-background-color: #ACDDE7;
-    -fx-text-fill: #3083DC;
+    -fx-background-color: #ADDFF1;
+    -fx-text-fill: #003152;
 }
 
 
 /*POS view*/
 .navbar{
-    -fx-background-color:#3083DC ;
+    -fx-background-color:#003152 ;
 }
 #sidePanel{
     -fx-background-color: #ffffff;
@@ -138,7 +139,7 @@
 }
 .productBox:hover{
     -fx-border-width: 1px;
-    -fx-border-color: #3083DC;
+    -fx-border-color: #003152;
 }
 
 /*Signup link to signup page*/
@@ -148,7 +149,7 @@
     -fx-font-family: "Sagoe UI";
 }
 #signUpLink{
-    -fx-fill: #3B82F6;
+    -fx-fill: #003152;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-font-family: "Segoe UI";
@@ -159,11 +160,10 @@
     -fx-font-size: 14px;
     -fx-font-family: "Sagoe UI";
 }
-#signUpLink{
-    -fx-fill: #3B82F6;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Segoe UI";
+
+#signUpLink:hover{
+    -fx-fill: #ADDFF1;
+
 }
 
 
@@ -177,5 +177,7 @@
 }
 #saleItemCard:hover{
     -fx-border-width: 1px;
-    -fx-border-color: #3083DC;
+    -fx-border-color: #003152;
 }
+
+
