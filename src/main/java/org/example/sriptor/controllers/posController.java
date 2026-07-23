@@ -5,6 +5,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
+import org.example.sriptor.models.cart;
 import org.example.sriptor.models.product;
 
 import java.io.IOException;
@@ -22,9 +23,7 @@ public class posController {
         productGrid.getChildren().clear();
         productGrid.getColumnConstraints().clear();
         productGrid.getRowConstraints().clear();
-        for (int i = 0; i <= 50; ++i) {
-            productList.add(new product("Kivo Gari", "5.42"));
-        }
+
         for (int i = 0; i < productList.size(); ++i) {
 
             product currentProduct = productList.get(i);
@@ -41,7 +40,7 @@ public class posController {
                     productNameText.setText(currentProduct.getProductName());
                 }
                 if (productPriceText != null) {
-                    productPriceText.setText(currentProduct.getProductPrice());
+                    productPriceText.setText(Double.toString(currentProduct.getProductPrice()));
                 }
                     productGrid.add(productCard, column, row);
                     productGrid.setHgap(25);
@@ -64,22 +63,20 @@ public class posController {
 
     private int column = 1;
     private int row = 1;
-    public void addItemToCart(String saleItemName, String saleItemPrice){
-        ++row;
+    private cart cart = new cart();
+    public void addItemToCart(product product){
+        cart.addProduct(product, 1);
         saleItemList.getColumnConstraints().clear();
         saleItemList.getRowConstraints().clear();
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/saleItem.fxml")));
             AnchorPane saleItemCard = loader.load();
-            Text saleItemNameText = (Text) saleItemCard.lookup("#saleItemName");
-            Text saleItemPriceText = (Text) saleItemCard.lookup("#saleItemPrice");
+            productSelectController cardController = loader.getController();
+            if(cardController != null){
+                cardController.setData(product);
+            }
 
-            if(saleItemNameText != null){
-                saleItemNameText.setText(saleItemName);
-            }
-            if(saleItemPriceText != null){
-                saleItemPriceText.setText(saleItemPrice);
-            }
+
             saleItemList.add(saleItemCard, column, row);
             saleItemList.setHgap(7.5);
             saleItemList.setVgap(5);

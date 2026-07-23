@@ -114,7 +114,7 @@ public class SignupController {
         scene.getStylesheets().add(cssStyle);
         stage.setTitle("CartMaster");
         stage.setScene(scene);
-        stage.setMaximized(true);//Sets the window to maximized on default
+        //stage.setMaximized(true);//Sets the window to maximized on default
         stage.show();
     }
 }
