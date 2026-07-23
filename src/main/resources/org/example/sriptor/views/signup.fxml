@@ -31,14 +31,19 @@
                      <children>
                         <HBox styleClass="input-container-group" stylesheets="@style.css">
                            <children>
-                                    <TextField fx:id="usernameField" prefHeight="45.0" prefWidth="360.0" promptText="First Name" styleClass="input-field-nested" stylesheets="@style.css" />
+                                    <TextField fx:id="firstNameField" prefHeight="45.0" prefWidth="360.0" promptText="First Name" styleClass="input-field-nested" stylesheets="@style.css" />
                            </children>
                         </HBox>
                         <HBox styleClass="input-container-group" stylesheets="@style.css">
                            <children>
-                              <TextField prefHeight="45.0" prefWidth="360.0" promptText="Last Name" styleClass="input-field-nested" stylesheets="@style.css" />
+                              <TextField fx:id="lastNameField" prefHeight="45.0" prefWidth="360.0" promptText="Last Name" styleClass="input-field-nested" stylesheets="@style.css" />
                            </children>
                         </HBox>
+                     </children>
+                  </HBox>
+                  <HBox styleClass="input-container-group" stylesheets="@style.css">
+                     <children>
+                        <TextField fx:id="usernameField" prefHeight="45.0" prefWidth="360.0" promptText="Username" styleClass="input-field-nested" stylesheets="@style.css" />
                      </children>
                   </HBox>
                   <HBox styleClass="input-container-group" stylesheets="@style.css">
@@ -52,9 +57,10 @@
                      </children>
                   </HBox>
                         <ComboBox fx:id="roleComboBox" prefHeight="45.0" prefWidth="360.0" promptText="Select Role" stylesheets="@style.css" />
+                  <Text fx:id="errorlabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="errorLabel" wrappingWidth="352.13000106811523" />
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="360.0" stylesheets="@style.css">
                             <children>
-                                <Button fx:id="signupButton" prefHeight="40.0" prefWidth="140.0" stylesheets="@style.css" text="Sign Up" textFill="WHITE">
+                                <Button fx:id="signupButton" onAction="#signUp" prefHeight="26.0" prefWidth="100.0" stylesheets="@style.css" text="Sign Up" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>

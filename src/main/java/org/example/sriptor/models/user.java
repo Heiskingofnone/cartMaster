@@ -1,0 +1,71 @@
+package org.example.sriptor.models;
+
+public class user {
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String password;
+    private Role role;
+
+    public enum Role{
+        CASHIER("Cashier"),
+        ADMIN("Adninistrator");
+        private  final String displayName;
+
+        Role(String displayName){
+            this.displayName = displayName;
+        }
+
+        public String toString(){
+            return displayName;
+        }
+    }
+    public user(String firstName, String lastName, String username, String password, Role role){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+}
