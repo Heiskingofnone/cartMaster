@@ -50,6 +50,14 @@ public class posController {
         productList.add(new product("Lay's Chips", 15.0, 11, imagePath));
         productList.add(new product("Aura Serum", 150.0, 12, imagePath));
         productList.add(new product("Boss Perfume", 320.0, 13, imagePath));
+        productList.add(new product("Chivita", 7.50, 1, imagePath));
+        productList.add(new product("Vit C serum", 150.0, 2, imagePath));
+        productList.add(new product("Jrink", 30.0, 3, imagePath));
+        productList.add(new product("Sewing Kit", 50.1, 4, imagePath));
+        productList.add(new product("GoldenTree Chocolate", 25.0, 5, imagePath));
+        productList.add(new product("Bourn Vita", 200.0, 6, imagePath));
+        productList.add(new product("Nike Runners", 400.0, 7, imagePath));
+
 
         for (int i = 0; i < productList.size(); ++i) {
             product currentProduct = productList.get(i);
@@ -122,12 +130,12 @@ public class posController {
             showAlert("Checkout Failed", "Your cart is empty! Add items before checking out");
             return;
         }
-        double Total = 0.0;
+        double grandTotal = 0.0;
         for(saleItem items: cartItem.getItems()){
-            Total = items.getProduct().getProductPrice() * items.getSaleItemQuantity();
-            Total += Total;
+            Double Total = items.getProduct().getProductPrice() * items.getSaleItemQuantity();
+            grandTotal += Total;
         }
-        showAlert("Successful Checkout", "checkout completed! Total: GHS " + Total);
+        showAlert("Successful Checkout", "checkout completed! Total: GHS " + grandTotal);
         clearCart();
 
     }
