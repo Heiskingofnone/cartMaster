@@ -6,6 +6,7 @@ import java.util.List;
 public class cart {
     private List<saleItem> items = new ArrayList<>();
 
+
     public void addProduct(product product, int quantity){
         for(saleItem item : items){
             if (item.getProduct().getId() == product.getId()){

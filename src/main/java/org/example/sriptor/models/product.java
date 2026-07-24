@@ -20,9 +20,9 @@ public class product {
         this.productName = productName;
         this.id = id;
         this.imagePath = imagePath;
-        setImage(imagePath);
-        setProductName(productName);
-        setProductPrice(productPrice);
+        //setImage(imagePath);
+       //setProductName(productName);
+        //setProductPrice(productPrice);
     }
     public void setImage(String imagePath){
 

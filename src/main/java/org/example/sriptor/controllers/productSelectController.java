@@ -3,9 +3,9 @@ package org.example.sriptor.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.example.sriptor.models.product;
+import org.example.sriptor.models.saleItem;
 
 import java.io.IOException;
 
@@ -17,16 +17,13 @@ public class productSelectController {
     @FXML private Text productNameText;
     @FXML private Text productPriceText;
     @FXML private Text productQuantityText;
-    @FXML private Text saleItemPrice;
+
 
     // Connects this child controller to the master POS controller
     public void setPosController(posController posController) {
         this.posController = posController;
     }
 
-    /**
-     * Binds the product domain model to the UI labels
-     */
     public void setData(product product) {
         this.currentProduct = product;
 
@@ -35,18 +32,19 @@ public class productSelectController {
         }
 
         if (productPriceText != null && product != null) {
-            productPriceText.setText(String.format("$%.2f", product.getProductPrice()));
+            productPriceText.setText(Double.toString(product.getProductPrice()));
         }
     }
 
+
     @FXML
     public void productSelect(MouseEvent event) throws IOException {
-        AnchorPane clickedCard = (AnchorPane) event.getSource();
-        product selectedProduct = (product) clickedCard.getUserData();
+        // Direct reference! No need to pull from UserData or cast the event source.
+        if (this.currentProduct != null && this.posController != null) {
+            posController.addItemToCart(this.currentProduct);
 
-        // Safe check for both object presence and controller initialization
-        if (selectedProduct != null && posController != null) {
-            posController.addItemToCart(selectedProduct);
+        } else {
+            System.out.println("Click failed: currentProduct or posController is null.");
         }
     }
 
@@ -77,4 +75,5 @@ public class productSelectController {
             }
         }
     }
+
 }

@@ -17,7 +17,7 @@
                   <Image url="@../assets/DefaultImage.png" />
                </image>
             </ImageView>
-            <Text id="saleItemName" fx:id="saleItemId" strokeType="OUTSIDE" strokeWidth="0.0" text="Product name" textAlignment="CENTER" wrappingWidth="83.13000106811523" />
+            <Text id="saleItemName" fx:id="productNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Product name" textAlignment="CENTER" wrappingWidth="83.13000106811523" />
             <HBox alignment="CENTER" spacing="5.0">
                <children>
                   <Button id="quantityDecreaseButton" fx:id="quantityDecreaseButton" mnemonicParsing="false" onAction="#decreaseQuantity" prefHeight="9.0" prefWidth="3.0" text="-" />
@@ -25,7 +25,7 @@
                   <Button id="quantityIncreaseButton" fx:id="quantityIncreaseButton" mnemonicParsing="false" onAction="#increaseQuantity" prefHeight="9.0" prefWidth="3.0" text="+" />
                </children>
             </HBox>
-            <Text id="saleItemPrice" fx:id="saleItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="price" textAlignment="CENTER" wrappingWidth="98.13000106811523" />
+            <Text id="saleItemPrice" fx:id="productPriceText" strokeType="OUTSIDE" strokeWidth="0.0" text="price" textAlignment="CENTER" wrappingWidth="98.13000106811523" />
             <ImageView id="saleItemImage" fx:id="saleItemImage1" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/DefaultImage.png" />
