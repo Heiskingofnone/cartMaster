@@ -12,17 +12,23 @@
    <children>
       <VBox alignment="CENTER" layoutX="25.0" prefHeight="180.0" prefWidth="150.0" spacing="2.0" styleClass="productBox" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="setImage" fitHeight="122.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+            <ImageView fx:id="setImage" fitHeight="122.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
                <image>
                   <Image url="@../assets/DefaultImage.png" />
                </image></ImageView>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="productNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="product name" wrappingWidth="139.22900009155273" />
+                  <Text fx:id="productNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="product name" wrappingWidth="122.22900009155273" />
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <Text fx:id="productPriceText" strokeType="OUTSIDE" strokeWidth="0.0" text="product price" wrappingWidth="139.22900009155273" />
+            <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="111.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GHS" textAlignment="CENTER" wrappingWidth="41.23400115966797" />
+                  <Text fx:id="productPriceText" strokeType="OUTSIDE" strokeWidth="0.0" text="price" wrappingWidth="86.22900009155273" HBox.hgrow="ALWAYS" />
+               </children></HBox>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
