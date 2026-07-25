@@ -26,11 +26,9 @@
             <version>21.0.6</version>
         </dependency>
         <dependency>
-            <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc</artifactId>
-            <version>local-driver</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/ojdbc17.jar</systemPath>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.53.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
