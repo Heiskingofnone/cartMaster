@@ -23,6 +23,6 @@ public class Launcher {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //Application.launch(posApplication.class, args);
+        Application.launch(posApplication.class, args);
     }
 }
