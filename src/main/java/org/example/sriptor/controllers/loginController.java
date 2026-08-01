@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +27,7 @@ public class loginController {
     public void initialize(){
         errorlabel.setText("");
     }
+
 
     public void onSubmit(ActionEvent event){
         String username = loginUsername.getText();
@@ -53,6 +56,8 @@ public class loginController {
         stage.setScene(scene);
         stage.setMaximized(true);//Sets the window to maximized on default
         stage.show();
+        stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
+
         } else{
             errorlabel.setText("username or password is incorrect");
 
@@ -65,13 +70,10 @@ public class loginController {
     public boolean authenticateUser(){
         String enteredUser = loginUsername.getText();
         String enteredPassword = loginPassword.getText();
-        if(registeredUser != null && registeredUser.getUsername().equals(enteredUser) && registeredUser.getPassword().equals(enteredPassword)){
-            return true;
-        }
-        return false;
+        return registeredUser != null && registeredUser.getUsername().equals(enteredUser) && registeredUser.getPassword().equals(enteredPassword);
     }
     @FXML
-    public void toSignUpPage(MouseEvent event) throws IOException{
+    public void toSignUpPage(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try{
             signupSetpage(stage);
@@ -94,6 +96,17 @@ public class loginController {
             stage.setScene(scene);
             //stage.setMaximized(true);//Sets the window to maximized on default
             stage.show();
+            stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
 
+    }
+
+    public void logout(Stage stage){
+        Alert closeAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        closeAlert.setTitle("Closing Cart Master");
+        closeAlert.setHeaderText("You are about to logout,");
+        closeAlert.setContentText("Do you want to save?");
+        if(closeAlert.showAndWait().get() == ButtonType.OK){
+            stage.close();
+        }
     }
 }
