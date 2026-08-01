@@ -7,22 +7,26 @@ import javafx.scene.text.Text;
 import java.util.Objects;
 
 public class product {
+    private int id;
     private String productName;
-    private String productPrice;
+    private Double productPrice;
+    private String imagePath;
 
 
 
 
-    public product(String productName, String productPrice){
+    public product(String productName, Double productPrice, int id, String imagePath){
         this.productPrice = productPrice;
         this.productName = productName;
-        setImage();
-        setProductName(productName);
-        setProductPrice(productPrice);
+        this.id = id;
+        this.imagePath = imagePath;
+        //setImage(imagePath);
+       //setProductName(productName);
+        //setProductPrice(productPrice);
     }
-    public void setImage(){
+    public void setImage(String imagePath){
 
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/example/sriptor/assets/DefaultImage.png")));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
         ImageView imageView = new ImageView();
         imageView.setImage(image);
     }
@@ -31,15 +35,25 @@ public class product {
         productNametext.setText(productName);
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getProductName() {
         return productName;
     }
 
-    public String getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
+    public String getImagePath(){return imagePath;}
+
+    public int getId(){
+        return id;
+    }
+
 }

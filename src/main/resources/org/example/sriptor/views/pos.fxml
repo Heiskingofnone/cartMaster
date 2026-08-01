@@ -14,161 +14,181 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="980.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.posController">
-   <children>
-      <SplitPane dividerPositions="0.7433537832310838" layoutX="597.0" layoutY="169.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #F3F4F9 ;;" stylesheets="@style.css">
-               <children>
-                  <ScrollPane fitToWidth="true" layoutX="243.0" layoutY="113.0" prefHeight="200.0" prefWidth="200.0" styleClass="leftParentPanel" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
-                     <content>
-                        <GridPane fx:id="productGrid" prefHeight="579.0" prefWidth="702.0" styleClass="leftParentPanel" stylesheets="@style.css">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
-                     <padding>
-                        <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
-                     </padding>
-                  </ScrollPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane id="sidePanel" minHeight="0.0" prefHeight="578.0" prefWidth="399.0" styleClass="rightParentPanel" stylesheets="@style.css">
-               <children>
-                  <VBox alignment="CENTER" layoutX="51.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="rightParentPanel" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <AnchorPane prefHeight="125.0" prefWidth="321.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <VBox layoutX="48.0" layoutY="-6.0" prefHeight="123.0" prefWidth="321.0" spacing="10.0" styleClass="sidePanelHeader" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="321.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Cart Details:" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Satoshi Light" size="30.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="321.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  Date:" wrappingWidth="118.13000106811523">
-                                             <font>
-                                                <Font name="Satoshi Medium" size="16.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="69.0" prefHeight="59.0" prefWidth="321.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  Time:" wrappingWidth="118.13000106811523">
-                                             <font>
-                                                <Font name="Satoshi Medium" size="16.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="286.0" prefWidth="321.0" styleClass="rightScrollPanel" stylesheets="@style.css" VBox.vgrow="ALWAYS">
-                           <content>
-                              <GridPane id="cartListScrollPanel" fx:id="saleItemList" prefHeight="280.0" prefWidth="273.0" styleClass="rightGridPanel" stylesheets="@style.css">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                           </content>
+    <children>
+        <SplitPane dividerPositions="0.7433537832310838" layoutX="597.0" layoutY="169.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #F3F4F9 ;;" stylesheets="@style.css">
+                    <children>
+                        <ScrollPane fitToWidth="true" layoutX="243.0" layoutY="113.0" prefHeight="200.0" prefWidth="200.0" styleClass="leftParentPanel" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
+                            <content>
+                                <GridPane fx:id="productGrid" prefHeight="579.0" prefWidth="702.0" styleClass="leftParentPanel" stylesheets="@style.css">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                </GridPane>
+                            </content>
+                            <padding>
+                                <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                            </padding>
                         </ScrollPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                  <AnchorPane prefHeight="106.0" prefWidth="248.0">
-                                       <children>
-                                          <VBox layoutX="34.0" layoutY="-77.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="boxForTotal" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="amountBox" stylesheets="@style.css" />
-                                                <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="amountBox" stylesheets="@style.css" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                  <AnchorPane VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox alignment="CENTER" layoutX="49.0" layoutY="-5.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@style.css" text="Button" VBox.vgrow="ALWAYS">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@style.css" text="Button" VBox.vgrow="ALWAYS">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="CENTER" layoutX="88.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" VBox.vgrow="ALWAYS">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@style.css" text="Button" VBox.vgrow="ALWAYS">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </VBox>
-                           </children>
+                    </children>
+                </AnchorPane>
+                <AnchorPane id="sidePanel" minHeight="0.0" prefHeight="578.0" prefWidth="399.0" styleClass="rightParentPanel" stylesheets="@style.css">
+                    <children>
+                        <VBox alignment="CENTER" layoutX="51.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="rightParentPanel" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <AnchorPane prefHeight="125.0" prefWidth="321.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <VBox layoutX="48.0" layoutY="-6.0" prefHeight="123.0" prefWidth="321.0" spacing="10.0" styleClass="sidePanelHeader" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="321.0">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Cart Details:" textAlignment="CENTER">
+                                                            <font>
+                                                                <Font name="Satoshi Light" size="30.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="321.0">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  Date:" wrappingWidth="118.13000106811523">
+                                                            <font>
+                                                                <Font name="Satoshi Medium" size="16.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="69.0" prefHeight="59.0" prefWidth="321.0">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  Time:" wrappingWidth="118.13000106811523">
+                                                            <font>
+                                                                <Font name="Satoshi Medium" size="16.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- FIX: Removed fitToHeight="true" -->
+                                <ScrollPane fitToWidth="true" prefHeight="286.0" prefWidth="321.0" styleClass="rightScrollPanel" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+                                    <content>
+                                        <GridPane id="cartListScrollPanel" fx:id="saleItemList" hgap="5.0" styleClass="rightGridPanel" stylesheets="@style.css">
+                                            <columnConstraints>
+                                                <!-- FIX: Single full-width column constraint -->
+                                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                                            </columnConstraints>
+                                            <!-- FIX: Removed pre-defined rowConstraints -->
+                                        </GridPane>
+                                    </content>
                            <VBox.margin>
-                              <Insets />
+                              <Insets left="5.0" />
                            </VBox.margin>
-                        </AnchorPane>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-      <HBox layoutX="-21.0" layoutY="-2.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="20.0" styleClass="navbar" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   </children>
+                                </ScrollPane>
+
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane prefHeight="106.0" prefWidth="248.0">
+                                                    <children>
+                                                        <VBox layoutX="34.0" layoutY="-77.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="boxForTotal" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="amountBox" stylesheets="@style.css">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:" wrappingWidth="42.130001068115234">
+                                                         <font>
+                                                            <Font name="Satoshi Medium" size="16.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="totalPrice" layoutX="11.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.13000106811523">
+                                                         <font>
+                                                            <Font name="Satoshi Medium" size="16.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="5.0" />
+                                                   </padding></HBox>
+                                                                <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="amountBox" stylesheets="@style.css" />
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <HBox alignment="CENTER" layoutX="49.0" layoutY="-5.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                                    <children>
+                                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearCart" stylesheets="@style.css" text="Clear" VBox.vgrow="ALWAYS">
+                                                                            <VBox.margin>
+                                                                                <Insets />
+                                                                            </VBox.margin>
+                                                                        </Button>
+                                                                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@style.css" text="Hold" VBox.vgrow="ALWAYS">
+                                                                            <VBox.margin>
+                                                                                <Insets />
+                                                                            </VBox.margin>
+                                                                        </Button>
+                                                                    </children>
+                                                                </VBox>
+                                                                <VBox alignment="CENTER" layoutX="88.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                                    <children>
+                                                                        <Button fx:id="handleChekout" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCheckout" text="CheckOut" VBox.vgrow="ALWAYS">
+                                                                            <VBox.margin>
+                                                                                <Insets />
+                                                                            </VBox.margin>
+                                                                        </Button>
+                                                                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@style.css" text="Recall" VBox.vgrow="ALWAYS">
+                                                                            <VBox.margin>
+                                                                                <Insets />
+                                                                            </VBox.margin>
+                                                                        </Button>
+                                                                    </children>
+                                                                </VBox>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </AnchorPane>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <HBox layoutX="-21.0" layoutY="-2.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="20.0" styleClass="navbar" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    </children>
 </AnchorPane>

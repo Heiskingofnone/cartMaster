@@ -1,5 +1,6 @@
 package org.example.sriptor.config;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,31 +24,35 @@ public class DatabaseConfig {
         this.port = port;
         this.host = host;
         this.serviceName = serviceName;
+    }
 
-
-
+    public Connection getConnection() throws SQLException{
         String url = "jdbc:oracle:thin:@"+host+":"+port+"/"+serviceName;
         //String url = "jdbc:"
 
         Properties props = new Properties();
         props.setProperty("user", user);
         props.setProperty("password", password);
-        props.setProperty("internal_logon", internalLogon);
+        if(internalLogon != null) {
+            props.setProperty("internal_logon", internalLogon);
+        }
         System.out.println("Credentials Set...");
         try {
             Class.forName("oracle.jdbc.OracleDriver");
-            Connection connection = DriverManager.getConnection(url, props);
-            System.out.println("Database Connected Successfully.");
+
         } catch (ClassNotFoundException e){
-            System.err.println("Driver class not found!");
-            e.printStackTrace();
+            throw new RuntimeException(e);
+
         }
-        catch (SQLException e) {
+
+        catch (Exception e) {
             System.err.println("Connection failed: "+ e.getMessage());
             throw new RuntimeException(e);
         }
+        return DriverManager.getConnection(url, props);
 
     }
+
 
     //Setters
     public void setUser(String user) {

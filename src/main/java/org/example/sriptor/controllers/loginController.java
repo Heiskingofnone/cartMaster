@@ -8,7 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.sriptor.models.user;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -19,6 +22,9 @@ public class loginController {
     private TextField loginUsername;// an instance of a textfield is acknowledged
     @FXML //Connects loginController + fxml in order to acknowledge object instance
     private TextField loginPassword;//an instance of a textfield is acknowledged
+    public void initialize(){
+        errorlabel.setText("");
+    }
 
     public void onSubmit(ActionEvent event){
         String username = loginUsername.getText();
@@ -34,6 +40,7 @@ public class loginController {
 
     }
     public void posSetWindow(Stage stage) throws IOException {
+        if(authenticateUser()) {
         Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/pos.fxml")));
         Scene scene = new Scene(root);
         String iconPath = "/org/example/sriptor/assets/logo.png";
@@ -46,5 +53,47 @@ public class loginController {
         stage.setScene(scene);
         stage.setMaximized(true);//Sets the window to maximized on default
         stage.show();
+        } else{
+            errorlabel.setText("username or password is incorrect");
+
+        }
+    }
+    private static user registeredUser;
+    public void setRegisteredUser(user user){
+        registeredUser = user;
+    }
+    public boolean authenticateUser(){
+        String enteredUser = loginUsername.getText();
+        String enteredPassword = loginPassword.getText();
+        if(registeredUser != null && registeredUser.getUsername().equals(enteredUser) && registeredUser.getPassword().equals(enteredPassword)){
+            return true;
+        }
+        return false;
+    }
+    @FXML
+    public void toSignUpPage(MouseEvent event) throws IOException{
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try{
+            signupSetpage(stage);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    @FXML private Text errorlabel;
+    public void signupSetpage(Stage stage) throws IOException{
+
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.fxml")));
+            Scene scene = new Scene(root);
+            String iconPath = "/org/example/sriptor/assets/logo.png";
+            String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/style.css")).toExternalForm();
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(cssStyle);
+            stage.setTitle("CartMaster");
+            stage.setScene(scene);
+            //stage.setMaximized(true);//Sets the window to maximized on default
+            stage.show();
+
     }
 }

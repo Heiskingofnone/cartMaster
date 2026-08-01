@@ -16,7 +16,7 @@
    <children>
       <StackPane layoutY="89.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="15.0" style="-fx-background-radius: 50;" styleClass="form" stylesheets="@style.css">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="15.0" styleClass="form" stylesheets="@style.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="formHeader" stylesheets="@style.css">
                      <children>
@@ -25,7 +25,7 @@
                               <Image url="@../assets/logo.png" />
                            </image>
                         </ImageView>
-                        <Text fill="#3083dc" strokeType="OUTSIDE" strokeWidth="0.0" text="Cart Master" textAlignment="CENTER" wrappingWidth="196.13000106811523">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="formHeader" text="Cart Master" textAlignment="CENTER" wrappingWidth="196.13000106811523">
                            <font>
                               <Font name="Satoshi Bold" size="34.0" />
                            </font>
@@ -49,13 +49,17 @@
                   </HBox>
                   <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="247.0" prefHeight="42.0" prefWidth="380.0">
                      <children>
-                        <Button fx:id="loginButton" onAction="#onSubmit" prefHeight="26.0" prefWidth="100.0" stylesheets="@style.css" text="Login" textFill="#f2f2f2" />
+                        <Button fx:id="loginButton" onAction="#onSubmit" prefHeight="26.0" prefWidth="100.0" stylesheets="@style.css" text="Login" textFill="#f2f2f2">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Button>
                      </children>
                   </HBox>
+                  <Text fx:id="errorlabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="errorLabel" wrappingWidth="376.13000106811523" />
                   <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="317.0" prefHeight="42.0" prefWidth="380.0" spacing="5.0">
                      <children>
                         <Text id="noAccountLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
-                        <Text id="signUpLink" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" />
+                        <Text id="signUpLink" onMouseClicked="#toSignUpPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
