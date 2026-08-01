@@ -1,11 +1,24 @@
 package org.example.sriptor;
 
 import javafx.application.Application;
-import org.example.sriptor.config.DatabaseConfig;
+import org.example.sriptor.config.connectDB;
+
+import java.sql.SQLException;
+
+import static java.lang.System.out;
 
 public class Launcher {
     public static void main(String[] args) {
-        //DatabaseConfig config = new DatabaseConfig("sys", "Heisamsterdam123456", "sysdba", 1521, "localhost", "XEPDB1");
+        try {
+            connectDB dbConnect = new connectDB();
+            if(dbConnect.getConnection() != null){
+                out.println("All done");
+                dbConnect.closeConnection();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         Application.launch(posApplication.class, args);
     }
 }

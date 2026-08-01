@@ -30,6 +30,7 @@ public class posApplication extends Application {
         stage.show();
 
 
+
     }
 
 }
