@@ -12,13 +12,17 @@ public class Launcher {
         try {
             connectDB dbConnect = new connectDB();
             if(dbConnect.getConnection() != null){
-                out.println("All done");
+                if(dbConnect.tableExists(dbConnect.getConnection())){
+                    out.println("Tables Exist, Moving on >>>");
+                }else {
+                    dbConnect.createTableInstance(dbConnect.getConnection());
+                }
                 dbConnect.closeConnection();
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        Application.launch(posApplication.class, args);
+        //Application.launch(posApplication.class, args);
     }
 }
