@@ -9,7 +9,7 @@ public class cart {
 
     public void addProduct(product product, int quantity){
         for(saleItem item : items){
-            if (item.getProduct().getId() == product.getId()){
+            if (item.getProduct().getProductId() == product.getProductId()){
                 item.setSaleItemQuantity(item.getSaleItemQuantity() + quantity);
                 return;
 

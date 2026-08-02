@@ -7,24 +7,28 @@ import javafx.scene.text.Text;
 import java.util.Objects;
 
 public class product {
-    private int id;
+    private String productId;
     private String productName;
+    private String categoryId;
+    private int productQuantity;
     private Double productPrice;
     private String imagePath;
 
 
 
 
-    public product(String productName, Double productPrice, int id, String imagePath){
+    public product(String productName, Double productPrice, String productId, String imagePath){
         this.productPrice = productPrice;
         this.productName = productName;
-        this.id = id;
+        this.productId = productId;
         this.imagePath = imagePath;
-        //setImage(imagePath);
-       //setProductName(productName);
-        //setProductPrice(productPrice);
     }
-    public void setImage(String imagePath){
+
+    //setters
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+    public void setImagePath(String imagePath){
 
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
         ImageView imageView = new ImageView();
@@ -34,26 +38,29 @@ public class product {
         Text productNametext = new Text();
         productNametext.setText(productName);
     }
-
     public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+    //Getters
 
+    public int getProductQuantity() {return productQuantity;}
     public String getProductName() {
         return productName;
     }
-
     public Double getProductPrice() {
         return productPrice;
     }
     public String getImagePath(){return imagePath;}
-
-    public int getId(){
-        return id;
+    public String getProductId(){
+        return productId;
     }
-
+    public String getCategoryId() {
+        return categoryId;
+    }
 }
