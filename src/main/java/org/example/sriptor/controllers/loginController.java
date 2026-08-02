@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +24,7 @@ public class loginController {
     @FXML
     private TextField loginUsername;// an instance of a textfield is acknowledged
     @FXML //Connects loginController + fxml in order to acknowledge object instance
-    private TextField loginPassword;//an instance of a textfield is acknowledged
+    private PasswordField loginPassword;//an instance of a textfield is acknowledged
     public void initialize(){
         errorlabel.setText("");
     }
