@@ -4,6 +4,7 @@ public class sale {
     private String saleId;
     private int userId;
     private double totalAmount;
+    private String saleDate;
 
     //setters
 
@@ -19,6 +20,9 @@ public class sale {
         this.totalAmount = totalAmount;
     }
 
+    public void setSaleDate(String saleDate) {
+        this.saleDate = saleDate;
+    }
     //getters
 
     public String getSaleId() {
@@ -31,5 +35,9 @@ public class sale {
 
     public double getTotalAmount() {
         return totalAmount;
+    }
+
+    public String getSaleDate() {
+        return saleDate;
     }
 }

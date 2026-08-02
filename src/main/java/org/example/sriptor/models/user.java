@@ -7,6 +7,8 @@ public class user {
     private String password;
     private Role role;
     private Boolean isActive;
+    private String createdDate;
+    private String updatedDate;
 
 
     public enum Role{
@@ -55,6 +57,14 @@ public class user {
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
+    }
     //getters
 
     public String getFirstName() {
@@ -79,5 +89,13 @@ public class user {
 
     public Boolean getIsActive() {
         return isActive;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public String getUpdatedDate() {
+        return updatedDate;
     }
 }
