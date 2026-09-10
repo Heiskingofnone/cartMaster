@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="parent" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.loginController">
+   <children>
+      <HBox layoutX="524.0" layoutY="334.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <StackPane id="formBackground" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <children>
+                  <VBox id="formBackground-panel" alignment="CENTER" prefHeight="726.0" prefWidth="704.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="350.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Welcome to Cartmaster" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="195.0" prefWidth="704.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="195.0" prefWidth="400.0" spacing="20.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="491.0" styleClass="googleAppleLogin">
+                                             <children>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="googleLogo" />
+                                                <Label id="googleAppleLogin-label" prefHeight="18.0" prefWidth="125.0" text="Sign in with Google" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="93.0" maxHeight="40.0" prefHeight="40.0" prefWidth="491.0" styleClass="googleAppleLogin" stylesheets="@Login.css">
+                                             <children>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="appleLogo" />
+                                                <Label id="googleAppleLogin-label" prefHeight="18.0" prefWidth="132.0" text="Sign in with Apple ID" textFill="WHITE" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="704.0">
+                           <children>
+                              <HBox id="Divider" alignment="CENTER" prefHeight="100.0" prefWidth="50.0" spacing="2.0" stylesheets="@Login.css" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <HBox id="line" maxHeight="1.0" prefHeight="1.0" prefWidth="200.0" stylesheets="@Login.css" />
+                                    <Text id="or" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Or" />
+                                    <HBox id="line" maxHeight="1.0" prefHeight="1.0" prefWidth="200.0" stylesheets="@Login.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="360.0" prefHeight="350.0" prefWidth="100.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="564.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label prefHeight="25.0" prefWidth="533.0" text="Email" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="loginUsername" maxWidth="544.0" prefHeight="45.0" prefWidth="544.0" promptText="example@email.com" styleClass="loginTextFieldsDark">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="626.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="532.7739944458008">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <PasswordField fx:id="loginPassword" maxWidth="544.0" prefHeight="45.0" prefWidth="530.0" promptText="password123" styleClass="loginTextFieldsDark" />
+                                          <Text fx:id="errorlabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="errorLabel" wrappingWidth="535.3120040893555" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Button maxWidth="544.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="45.0" prefWidth="864.0" styleClass="submitButton" text="Log In" />
+                                          <HBox alignment="CENTER" spacing="5.0">
+                                             <children>
+                                                <Text fill="#bdbdbd" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Label id="signupHyperlink" onMouseClicked="#toSignUpPage" text="Sign Up">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="40.0" right="40.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="768.0" prefWidth="662.0">
+               <children>
+                  <Region id="loginIllustration" maxHeight="402.0" maxWidth="539.0" prefHeight="402.0" prefWidth="539.0" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

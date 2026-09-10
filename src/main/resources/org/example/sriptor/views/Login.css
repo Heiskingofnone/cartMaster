@@ -1,0 +1,69 @@
+.parent{
+    -fx-background-image: url("/org/example/sriptor/assets/BackgroundDark.png");
+    -fx-font-family: "inter";
+    -fx-font-style: normal;
+}
+
+#formBackground-panel{
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.0) 100%), rgba(18, 20, 28, 0.75);
+    -fx-background-insets: 0, 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0, 0, 8);
+    -fx-background-radius: 12px;
+}
+
+#or {
+    -fx-font-family: "inter";
+    -fx-font-style: normal;
+    -fx-text-fill: #BCD8FF;
+}
+
+#line {
+    -fx-background-color: #bdd8ff;
+}
+#loginIllustration{
+    -fx-background-image: url("/org/example/sriptor/assets/cartmasterIntroIllustration.png");
+    -fx-preserve-ratio: true;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.loginTextFieldsDark{
+    -fx-background-color: #030818;
+    -fx-border-color: #83a1ff;
+    -fx-border-width: 1px;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-text-fill: #ffffff;
+}
+.submitButton{
+    -fx-background-radius: 20;
+    -fx-background-color: #003bf8;
+    -fx-text-fill: #ffffff;
+}
+.submitButton:hover{
+    -fx-background-color: #1545E0;
+}
+#signupHyperlink{
+    -fx-text-fill: #1444E0;
+}
+#signupHyperlink:hover{
+    -fx-text-fill: #83a1ff;
+}
+.googleAppleLogin{
+    -fx-border-width: 1px;
+    -fx-border-radius: 20;
+    -fx-border-color: #83a1ff;
+    -fx-background-color: #030818;
+    -fx-background-radius: 20;
+    -fx-text-fill: #ffffff;
+}
+.googleAppleLogin:hover{
+    -fx-border-color: #bdd8ff;
+
+}
+#googleAppleLogin{
+}
+.googleLogo{
+    -fx-image: url("/org/example/sriptor/assets/googleLogo.png");
+}
+

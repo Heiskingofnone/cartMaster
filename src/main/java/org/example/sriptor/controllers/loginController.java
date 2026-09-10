@@ -84,8 +84,6 @@ public class loginController {
     }
     @FXML private Text errorlabel;
     public void signupSetpage(Stage stage) throws IOException{
-
-
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.fxml")));
             Scene scene = new Scene(root);
             String iconPath = "/org/example/sriptor/assets/logo.png";
