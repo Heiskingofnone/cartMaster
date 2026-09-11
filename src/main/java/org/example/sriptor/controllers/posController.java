@@ -37,27 +37,6 @@ public class posController {
         productGrid.getColumnConstraints().clear();
         productGrid.getRowConstraints().clear();
 
-        productList.add(new product("Chivita", 7.50, 1, imagePath));
-        productList.add(new product("Vit C serum", 150.0, 2, imagePath));
-        productList.add(new product("Jrink", 30.0, 3, imagePath));
-        productList.add(new product("Sewing Kit", 50.1, 4, imagePath));
-        productList.add(new product("GoldenTree Chocolate", 25.0, 5, imagePath));
-        productList.add(new product("Bourn Vita", 200.0, 6, imagePath));
-        productList.add(new product("Nike Runners", 400.0, 7, imagePath));
-        productList.add(new product("School Bag", 180.0, 8, imagePath));
-        productList.add(new product("Air Fryer", 550.0, 9, imagePath));
-        productList.add(new product("Savage Perfume", 150.0, 10, imagePath));
-        productList.add(new product("Lay's Chips", 15.0, 11, imagePath));
-        productList.add(new product("Aura Serum", 150.0, 12, imagePath));
-        productList.add(new product("Boss Perfume", 320.0, 13, imagePath));
-        productList.add(new product("Chivita", 7.50, 1, imagePath));
-        productList.add(new product("Vit C serum", 150.0, 2, imagePath));
-        productList.add(new product("Jrink", 30.0, 3, imagePath));
-        productList.add(new product("Sewing Kit", 50.1, 4, imagePath));
-        productList.add(new product("GoldenTree Chocolate", 25.0, 5, imagePath));
-        productList.add(new product("Bourn Vita", 200.0, 6, imagePath));
-        productList.add(new product("Nike Runners", 400.0, 7, imagePath));
-
 
         for (int i = 0; i < productList.size(); ++i) {
             product currentProduct = productList.get(i);

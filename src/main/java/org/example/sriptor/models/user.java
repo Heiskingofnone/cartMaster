@@ -6,6 +6,10 @@ public class user {
     private String username;
     private String password;
     private Role role;
+    private Boolean isActive;
+    private String createdDate;
+    private String updatedDate;
+
 
     public enum Role{
         CASHIER("Cashier"),
@@ -20,6 +24,7 @@ public class user {
             return displayName;
         }
     }
+
     public user(String firstName, String lastName, String username, String password, Role role){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,6 +32,7 @@ public class user {
         this.password = password;
         this.role = role;
     }
+    //setters
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -48,6 +54,19 @@ public class user {
         this.username = username;
     }
 
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+    //getters
+
     public String getFirstName() {
         return firstName;
     }
@@ -68,4 +87,15 @@ public class user {
         return role;
     }
 
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public String getUpdatedDate() {
+        return updatedDate;
+    }
 }

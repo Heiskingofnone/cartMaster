@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +24,7 @@ public class loginController {
     @FXML
     private TextField loginUsername;// an instance of a textfield is acknowledged
     @FXML //Connects loginController + fxml in order to acknowledge object instance
-    private TextField loginPassword;//an instance of a textfield is acknowledged
+    private PasswordField loginPassword;//an instance of a textfield is acknowledged
     public void initialize(){
         errorlabel.setText("");
     }
@@ -83,8 +84,6 @@ public class loginController {
     }
     @FXML private Text errorlabel;
     public void signupSetpage(Stage stage) throws IOException{
-
-
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.fxml")));
             Scene scene = new Scene(root);
             String iconPath = "/org/example/sriptor/assets/logo.png";
@@ -94,7 +93,7 @@ public class loginController {
             scene.getStylesheets().add(cssStyle);
             stage.setTitle("CartMaster");
             stage.setScene(scene);
-            //stage.setMaximized(true);//Sets the window to maximized on default
+            stage.setMaximized(true);//Sets the window to maximized on default
             stage.show();
             stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
 
