@@ -17,9 +17,10 @@ public class product {
 
 
 
-    public product(String productName, Double productPrice, String productId, String imagePath){
+    public product(String productName, Double productPrice, String productId, String imagePath, String categoryId){
         this.productPrice = productPrice;
         this.productName = productName;
+        this.categoryId = categoryId;
         this.productId = productId;
         this.imagePath = imagePath;
     }

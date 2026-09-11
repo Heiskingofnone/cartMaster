@@ -84,8 +84,6 @@ public class loginController {
     }
     @FXML private Text errorlabel;
     public void signupSetpage(Stage stage) throws IOException{
-
-
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.fxml")));
             Scene scene = new Scene(root);
             String iconPath = "/org/example/sriptor/assets/logo.png";
@@ -95,7 +93,7 @@ public class loginController {
             scene.getStylesheets().add(cssStyle);
             stage.setTitle("CartMaster");
             stage.setScene(scene);
-            //stage.setMaximized(true);//Sets the window to maximized on default
+            stage.setMaximized(true);//Sets the window to maximized on default
             stage.show();
             stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
 
