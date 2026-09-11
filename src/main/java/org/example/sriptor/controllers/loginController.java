@@ -93,7 +93,7 @@ public class loginController {
             scene.getStylesheets().add(cssStyle);
             stage.setTitle("CartMaster");
             stage.setScene(scene);
-            //stage.setMaximized(true);//Sets the window to maximized on default
+            stage.setMaximized(true);//Sets the window to maximized on default
             stage.show();
             stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
 

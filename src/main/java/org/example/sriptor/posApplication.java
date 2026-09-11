@@ -13,7 +13,7 @@ import java.util.Objects;
 public class posApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        String iconPath = "/org/example/sriptor/assets/logo.png"; //stores the path of our app icon into a string
+        String iconPath = "/org/example/sriptor/assets/Cartmaster.png"; //stores the path of our app icon into a string
         String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/Login.css")).toExternalForm();//We also get the path of our stylesheet into a string
 
 

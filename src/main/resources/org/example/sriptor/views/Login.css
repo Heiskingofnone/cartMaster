@@ -39,15 +39,20 @@
     -fx-background-radius: 20;
     -fx-background-color: #003bf8;
     -fx-text-fill: #ffffff;
+    -fx-font-family: "inter";
 }
 .submitButton:hover{
     -fx-background-color: #1545E0;
 }
 #signupHyperlink{
     -fx-text-fill: #1444E0;
+    -fx-font-family: "inter";
+    -fx-font-style: bold;
 }
 #signupHyperlink:hover{
     -fx-text-fill: #83a1ff;
+    -fx-font-family: "inter";
+    -fx-font-style: bold;
 }
 .googleAppleLogin{
     -fx-border-width: 1px;
@@ -56,14 +61,26 @@
     -fx-background-color: #030818;
     -fx-background-radius: 20;
     -fx-text-fill: #ffffff;
+    -fx-font-family: "inter";
 }
 .googleAppleLogin:hover{
     -fx-border-color: #bdd8ff;
 
 }
-#googleAppleLogin{
-}
-.googleLogo{
+#googleLogo{
     -fx-image: url("/org/example/sriptor/assets/googleLogo.png");
 }
-
+#appleLogo{
+    -fx-background-image: url("/org/example/sriptor/assets/appleLogo.png");
+    -fx-preserve-ratio: true;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+#googleLogo{
+    -fx-background-image: url("/org/example/sriptor/assets/googleLogo.png");
+    -fx-preserve-ratio: true;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -36,15 +35,15 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="195.0" prefWidth="400.0" spacing="20.0">
                                        <children>
-                                          <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="491.0" styleClass="googleAppleLogin">
+                                          <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="491.0" spacing="5.0" styleClass="googleAppleLogin">
                                              <children>
-                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="googleLogo" />
+                                                <Region id="googleLogo" maxHeight="24.0" maxWidth="24.0" prefHeight="24.0" prefWidth="24.0" />
                                                 <Label id="googleAppleLogin-label" prefHeight="18.0" prefWidth="125.0" text="Sign in with Google" textFill="WHITE" HBox.hgrow="ALWAYS" />
                                              </children>
                                           </HBox>
-                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="93.0" maxHeight="40.0" prefHeight="40.0" prefWidth="491.0" styleClass="googleAppleLogin" stylesheets="@Login.css">
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="93.0" maxHeight="40.0" prefHeight="40.0" prefWidth="491.0" spacing="5.0" styleClass="googleAppleLogin" stylesheets="@Login.css">
                                              <children>
-                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="appleLogo" />
+                                                <Region id="appleLogo" maxHeight="24.0" maxWidth="24.0" prefHeight="24.0" prefWidth="24.0" stylesheets="@Login.css" />
                                                 <Label id="googleAppleLogin-label" prefHeight="18.0" prefWidth="132.0" text="Sign in with Apple ID" textFill="WHITE" />
                                              </children>
                                           </HBox>
@@ -71,12 +70,12 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="100.0" prefWidth="564.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label prefHeight="25.0" prefWidth="533.0" text="Email" textFill="WHITE">
+                                          <Label prefHeight="25.0" prefWidth="500.0" text="Email" textFill="WHITE">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="loginUsername" maxWidth="544.0" prefHeight="45.0" prefWidth="544.0" promptText="example@email.com" styleClass="loginTextFieldsDark">
+                                          <TextField fx:id="loginUsername" maxWidth="500.0" prefHeight="43.5" prefWidth="500.0" promptText="example@email.com" styleClass="loginTextFieldsDark">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -89,13 +88,13 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="100.0" prefWidth="626.0" HBox.hgrow="NEVER">
                                        <children>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="532.7739944458008">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="500.7739944458008">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Text>
-                                          <PasswordField fx:id="loginPassword" maxWidth="544.0" prefHeight="45.0" prefWidth="530.0" promptText="password123" styleClass="loginTextFieldsDark" />
-                                          <Text fx:id="errorlabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="errorLabel" wrappingWidth="535.3120040893555" />
+                                          <PasswordField fx:id="loginPassword" maxWidth="500.0" prefHeight="42.5" prefWidth="500.0" promptText="password123" styleClass="loginTextFieldsDark" />
+                                          <Text fx:id="errorlabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="errorLabel" wrappingWidth="505.31200408935547" />
                                        </children>
                                        <HBox.margin>
                                           <Insets />
@@ -107,7 +106,7 @@
                                  <children>
                                     <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Button maxWidth="544.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="45.0" prefWidth="864.0" styleClass="submitButton" text="Log In" />
+                                          <Button maxWidth="500.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="45.0" prefWidth="500.0" styleClass="submitButton" text="Log In" />
                                           <HBox alignment="CENTER" spacing="5.0">
                                              <children>
                                                 <Text fill="#bdbdbd" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">
