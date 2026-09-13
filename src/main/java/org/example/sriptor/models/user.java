@@ -5,6 +5,7 @@ public class user {
     private String lastName;
     private String username;
     private String password;
+    private String phoneNumber;
     private Role role;
     private Boolean isActive;
     private String createdDate;
@@ -13,7 +14,7 @@ public class user {
 
     public enum Role{
         CASHIER("Cashier"),
-        ADMIN("Adninistrator");
+        ADMIN("Administrator");
         private  final String displayName;
 
         Role(String displayName){
@@ -25,12 +26,13 @@ public class user {
         }
     }
 
-    public user(String firstName, String lastName, String username, String password, Role role){
+    public user(String firstName, String lastName, String username, String password, Role role, String phoneNumber){
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.phoneNumber = phoneNumber;
     }
     //setters
 
@@ -65,6 +67,8 @@ public class user {
     public void setUpdatedDate(String updatedDate) {
         this.updatedDate = updatedDate;
     }
+    
+    public void setPhoneNumber(String phoneNumber){this.phoneNumber =phoneNumber;}
     //getters
 
     public String getFirstName() {
@@ -94,6 +98,8 @@ public class user {
     public String getCreatedDate() {
         return createdDate;
     }
+
+    public String getPhoneNumber(){return phoneNumber;}
 
     public String getUpdatedDate() {
         return updatedDate;

@@ -20,18 +20,23 @@ import java.util.Objects;
 
 
 public class SignupController {
-    @FXML
-    private TextField firstNameField;
-    @FXML
-    private TextField lastNameField;
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private PasswordField passwordField;
-    @FXML
-    private PasswordField confirmPasswordField;
-    //@FXML
-    //private ComboBox<user.Role> roleComboBox;
+
+    //First stack
+    @FXML private TextField firstNameField;
+    @FXML private TextField lastNameField;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private PasswordField confirmPasswordField;
+    //@FXML private ComboBox<user.Role> roleComboBox;
+
+    //Second Stack
+    @FXML private TextField phoneNumberField;
+
+
+
+
+
+
     @FXML
     private Button signupButton;
     @FXML private Text errorlabel;
@@ -39,7 +44,7 @@ public class SignupController {
         //roleComboBox.setItems(FXCollections.observableArrayList(user.Role.values()));
         //roleComboBox.setValue(user.Role.CASHIER);
         errorlabel.setText("");
-        signupButton.setDisable(true);
+        //signupButton.setDisable(true);
         firstNameField.textProperty().addListener((observable, oldValue, newValue) -> ensureAllInput());
         lastNameField.textProperty().addListener((observable, oldValue, newValue) -> ensureAllInput());
         usernameField.textProperty().addListener((observable, oldValue, newValue) -> ensureAllInput());
@@ -68,6 +73,7 @@ public class SignupController {
         String fname = firstNameField.getText();
         String lname = lastNameField.getText();
         String uname = usernameField.getText();
+        String phoneN = phoneNumberField.getText();
         if(fname.isEmpty()){
             errorlabel.setText("");
             signupButton.setDisable(true);
@@ -80,10 +86,14 @@ public class SignupController {
             errorlabel.setText("");
             signupButton.setDisable(true);
         }
+        /*if(phoneN.isEmpty()){
+            errorlabel.setText("");
+            signupButton.setDisable(true);
+        }*/
 
     }
-    public user createUser(String firstName, String lastName, String username, String password, user.Role Role){
-       return new user(firstName, lastName, username, password, Role);
+    public user createUser(String firstName, String lastName, String username, String password, user.Role Role, String phoneNumber){
+       return new user(firstName, lastName, username, password, Role, phoneNumber);
     }
     @FXML
     public void signUp (ActionEvent event){
@@ -91,11 +101,12 @@ public class SignupController {
         String lastName = lastNameField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String phoneNumber = phoneNumberField.getText();
         user.Role selectedRole = user.Role.ADMIN;
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try{
-            user newUser = createUser(firstName, lastName, username, password, selectedRole);
-            toLogInPage(stage, newUser);
+            user newUser = createUser(firstName, lastName, username, password, selectedRole, phoneNumber);
+            //toLogInPage(stage, newUser);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -106,15 +117,14 @@ public class SignupController {
         Parent root = loader.load();
         loginController controller = loader.getController();
         controller.setRegisteredUser(registeredUser);
-        Scene scene = new Scene(root);
-        String iconPath = "/org/example/sriptor/assets/logo.png";
-        String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/style.css")).toExternalForm();
+        String iconPath = "/org/example/sriptor/assets/Cartmasterpng";
+        String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.css")).toExternalForm();
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add(cssStyle);
+        root.getStylesheets().clear();
+        root.getStylesheets().add(cssStyle);
         stage.setTitle("CartMaster");
-        stage.setScene(scene);
-        //stage.setMaximized(true);//Sets the window to maximized on default
+        stage.getScene().setRoot(root);
+        stage.setMaximized(true);//Sets the window to maximized on default
         stage.show();
     }
 }

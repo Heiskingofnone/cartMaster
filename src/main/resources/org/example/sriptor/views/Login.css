@@ -45,11 +45,9 @@
 }
 #signupHyperlink{
     -fx-text-fill: #1444E0;
-    -fx-font-family: "inter";
 }
 #signupHyperlink:hover{
     -fx-text-fill: #83a1ff;
-    -fx-font-family: "inter";
 }
 .googleAppleLogin{
     -fx-border-width: 1px;

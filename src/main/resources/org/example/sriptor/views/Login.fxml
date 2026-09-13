@@ -106,7 +106,7 @@
                                  <children>
                                     <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Button maxWidth="500.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="45.0" prefWidth="500.0" styleClass="submitButton" text="Log In" />
+                                          <Button maxWidth="500.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="45.0" prefWidth="500.0" styleClass="submitButton" text="Sign In" />
                                           <HBox alignment="CENTER" spacing="5.0">
                                              <children>
                                                 <Text fill="#bdbdbd" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">
