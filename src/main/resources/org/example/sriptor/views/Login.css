@@ -1,7 +1,6 @@
 .parent{
     -fx-background-image: url("/org/example/sriptor/assets/BackgroundDark.png");
-    -fx-font-family: "inter";
-    -fx-font-style: normal;
+
 }
 
 #formBackground-panel{
@@ -47,12 +46,10 @@
 #signupHyperlink{
     -fx-text-fill: #1444E0;
     -fx-font-family: "inter";
-    -fx-font-style: bold;
 }
 #signupHyperlink:hover{
     -fx-text-fill: #83a1ff;
     -fx-font-family: "inter";
-    -fx-font-style: bold;
 }
 .googleAppleLogin{
     -fx-border-width: 1px;

@@ -30,14 +30,14 @@ public class SignupController {
     private PasswordField passwordField;
     @FXML
     private PasswordField confirmPasswordField;
-    @FXML
-    private ComboBox<user.Role> roleComboBox;
+    //@FXML
+    //private ComboBox<user.Role> roleComboBox;
     @FXML
     private Button signupButton;
     @FXML private Text errorlabel;
     public void initialize(){
-        roleComboBox.setItems(FXCollections.observableArrayList(user.Role.values()));
-        roleComboBox.setValue(user.Role.CASHIER);
+        //roleComboBox.setItems(FXCollections.observableArrayList(user.Role.values()));
+        //roleComboBox.setValue(user.Role.CASHIER);
         errorlabel.setText("");
         signupButton.setDisable(true);
         firstNameField.textProperty().addListener((observable, oldValue, newValue) -> ensureAllInput());
@@ -91,7 +91,7 @@ public class SignupController {
         String lastName = lastNameField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
-        user.Role selectedRole = roleComboBox.getValue();
+        user.Role selectedRole = user.Role.ADMIN;
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try{
             user newUser = createUser(firstName, lastName, username, password, selectedRole);

@@ -86,8 +86,9 @@ public class loginController {
     public void signupSetpage(Stage stage) throws IOException{
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.fxml")));
             Scene scene = new Scene(root);
+            root.requestFocus();
             String iconPath = "/org/example/sriptor/assets/logo.png";
-            String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/style.css")).toExternalForm();
+            String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.css")).toExternalForm();
             stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
             scene.getStylesheets().clear();
             scene.getStylesheets().add(cssStyle);
