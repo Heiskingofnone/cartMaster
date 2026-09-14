@@ -71,7 +71,7 @@ public class loginController {
     public boolean authenticateUser(){
         String enteredUser = loginUsername.getText();
         String enteredPassword = loginPassword.getText();
-        return registeredUser != null && registeredUser.getUsername().equals(enteredUser) && registeredUser.getPassword().equals(enteredPassword);
+        return registeredUser != null && registeredUser.getEmail().equals(enteredUser) && registeredUser.getPassword().equals(enteredPassword);
     }
     @FXML
     public void toSignUpPage(MouseEvent event) {
@@ -85,9 +85,9 @@ public class loginController {
     @FXML private Text errorlabel;
     public void signupSetpage(Stage stage) throws IOException{
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.fxml")));
-            String iconPath = "/org/example/sriptor/assets/logo.png";
+            String iconPath = "/org/example/sriptor/assets/Cartmasterpng";
             String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/signup.css")).toExternalForm();
-            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
+            //stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconPath))));
             root.getStylesheets().clear();
             root.getStylesheets().add(cssStyle);
             stage.setTitle("CartMaster");
@@ -108,4 +108,6 @@ public class loginController {
             stage.close();
         }
     }
+
+
 }

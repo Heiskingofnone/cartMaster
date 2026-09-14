@@ -24,11 +24,11 @@
             </StackPane>
             <StackPane layoutX="10.0" layoutY="10.0" prefHeight="768.0" prefWidth="706.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="768.0" prefWidth="400.0" spacing="20.0" styleClass="form">
+                  <VBox fx:id="accountCreationSlide" alignment="CENTER" prefHeight="768.0" prefWidth="400.0" spacing="20.0" styleClass="form">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Account Creation" textAlignment="CENTER" wrappingWidth="436.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Account &amp; Identity" textAlignment="CENTER" wrappingWidth="436.13000106811523" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="36.0" />
                                  </font></Text>
@@ -73,7 +73,7 @@
                                        <font>
                                           <Font size="14.0" />
                                        </font></Label>
-                                    <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="524.0" promptText="example@email.com" styleClass="textFieldsDark" VBox.vgrow="ALWAYS">
+                                    <TextField fx:id="emailField" prefHeight="40.0" prefWidth="524.0" promptText="example@email.com" styleClass="textFieldsDark" VBox.vgrow="ALWAYS">
                                        <font>
                                           <Font size="18.0" />
                                        </font></TextField>
@@ -109,7 +109,8 @@
                                  <children>
                                     <Label fx:id="errorLabel1" text="Your password must be at leaste 8 characters long" textFill="#979797" />
                                     <Label fx:id="errorLabel2" layoutX="10.0" layoutY="28.0" text="must contain an upper case letter ABC..." textFill="#979797" />
-                                    <Label fx:id="errorLabel3" layoutX="10.0" layoutY="82.0" text="must contain a number 123..." textFill="#979797" />
+                                    <Label fx:id="errorLabel3" layoutX="10.0" layoutY="28.0" text="must contain an lower case letter abc..." textFill="#979797" />
+                                    <Label fx:id="errorLabel4" layoutX="10.0" layoutY="82.0" text="must contain a number 123..." textFill="#979797" />
                                  </children>
                               </VBox>
                            </children>
@@ -153,14 +154,14 @@
                               <HBox alignment="CENTER" spacing="5.0">
                                  <children>
                                     <Text fill="#bdbdbd" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?" wrappingWidth="155.0509796142578" />
-                                    <Label styleClass="signinHyperlink" text="Sign in">
+                                    <Label onMouseClicked="#signIn" styleClass="signinHyperlink" text="Sign in">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </HBox>
-                              <Button fx:id="nextButton1" mnemonicParsing="false" onAction="#signUp" prefHeight="40.0" prefWidth="200.0" styleClass="submitButton" text="Next">
+                              <Button fx:id="accountCreateButton" mnemonicParsing="false" onAction="#accountCreationNext" prefHeight="40.0" prefWidth="200.0" styleClass="submitButton" text="Next">
                                  <font>
                                     <Font size="14.0" />
                                  </font></Button>
@@ -174,6 +175,7 @@
                         <Insets />
                      </StackPane.margin>
                   </VBox>
+                  <VBox fx:id="enterpriseDetailsSlide" prefHeight="200.0" prefWidth="100.0" styleClass="form" />
                </children>
             </StackPane>
          </children>

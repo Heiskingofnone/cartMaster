@@ -51,10 +51,10 @@ private final Connection connection;
     public void createTableInstance(Connection getConnection) throws SQLException {
 
         String sql = "CREATE TABLE IF NOT EXISTS USERS ("
-                    +"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    +"usr_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     +"first_name TEXT NOT NULL,"
                     +"last_name TEXT NOT NULL,"
-                    +"username TEXT NOT NULL,"
+                    +"email TEXT NOT NULL,"
                     +"password TEXT NOT NULL,"
                     +"role TEXT NOT NULL CHECK(role IN ('ADMIN', 'CASHIER')),"
                     +"is_active INTEGER NOT NULL CHECK(is_active IN(0,1)),"
@@ -62,7 +62,7 @@ private final Connection connection;
                     +"updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP); " +
                 "CREATE TABLE IF NOT EXISTS SALE(" +
                 "sale_id TEXT PRIMARY KEY DEFAULT (hex(randomblob(4)))," +
-                "user_id INTEGER REFERENCES USERS(id)," +
+                "user_id INTEGER REFERENCES USERS(usr_id)," +
                 "sale_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP," +
                 "total_amount DECIMAL(10,2) NOT NULL ); " +
                 "CREATE TABLE IF NOT EXISTS CATEGORY(" +
