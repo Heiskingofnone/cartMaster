@@ -50,16 +50,16 @@
     -fx-background-color: #030818;
     -fx-border-color: #83a1ff;
     -fx-border-width: 1px;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
     -fx-text-fill: #ffffff;
 }
 .combo-box{
     -fx-background-color: #030818;
     -fx-border-color: #83a1ff;
     -fx-border-width: 1px;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
 }
 .combo-box .list-cell{
     -fx-text-fill: #ffffff;
