@@ -51,7 +51,7 @@ private final Connection connection;
     public void createTableInstance(Connection getConnection) throws SQLException {
 
         String sql = "CREATE TABLE IF NOT EXISTS USERS ("
-                    +"usr_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    +"usr_id TEXT NOT NULL ,"
                     +"first_name TEXT NOT NULL,"
                     +"last_name TEXT NOT NULL,"
                     +"email TEXT NOT NULL,"
@@ -89,7 +89,8 @@ private final Connection connection;
                 "        constraint ORGANIZATIONS_pk\n" +
                 "            primary key,\n" +
                 "    owner_user_id       TEXT not null,\n" +
-                "    business_type       TEXT    default 'RETAIL',\n" +
+                "    industry            TEXT    default 'RETAIL',\n" +
+                "    country             TEXT not null," +
                 "    subscription_plan   TEXT    default 'FREE',\n" +
                 "    subscription_status TEXT    default 'ACTIVE',\n" +
                 "    max_stores_allowed  integer default 1,\n" +
