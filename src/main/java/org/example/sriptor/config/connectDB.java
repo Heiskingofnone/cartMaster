@@ -51,18 +51,19 @@ private final Connection connection;
     public void createTableInstance(Connection getConnection) throws SQLException {
 
         String sql = "CREATE TABLE IF NOT EXISTS USERS ("
-                    +"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    +"usr_id TEXT NOT NULL ,"
                     +"first_name TEXT NOT NULL,"
                     +"last_name TEXT NOT NULL,"
-                    +"username TEXT NOT NULL,"
+                    +"email TEXT NOT NULL,"
                     +"password TEXT NOT NULL,"
                     +"role TEXT NOT NULL CHECK(role IN ('ADMIN', 'CASHIER')),"
-                    +"is_active INTEGER NOT NULL CHECK(is_active IN(0,1)),"
+                    +"phone_number TEXT," +
+                    "is_active INTEGER NOT NULL CHECK(is_active IN(0,1)),"
                     +"created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,"
                     +"updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP); " +
                 "CREATE TABLE IF NOT EXISTS SALE(" +
                 "sale_id TEXT PRIMARY KEY DEFAULT (hex(randomblob(4)))," +
-                "user_id INTEGER REFERENCES USERS(id)," +
+                "user_id INTEGER REFERENCES USERS(usr_id)," +
                 "sale_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP," +
                 "total_amount DECIMAL(10,2) NOT NULL ); " +
                 "CREATE TABLE IF NOT EXISTS CATEGORY(" +
@@ -80,7 +81,35 @@ private final Connection connection;
                 "sale_id TEXT REFERENCES SALE(sale_id)," +
                 "product_id TEXT REFERENCES PRODUCT(product_id)," +
                 "quantity INTEGER NOT NULL," +
-                "unit_price DECIMAL(10,2) NOT NULL ); ";
+                "unit_price DECIMAL(10,2) NOT NULL ); " +
+                "create table IF NOT EXISTS ORGANIZATIONS \n" +
+                "(\n" +
+                "    org_name            TEXT not null,\n" +
+                "    org_id              TEXT\n" +
+                "        constraint ORGANIZATIONS_pk\n" +
+                "            primary key,\n" +
+                "    owner_user_id       TEXT not null,\n" +
+                "    industry            TEXT    default 'RETAIL',\n" +
+                "    country             TEXT not null," +
+                "    subscription_plan   TEXT    default 'FREE',\n" +
+                "    subscription_status TEXT    default 'ACTIVE',\n" +
+                "    max_stores_allowed  integer default 1,\n" +
+                "    is_active           integer default 1,\n" +
+                "    created_at          TEXT    default CURRENT_TIMESTAMP NOT NULL ,\n" +
+                "    updated_at          TEXT    default CURRENT_TIMESTAMP NOT NULL \n" +
+                "        \n" +
+                ");\n" +
+                " create table IF NOT EXISTS STORES\n" +
+                "                (\n" +
+                "                   store_name      TEXT                           not null,\n" +
+                "                   store_id        TEXT                        not null\n" +
+                "                       constraint STORES_pk\n" +
+                "                           primary key ,\n" +
+                "                   location        TEXT                           not null,\n" +
+                "                   store_inventory TEXT                           not null,\n" +
+                "                   date_opened     TEXT default CURRENT_TIMESTAMP not null,\n" +
+                "                currency        TEXT                           not null CHECK ( currency IN('GHS', 'NGN', 'USD')  )" +
+                ");";
         try(Statement stmt = getConnection.createStatement()){
             stmt.executeUpdate(sql);
             out.println("Users Table Created Successfully");

@@ -1,11 +1,5 @@
 package org.example.sriptor.models;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-
-import java.util.Objects;
-
 public class product {
     private String productId;
     private String productName;
@@ -29,16 +23,8 @@ public class product {
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
     }
-    public void setImagePath(String imagePath){
-
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
-    }
-    public void setProductName(String productName){
-        Text productNametext = new Text();
-        productNametext.setText(productName);
-    }
+    public void setImagePath(String imagePath){this.imagePath = imagePath;}
+    public void setProductName(String productName){this.productName = productName;}
     public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }

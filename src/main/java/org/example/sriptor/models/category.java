@@ -6,7 +6,10 @@ public class category {
 
 
 
-
+    public category(String categoryId, String categoryName){
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+    }
 
 
     //setters

@@ -1,7 +1,6 @@
 .parent{
     -fx-background-image: url("/org/example/sriptor/assets/BackgroundDark.png");
-    -fx-font-family: "inter";
-    -fx-font-style: normal;
+
 }
 
 #formBackground-panel{
@@ -31,8 +30,8 @@
     -fx-background-color: #030818;
     -fx-border-color: #83a1ff;
     -fx-border-width: 1px;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
     -fx-text-fill: #ffffff;
 }
 .submitButton{
@@ -46,17 +45,13 @@
 }
 #signupHyperlink{
     -fx-text-fill: #1444E0;
-    -fx-font-family: "inter";
-    -fx-font-style: bold;
 }
 #signupHyperlink:hover{
     -fx-text-fill: #83a1ff;
-    -fx-font-family: "inter";
-    -fx-font-style: bold;
 }
 .googleAppleLogin{
     -fx-border-width: 1px;
-    -fx-border-radius: 20;
+    -fx-border-radius: 10;
     -fx-border-color: #83a1ff;
     -fx-background-color: #030818;
     -fx-background-radius: 20;
