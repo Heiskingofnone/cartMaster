@@ -8,6 +8,10 @@
     -fx-text-fill: #ffffff;
 
 }
+.paragraph{
+    -fx-font: normal normal 14px System;
+    -fx-text-fill: #ffffff;
+}
 .form{
     -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.0) 100%), rgba(18, 20, 28, 0.75);
     -fx-background-insets: 0, 0;
@@ -21,14 +25,96 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+#signupIllustration2{
+     -fx-background-image: url("/org/example/sriptor/assets/cartmastersignupillustration2.png");
+     -fx-preserve-ratio: true;
+     -fx-background-size: contain;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center;
+ }
+#signupIllustration3{
+      -fx-background-image: url("/org/example/sriptor/assets/cartmastersignupillustration3.png");
+      -fx-preserve-ratio: true;
+      -fx-background-size: contain;
+      -fx-background-repeat: no-repeat;
+      -fx-background-position: center;
+  }
+#signupIllustration4{
+       -fx-background-image: url("/org/example/sriptor/assets/cartmastersignupillustration4.png");
+       -fx-preserve-ratio: true;
+       -fx-background-size: contain;
+       -fx-background-repeat: no-repeat;
+       -fx-background-position: center;
+   }
 .textFieldsDark{
     -fx-background-color: #030818;
     -fx-border-color: #83a1ff;
     -fx-border-width: 1px;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
     -fx-text-fill: #ffffff;
 }
+.combo-box{
+    -fx-background-color: #030818;
+    -fx-border-color: #83a1ff;
+    -fx-border-width: 1px;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+.combo-box .list-cell{
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 4;
+
+}
+.combo-box .list-view .list-cell:selected{
+    -fx-background-color: #1444E0;
+
+}
+.combo-box .list-view{
+    -fx-background-color: #030818;
+    -fx-border-color: #83a1ff;
+    -fx-border-radius: 4;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4;
+}
+.combo-box .list-view .list-cell{
+    -fx-background-color: #030818;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 4;
+}
+.combo-box .list-view .list-cell:hover{
+    -fx-background-color: #1444E0;
+    -fx-background-radius: 4;
+}
+
+.combo-box .list-view .scroll-bar:vertical .track{
+    -fx-background-color: #030818;
+    -fx-background-radius: 15;
+    -fx-border-color: transparent;
+
+}
+.combo-box .list-view .scroll-bar:vertical .track-background{
+     -fx-background-color: #030818;
+     -fx-background-radius: 15;
+
+ }
+.combo-box .list-view .scroll-bar:vertical .thumb{
+    -fx-background-color: #83a1ff;
+    -fx-background-radius: 15;
+}
+.combo-box .list-view .scroll-bar:vertical .thumb:hover{
+    -fx-background-color: #1444E0;
+    -fx-background-radius: 15;
+
+}
+.combo-box .list-view .scroll-bar .increment-button .increment-arrow,
+.combo-box .list-view .scroll-bar .decrement-button .decrement-arrow{
+    -fx-background-color: #030818;
+    -fx-padding: 0px;
+    -fx-background-radius: 15;
+}
+
+
 
 .submitButton{
     -fx-background-radius: 20;

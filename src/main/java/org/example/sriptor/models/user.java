@@ -26,6 +26,16 @@ public class user {
         }
     }
 
+    public enum CountryCodes{
+        GHANA("+233"),
+        Nigeria("+234"),
+        USA("+1");
+
+        private final String displayName;
+        CountryCodes(String displayName){ this.displayName = displayName;}
+        public String toString() {return displayName;}
+    }
+
     public user(String firstName, String lastName, String email, String password, Role role, String phoneNumber){
         this.firstName = firstName;
         this.lastName = lastName;
