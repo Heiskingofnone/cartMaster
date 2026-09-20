@@ -106,7 +106,7 @@ private final Connection connection;
                 "                       constraint STORES_pk\n" +
                 "                           primary key ,\n" +
                 "                   location        TEXT                           not null,\n" +
-                "                   store_inventory TEXT                           not null,\n" +
+                "                   inventory_id TEXT                           ,\n" +
                 "                   date_opened     TEXT default CURRENT_TIMESTAMP not null,\n" +
                 "                currency        TEXT                           not null CHECK ( currency IN('GHS', 'NGN', 'USD')  )" +
                 ");";
