@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import org.example.sriptor.models.organizations;
 import org.example.sriptor.models.stores;
 import org.example.sriptor.models.user;
+import org.example.sriptor.services.AuthService;
+
 import java.io.IOException;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -66,21 +68,20 @@ public class SignupController {
     @FXML private Region signupIllustration3;
     @FXML private Region signupIllustration4;
 
-
-
-
-
-
-
     //Error labels
     @FXML private Text errorlabel;
     @FXML public Label errorLabel1;
     @FXML public Label errorLabel2;
     @FXML public Label errorLabel3;
     @FXML public Label errorLabel4;
+
+    //Services
+    private final AuthService authService = new AuthService();
+
+
     public void initialize(){
         countryCodesComboBox.setItems(FXCollections.observableArrayList(user.CountryCodes.values()));
-        countryCodesComboBox.setValue(user.CountryCodes .GHANA);
+        countryCodesComboBox.setValue(user.CountryCodes.GHANA);
         industryCombobox.setItems(FXCollections.observableArrayList(organizations.Industry.values()));
         industryCombobox.setValue(organizations.Industry.RETAIL);
         currencyComboBox.setItems(FXCollections.observableArrayList(stores.Currency.values()));
@@ -199,21 +200,16 @@ public class SignupController {
         validatePassword();
 
     }
-    public user createUser(String firstName, String lastName, String username, String password, user.Role Role, String phoneNumber){
-       return new user(firstName, lastName, username, password, Role, phoneNumber);
-    }
+
     @FXML
     public void signUp (ActionEvent event){
+        try {
+            authService.signupNewUser(firstNameField.getText(), lastNameField.getText(), emailField.getText(), passwordField.getText(),  phoneNumberField.getText());
 
+        }catch (Exception e){
 
-        user.Role selectedRole = user.Role.ADMIN;
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try{
-            //user newUser = createUser(firstName, lastName, username, password, selectedRole, phoneNumber);
-            //toLogInPage(stage, newUser);
-        } catch (Exception e){
-            e.printStackTrace();
         }
+
 
     }
     @FXML public void signIn(MouseEvent event){
