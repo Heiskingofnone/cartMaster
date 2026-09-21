@@ -51,19 +51,19 @@ private final Connection connection;
     public void createTableInstance(Connection getConnection) throws SQLException {
 
         String sql = "CREATE TABLE IF NOT EXISTS USERS ("
-                    +"usr_id TEXT NOT NULL ,"
+                    +"user_id TEXT NOT NULL ,"
                     +"first_name TEXT NOT NULL,"
                     +"last_name TEXT NOT NULL,"
                     +"email TEXT NOT NULL,"
                     +"password TEXT NOT NULL,"
                     +"role TEXT NOT NULL CHECK(role IN ('ADMIN', 'CASHIER')),"
                     +"phone_number TEXT," +
-                    "is_active INTEGER NOT NULL CHECK(is_active IN(0,1)),"
+                    "is_active INTEGER NOT NULL CHECK(is_active IN(0,1)) DEFAULT 1,"
                     +"created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,"
                     +"updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP); " +
                 "CREATE TABLE IF NOT EXISTS SALE(" +
                 "sale_id TEXT PRIMARY KEY DEFAULT (hex(randomblob(4)))," +
-                "user_id INTEGER REFERENCES USERS(usr_id)," +
+                "user_id INTEGER REFERENCES USERS(user_id)," +
                 "sale_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP," +
                 "total_amount DECIMAL(10,2) NOT NULL ); " +
                 "CREATE TABLE IF NOT EXISTS CATEGORY(" +

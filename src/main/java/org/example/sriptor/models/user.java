@@ -1,6 +1,7 @@
 package org.example.sriptor.models;
 
 public class user {
+    private String userId;
     private String firstName;
     private String lastName;
     private String email;
@@ -37,7 +38,7 @@ public class user {
 
 
     //Constructors
-    public user(String firstName, String lastName, String email, String password, Role role, String phoneNumber){
+    public user(String userId, String firstName, String lastName, String email, String password, Role role, String phoneNumber){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -47,7 +48,13 @@ public class user {
     }
 
 
+
+
     //setters
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -76,6 +83,10 @@ public class user {
 
     
     //getters
+
+    public String getUserId() {
+        return userId;
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -88,8 +99,8 @@ public class user {
     public String getPassword() {
         return password;
     }
-    public Role getRole() {
-        return role;
+    public String getRole() {
+        return role.name();
     }
     public Boolean getIsActive() {
         return isActive;
