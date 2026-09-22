@@ -3,6 +3,7 @@ package org.example.sriptor.services;
 import org.example.sriptor.config.connectDB;
 import org.example.sriptor.dao.userDAO;
 import org.example.sriptor.models.user;
+import org.example.sriptor.utils.hashArgon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,9 +24,9 @@ public class AuthService {
             }
             else{
                 logger.debug("Account by email: {} does not exist", email);
-                //Hash password
+                String hash = hashArgon.registerPasswordPHC(password);
                 //Generate UUID
-                user = new user("UUID", fname, lname, email, "Hash", ADMIN, phoneNumber);
+                user = new user("UUID", fname, lname, email, hash, ADMIN, phoneNumber);
                 userDao.save(user, connection);
             }
         }
