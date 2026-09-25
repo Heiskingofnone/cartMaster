@@ -1,7 +1,9 @@
 package org.example.sriptor.models;
 
+import java.util.UUID;
+
 public class user {
-    private String userId;
+    private UUID userId;
     private String firstName;
     private String lastName;
     private String email;
@@ -38,7 +40,8 @@ public class user {
 
 
     //Constructors
-    public user(String userId, String firstName, String lastName, String email, String password, Role role, String phoneNumber){
+    public user(UUID userId, String firstName, String lastName, String email, String password, Role role, String phoneNumber){
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -52,7 +55,7 @@ public class user {
 
     //setters
 
-    public void setUserId(String userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
     public void setFirstName(String firstName) {
@@ -84,7 +87,7 @@ public class user {
     
     //getters
 
-    public String getUserId() {
+    public UUID getUserId() {
         return userId;
     }
     public String getFirstName() {
