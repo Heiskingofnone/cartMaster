@@ -1,5 +1,8 @@
 package org.example.sriptor.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 
 import static java.lang.System.err;
@@ -11,15 +14,17 @@ public class connectDB {
 
 private final Connection connection;
 
+public final Logger logger = LoggerFactory.getLogger(connectDB.class);
 
 
     public connectDB() throws SQLException{
         String url = "jdbc:sqlite:pos_store.db";//database url
+        logger.debug("Attempting to connect to database{}", url);
         try {
             connection = DriverManager.getConnection(url);
-            out.println("connection successful");
+            logger.debug("connection successful");
         } catch (SQLException e) {
-            err.println("Error connecting to database");
+            logger.error("Error connecting to database");
             throw new RuntimeException(e);
         }
 
@@ -30,26 +35,28 @@ private final Connection connection;
     public void closeConnection(){
         try{
             if(connection != null){
-                out.println("Connection closed");
                 connection.close();
+                logger.debug("Database Connection closed");
+
             }
         } catch (SQLException e) {
-            err.println("Cannot closed non-existent connection");
+            logger.error("Cannot close non-existent connection");
             throw new RuntimeException(e);
         }
     }
 
     public boolean tableExists(Connection getConnection) throws SQLException{
         DatabaseMetaData meta = getConnection.getMetaData();
-
+        logger.debug("Checking If table Exists");
         try(ResultSet rs = meta.getTables(null, null, "USERS", new String[]{"TABLE"})){
-
+            if(rs.next()) logger.debug("Tables Exists");
+            else logger.debug("Tables Dont exist");
             return rs.next();
         }
     }
 
     public void createTableInstance(Connection getConnection) throws SQLException {
-
+        logger.debug("Attempting to create Table Instance");
         String sql = "CREATE TABLE IF NOT EXISTS USERS ("
                     +"user_id TEXT NOT NULL ,"
                     +"first_name TEXT NOT NULL,"
@@ -112,9 +119,9 @@ private final Connection connection;
                 ");";
         try(Statement stmt = getConnection.createStatement()){
             stmt.executeUpdate(sql);
-            out.println("Users Table Created Successfully");
+            logger.debug("Users Table Created Successfully");
         } catch (SQLException e) {
-            err.println("Users Table already exists");
+            logger.error("Users Table already exists");
             throw new RuntimeException(e);
         }
     }

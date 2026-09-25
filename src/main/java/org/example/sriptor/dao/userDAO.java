@@ -1,21 +1,25 @@
 package org.example.sriptor.dao;
 
 import org.example.sriptor.models.user;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.example.sriptor.utils.uniqueIdentification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 public class userDAO {
 
     private final Logger logger = LoggerFactory.getLogger(userDAO.class);
     public void save(user user, Connection connection) throws SQLException {
-        logger.debug("Attempting to write User: {} to database", user.getUserId());
+        logger.debug("Attempting to write User: {} to database", user.getFirstName());
         String sql = "INSERT INTO USERS (user_id, first_name, last_name, email, password, role, phone_number)" +
                 "VALUES(?, ?, ?, ?, ?, ?, ?);";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
-            stmt.setString(1, user.getUserId());
+
+            stmt.setBytes(1, uniqueIdentification.uuidToBytes(user.getUserId()));
             stmt.setString(2, user.getFirstName());
             stmt.setString(3, user.getLastName());
             stmt.setString(4, user.getEmail());

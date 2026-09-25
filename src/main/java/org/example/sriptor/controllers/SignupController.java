@@ -18,6 +18,7 @@ import org.example.sriptor.models.user;
 import org.example.sriptor.services.AuthService;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -77,6 +78,9 @@ public class SignupController {
 
     //Services
     private final AuthService authService = new AuthService();
+
+    public SignupController() throws SQLException {
+    }
 
 
     public void initialize(){
@@ -201,13 +205,13 @@ public class SignupController {
 
     }
 
-    @FXML
-    public void signUp (ActionEvent event){
+
+    public void signUp (){
         try {
             authService.signupNewUser(firstNameField.getText(), lastNameField.getText(), emailField.getText(), passwordField.getText(),  phoneNumberField.getText());
 
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
 
@@ -434,7 +438,7 @@ public class SignupController {
         signupIllustration4.setVisible(false);
     }
     @FXML private void verifyPhoneNumberNext(ActionEvent event){
-
+        signUp();
     }
 
 

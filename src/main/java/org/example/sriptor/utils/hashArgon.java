@@ -4,9 +4,12 @@ import org.bouncycastle.crypto.generators.Argon2BytesGenerator;
 import org.bouncycastle.crypto.params.Argon2Parameters;
 import org.bouncycastle.util.Arrays;
 import org.bouncycastle.util.Strings;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+;
 
 public class hashArgon {
     byte[] salt;
@@ -16,9 +19,11 @@ public class hashArgon {
     private static final int SALT_LENGTH = 16;
     private static final int HASH_LENGTH = 32;
 
+    private static final Logger logger = LoggerFactory.getLogger(hashArgon.class);
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
         //This is a helper function that changes our password input and hashes it with argon2Id
         private static byte[] computeArgon2id(String password, byte[] salt) {//Takes the password, and the salt and creates our hash
+            logger.debug("Hashing Password");
             Argon2Parameters parameters = new Argon2Parameters.Builder(Argon2Parameters.ARGON2_id)//Implementing argon2Id parameters and state parameters below
                     .withVersion(Argon2Parameters.ARGON2_VERSION_13)
                     .withIterations(hashArgon.ITERATIONS)
@@ -48,9 +53,35 @@ public class hashArgon {
 
             String saltB64 = Base64.getEncoder().withoutPadding().encodeToString(salt);//save the salt in a new string after encoding
             String hash64 = Base64.getEncoder().withoutPadding().encodeToString(hash);//save the hash in a new string after encoding
-
+            logger.debug("Password hash converted to PHC format successfully");
             return String.format("$argon2id$v=19$m=65536,t-3,p=4$%s$%s", saltB64, hash64);//return salt and bash in a string format
 
         }
+
+    private static boolean constantTimeEquals(byte[] a, byte[] b){
+        if(a.length != b.length) return false;
+        int result = 0;
+        for(int i = 0; i < a.length; ++i){
+            result |= a[i] ^ b[i];
+
+        }
+        return result == 0;
+    }
+
+    public static boolean verifyLogin(String attemptedPassword, String storedPHCString){
+        String[] parts = storedPHCString.split("\\$");
+        /* only applied when parameters for argon2 id is not constantly defined in scope of the class
+        String[]params = parts[3].split(",");
+        int memory_kb = Integer.p   arseInt(params[0].substring(2));
+        int iterations = Integer.parseInt(params[1].substring(2));
+        int parallelism = Integer.parseInt(params[2].substring(2));
+        */
+        byte[] salt = Base64.getDecoder().decode(parts[4]);
+        byte[] storedHash = Base64.getDecoder().decode(parts[5]);
+
+        byte[] computedHash = computeArgon2id(attemptedPassword, salt);
+        return constantTimeEquals(storedHash, computedHash);
+    }
+
 }
 
