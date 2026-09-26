@@ -49,8 +49,6 @@ public final Logger logger = LoggerFactory.getLogger(connectDB.class);
         DatabaseMetaData meta = getConnection.getMetaData();
         logger.debug("Checking If table Exists");
         try(ResultSet rs = meta.getTables(null, null, "USERS", new String[]{"TABLE"})){
-            if(rs.next()) logger.debug("Tables Exists");
-            else logger.debug("Tables Dont exist");
             return rs.next();
         }
     }
