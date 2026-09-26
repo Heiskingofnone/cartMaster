@@ -2,6 +2,7 @@ package org.example.sriptor.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -78,9 +79,25 @@ public class SignupController {
 
     //Services
     private final AuthService authService = new AuthService();
-
     public SignupController() throws SQLException {
     }
+
+
+    public enum SignupStatus{//for success states for signing up
+        SUCCESS (0),
+        ALREADY_EXISTS (1),
+        FAILURE(2);
+
+     private final int code;
+        SignupStatus(int code) {
+            this.code = code;
+        }
+        public int getCode(){
+            return code;
+        }
+    }
+
+
 
 
     public void initialize(){
@@ -206,10 +223,22 @@ public class SignupController {
     }
 
 
-    public void signUp (){
+    public void signUp (Event event){
         try {
-            authService.signupNewUser(firstNameField.getText(), lastNameField.getText(), emailField.getText(), passwordField.getText(),  phoneNumberField.getText());
-
+            //Takes SignupStatus as input rather than using magic numbers
+            SignupStatus Status = authService.signupNewUser(firstNameField.getText(), lastNameField.getText(), emailField.getText(), passwordField.getText(),  phoneNumberField.getText());
+            switch (Status){
+                case SUCCESS:
+                    //TODO: Direct to landing page
+                    break;
+                case ALREADY_EXISTS://TODO: Add popup that tells user that their credentials already exists in an account so they should either login or create a new user with different credentials
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    toLogInPage(stage);
+                    break;
+                case FAILURE:
+                    //TODO: Add a an alert that tells the user thatt an error occurred and they should try and sign up later
+                    break;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -438,7 +467,7 @@ public class SignupController {
         signupIllustration4.setVisible(false);
     }
     @FXML private void verifyPhoneNumberNext(ActionEvent event){
-        signUp();
+        signUp(event);
     }
 
 
