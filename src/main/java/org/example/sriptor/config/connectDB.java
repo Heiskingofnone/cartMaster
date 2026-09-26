@@ -1,5 +1,8 @@
 package org.example.sriptor.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 
 import static java.lang.System.err;
@@ -11,15 +14,17 @@ public class connectDB {
 
 private final Connection connection;
 
+public final Logger logger = LoggerFactory.getLogger(connectDB.class);
 
 
     public connectDB() throws SQLException{
         String url = "jdbc:sqlite:pos_store.db";//database url
+        logger.debug("Attempting to connect to database{}", url);
         try {
             connection = DriverManager.getConnection(url);
-            out.println("connection successful");
+            logger.debug("connection successful");
         } catch (SQLException e) {
-            err.println("Error connecting to database");
+            logger.error("Error connecting to database");
             throw new RuntimeException(e);
         }
 
@@ -30,40 +35,40 @@ private final Connection connection;
     public void closeConnection(){
         try{
             if(connection != null){
-                out.println("Connection closed");
                 connection.close();
+                logger.debug("Database Connection closed");
+
             }
         } catch (SQLException e) {
-            err.println("Cannot closed non-existent connection");
+            logger.error("Cannot close non-existent connection");
             throw new RuntimeException(e);
         }
     }
 
     public boolean tableExists(Connection getConnection) throws SQLException{
         DatabaseMetaData meta = getConnection.getMetaData();
-
+        logger.debug("Checking If table Exists");
         try(ResultSet rs = meta.getTables(null, null, "USERS", new String[]{"TABLE"})){
-
             return rs.next();
         }
     }
 
     public void createTableInstance(Connection getConnection) throws SQLException {
-
+        logger.debug("Attempting to create Table Instance");
         String sql = "CREATE TABLE IF NOT EXISTS USERS ("
-                    +"usr_id TEXT NOT NULL ,"
+                    +"user_id TEXT NOT NULL ,"
                     +"first_name TEXT NOT NULL,"
                     +"last_name TEXT NOT NULL,"
                     +"email TEXT NOT NULL,"
                     +"password TEXT NOT NULL,"
                     +"role TEXT NOT NULL CHECK(role IN ('ADMIN', 'CASHIER')),"
                     +"phone_number TEXT," +
-                    "is_active INTEGER NOT NULL CHECK(is_active IN(0,1)),"
+                    "is_active INTEGER NOT NULL CHECK(is_active IN(0,1)) DEFAULT 1,"
                     +"created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,"
                     +"updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP); " +
                 "CREATE TABLE IF NOT EXISTS SALE(" +
                 "sale_id TEXT PRIMARY KEY DEFAULT (hex(randomblob(4)))," +
-                "user_id INTEGER REFERENCES USERS(usr_id)," +
+                "user_id INTEGER REFERENCES USERS(user_id)," +
                 "sale_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP," +
                 "total_amount DECIMAL(10,2) NOT NULL ); " +
                 "CREATE TABLE IF NOT EXISTS CATEGORY(" +
@@ -106,15 +111,15 @@ private final Connection connection;
                 "                       constraint STORES_pk\n" +
                 "                           primary key ,\n" +
                 "                   location        TEXT                           not null,\n" +
-                "                   store_inventory TEXT                           not null,\n" +
+                "                   inventory_id TEXT                           ,\n" +
                 "                   date_opened     TEXT default CURRENT_TIMESTAMP not null,\n" +
                 "                currency        TEXT                           not null CHECK ( currency IN('GHS', 'NGN', 'USD')  )" +
                 ");";
         try(Statement stmt = getConnection.createStatement()){
             stmt.executeUpdate(sql);
-            out.println("Users Table Created Successfully");
+            logger.debug("Users Table Created Successfully");
         } catch (SQLException e) {
-            err.println("Users Table already exists");
+            logger.error("Users Table already exists");
             throw new RuntimeException(e);
         }
     }

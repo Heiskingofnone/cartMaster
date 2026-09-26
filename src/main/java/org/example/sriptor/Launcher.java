@@ -14,7 +14,8 @@ public class Launcher {
             if(dbConnect.getConnection() != null){
                 if(dbConnect.tableExists(dbConnect.getConnection())){
                     out.println("Tables Exist, Moving on >>>");
-                }else {
+                }
+                else {
                     dbConnect.createTableInstance(dbConnect.getConnection());
                 }
                 dbConnect.closeConnection();

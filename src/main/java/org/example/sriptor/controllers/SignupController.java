@@ -2,6 +2,7 @@ package org.example.sriptor.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,7 +16,10 @@ import javafx.stage.Stage;
 import org.example.sriptor.models.organizations;
 import org.example.sriptor.models.stores;
 import org.example.sriptor.models.user;
+import org.example.sriptor.services.AuthService;
+
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -66,21 +70,39 @@ public class SignupController {
     @FXML private Region signupIllustration3;
     @FXML private Region signupIllustration4;
 
-
-
-
-
-
-
     //Error labels
     @FXML private Text errorlabel;
     @FXML public Label errorLabel1;
     @FXML public Label errorLabel2;
     @FXML public Label errorLabel3;
     @FXML public Label errorLabel4;
+
+    //Services
+    private final AuthService authService = new AuthService();
+    public SignupController() throws SQLException {
+    }
+
+
+    public enum SignupStatus{//for success states for signing up
+        SUCCESS (0),
+        ALREADY_EXISTS (1),
+        FAILURE(2);
+
+     private final int code;
+        SignupStatus(int code) {
+            this.code = code;
+        }
+        public int getCode(){
+            return code;
+        }
+    }
+
+
+
+
     public void initialize(){
         countryCodesComboBox.setItems(FXCollections.observableArrayList(user.CountryCodes.values()));
-        countryCodesComboBox.setValue(user.CountryCodes .GHANA);
+        countryCodesComboBox.setValue(user.CountryCodes.GHANA);
         industryCombobox.setItems(FXCollections.observableArrayList(organizations.Industry.values()));
         industryCombobox.setValue(organizations.Industry.RETAIL);
         currencyComboBox.setItems(FXCollections.observableArrayList(stores.Currency.values()));
@@ -199,21 +221,28 @@ public class SignupController {
         validatePassword();
 
     }
-    public user createUser(String firstName, String lastName, String username, String password, user.Role Role, String phoneNumber){
-       return new user(firstName, lastName, username, password, Role, phoneNumber);
-    }
-    @FXML
-    public void signUp (ActionEvent event){
 
 
-        user.Role selectedRole = user.Role.ADMIN;
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try{
-            //user newUser = createUser(firstName, lastName, username, password, selectedRole, phoneNumber);
-            //toLogInPage(stage, newUser);
-        } catch (Exception e){
+    public void signUp (Event event){
+        try {
+            //Takes SignupStatus as input rather than using magic numbers
+            SignupStatus Status = authService.signupNewUser(firstNameField.getText(), lastNameField.getText(), emailField.getText(), passwordField.getText(),  phoneNumberField.getText());
+            switch (Status){
+                case SUCCESS:
+                    //TODO: Direct to landing page
+                    break;
+                case ALREADY_EXISTS://TODO: Add popup that tells user that their credentials already exists in an account so they should either login or create a new user with different credentials
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    toLogInPage(stage);
+                    break;
+                case FAILURE:
+                    //TODO: Add a an alert that tells the user thatt an error occurred and they should try and sign up later
+                    break;
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
+
 
     }
     @FXML public void signIn(MouseEvent event){
@@ -438,7 +467,7 @@ public class SignupController {
         signupIllustration4.setVisible(false);
     }
     @FXML private void verifyPhoneNumberNext(ActionEvent event){
-
+        signUp(event);
     }
 
 
