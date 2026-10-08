@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="parent" stylesheets="@mainWindow.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.dashboardController">
+   <children>
+      <HBox layoutX="492.0" layoutY="466.0" prefHeight="100.0" prefWidth="200.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="758.0" prefWidth="120.0" HBox.hgrow="NEVER">
+               <children>
+                  <Region minHeight="30.0" prefHeight="30.0" prefWidth="120.0" />
+                  <VBox prefHeight="1038.0" prefWidth="120.0" styleClass="navbar" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="8.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="120.0">
+                           <children>
+                              <Region prefHeight="40.0" prefWidth="40.0" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="navbar-label" text="Dashboard" wrappingWidth="80.13000106811523" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="14.0" prefHeight="40.0" prefWidth="120.0">
+                           <children>
+                              <Region prefHeight="40.0" prefWidth="40.0" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="navbar-label" text="Users" wrappingWidth="80.13000106811523" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" prefHeight="40.0" prefWidth="120.0">
+                           <children>
+                              <Region prefHeight="40.0" prefWidth="40.0" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="navbar-label" text="Shop(s)" wrappingWidth="80.13000106811523" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="94.0" prefHeight="40.0" prefWidth="120.0">
+                           <children>
+                              <Region prefHeight="40.0" prefWidth="40.0" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="navbar-label" text="Inventory" wrappingWidth="80.13000106811523" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="4.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="768.0" prefWidth="1234.0">
+               <children>
+                  <AnchorPane prefHeight="768.0" prefWidth="1234.0" styleClass="centerPanel" />
+               </children>
+               <padding>
+                  <Insets bottom="8.0" top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

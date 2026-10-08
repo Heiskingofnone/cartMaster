@@ -1,0 +1,14 @@
+.parent{
+    -fx-background-color: #404040;
+}
+.navbar{
+    -fx-background-color: #242424;
+    -fx-background-radius: 16px;
+}
+.navbar-label{
+    -fx-text-fill: #ffffff;
+}
+.centerPanel{
+    -fx-background-color: #242424;
+    -fx-background-radius: 16px;
+}
