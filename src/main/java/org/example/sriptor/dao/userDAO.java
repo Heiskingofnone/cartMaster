@@ -51,6 +51,7 @@ public class userDAO {
                 logger.error("Error executing query");
                 throw new RuntimeException(e);
             }
+
         }
     }
 

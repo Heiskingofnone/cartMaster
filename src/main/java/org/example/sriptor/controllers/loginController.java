@@ -10,13 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.sriptor.models.user;
 import org.example.sriptor.services.AuthService;
 
+import javax.swing.tree.DefaultTreeModel;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -28,9 +27,6 @@ public class loginController {
 
 
     @FXML private Text errorlabel;
-
-    //Services declarations
-    private final AuthService authService = new AuthService();
 
     public loginController() throws SQLException {
     }
@@ -59,14 +55,19 @@ public class loginController {
         errorlabel.setText("");
     }
 
-    public void onSubmit(ActionEvent event){
+    public void onSubmit(ActionEvent event) throws SQLException {
         String username = loginUsername.getText();
         String password = loginPassword.getText();
+        AuthService authService = new AuthService();
         LoginStatus status = authService.loginValidation(username, password);
         switch (status){
             case AUTHENTIC -> {
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                //TODO: DIRECT TO LANDING PAGE
+                try {
+                    mainWindowSetpage(stage);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
             case ACCOUNT_DOESNT_EXIST, INAUTHENTIC -> {
                 errorlabel.setText("Invalid username or password, try again.");
@@ -106,6 +107,22 @@ public class loginController {
             stage.show();
             root.requestFocus();
             stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
+
+    }
+    public void mainWindowSetpage(Stage stage) throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/mainWindow.fxml")));
+        String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/mainWindow.css")).toExternalForm();
+        Scene scene = new Scene(root);//created new scene because I don't want UI
+        //from older scene to be shown in any way in the new one
+        //displaying a root alone allows the reuse of the same scene which means
+        //same background UI
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(cssStyle);
+        stage.setScene(scene);
+        root.requestLayout();//done to prevent cursor mismatch or rendiering and functionality mismatch
+        stage.setMaximized(true);//Sets the window to maximized on default
+        stage.show();
+        stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
 
     }
 

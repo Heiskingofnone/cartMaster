@@ -21,7 +21,6 @@ import static org.example.sriptor.models.user.Role.ADMIN;
 public class AuthService {
     private final connectDB dbConnect = new connectDB();
     private final Logger logger = LoggerFactory.getLogger(AuthService.class);
-    private final userDAO userDao = new userDAO();
 
     public AuthService() throws SQLException {
     }
@@ -30,6 +29,7 @@ public class AuthService {
     public SignupController.SignupStatus signupNewUser(String fname, String lname, String email, String password, String phoneNumber) throws Exception{
         if(dbConnect.getConnection() != null){
             try(Connection connection = dbConnect.getConnection()) {
+                userDAO userDao = new userDAO();
                 if(userDao.checkByEmail(email, connection)){
                     logger.debug("Account by email: {} already exists", email);
                     return SignupController.SignupStatus.ALREADY_EXISTS;
@@ -54,6 +54,7 @@ public class AuthService {
     public loginController.LoginStatus loginValidation(String email, String password){
         if(dbConnect.getConnection() != null){
             try(Connection connection = dbConnect.getConnection()) {
+                userDAO userDao = new userDAO();
                 if(userDao.checkByEmail(email, connection)){
                     logger.debug("Account by email {} exist", email);
                     String storedPassword = userDao.getStoredPHC(email, connection);
