@@ -1,0 +1,14 @@
+.panel{
+    -fx-background-color: #18191b;
+    -fx-background-radius: 16px;
+}
+.card{
+    -fx-background-color: #2f2f2f;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-width: 1px;
+    -fx-border-color: #494c50;
+}
+.kpi{
+
+}

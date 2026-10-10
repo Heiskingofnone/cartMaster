@@ -17,7 +17,7 @@
             <VBox prefHeight="758.0" prefWidth="120.0" HBox.hgrow="NEVER">
                <children>
                   <Region minHeight="30.0" prefHeight="30.0" prefWidth="120.0" />
-                  <VBox maxWidth="120.0" prefHeight="730.0" prefWidth="120.0" styleClass="navbar" VBox.vgrow="ALWAYS">
+                  <VBox minWidth="120.0" prefHeight="730.0" prefWidth="120.0" styleClass="navbar" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="8.0" />
                      </VBox.margin>
@@ -98,13 +98,16 @@
             </VBox>
             <VBox prefHeight="768.0" prefWidth="1234.0">
                <children>
-                  <AnchorPane prefHeight="768.0" prefWidth="1177.0" styleClass="centerPanel" />
+                  <AnchorPane prefHeight="730.0" prefWidth="1230.0" styleClass="centerPanel" />
                </children>
                <padding>
                   <Insets bottom="8.0" top="30.0" />
                </padding>
             </VBox>
          </children>
+         <padding>
+            <Insets left="4.0" right="4.0" />
+         </padding>
       </HBox>
    </children>
 </AnchorPane>
