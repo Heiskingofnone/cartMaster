@@ -1,4 +1,5 @@
 .parent{
+    -fx-background-image: none;
     -fx-background-color: #404040;
 }
 .navbar{

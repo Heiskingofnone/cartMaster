@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="parent" stylesheets="@mainWindow.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.mainWindowController">
+<AnchorPane fx:id="mainWindow" prefHeight="768.0" prefWidth="1366.0" styleClass="parent" stylesheets="@mainWindow.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.mainWindowController">
    <children>
       <HBox layoutX="492.0" layoutY="466.0" prefHeight="100.0" prefWidth="200.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="758.0" prefWidth="124.0" HBox.hgrow="NEVER">
                <children>
                   <Region minHeight="30.0" prefHeight="30.0" prefWidth="120.0" />
-                  <VBox alignment="CENTER" minWidth="120.0" prefHeight="730.0" prefWidth="120.0" styleClass="navbar" VBox.vgrow="ALWAYS">
+                  <VBox fx:id="navBar" alignment="CENTER" minWidth="120.0" prefHeight="730.0" prefWidth="120.0" styleClass="navbar" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="8.0" />
                      </VBox.margin>
                      <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="120.0" prefHeight="40.0" prefWidth="120.0" styleClass="navbar-item">
+                        <HBox alignment="CENTER_LEFT" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane prefHeight="40.0" prefWidth="40.0">
                                  <children>
@@ -31,7 +31,7 @@
                               <Label styleClass="navbar-label" stylesheets="@mainWindow.css" text="Dashboard" textFill="WHITE" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="14.0" maxWidth="120.0" prefHeight="40.0" prefWidth="120.0" styleClass="navbar-item">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="14.0" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane prefHeight="40.0" prefWidth="40.0">
                                  <children>
@@ -41,7 +41,7 @@
                               <Label styleClass="navbar-label" stylesheets="@mainWindow.css" text="Users" textFill="WHITE" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" maxWidth="120.0" prefHeight="40.0" prefWidth="120.0" styleClass="navbar-item">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane maxWidth="40.0" prefHeight="40.0" prefWidth="40.0">
                                  <children>
@@ -54,7 +54,7 @@
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="94.0" maxWidth="120.0" prefHeight="40.0" prefWidth="120.0" styleClass="navbar-item">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="94.0" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane prefHeight="40.0" prefWidth="40.0">
                                  <children>
@@ -65,7 +65,7 @@
                            </children>
                         </HBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@mainWindow.css" VBox.vgrow="ALWAYS" />
-                        <HBox alignment="CENTER_LEFT" maxWidth="120.0" prefHeight="40.0" prefWidth="120.0" styleClass="navbar-item">
+                        <HBox alignment="CENTER_LEFT" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane prefHeight="40.0" prefWidth="40.0">
                                  <children>
@@ -75,7 +75,7 @@
                               <Label styleClass="navbar-label" stylesheets="@mainWindow.css" text="Settings" textFill="WHITE" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="700.0" maxWidth="120.0" prefHeight="40.0" prefWidth="120.0" styleClass="navbar-item">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="700.0" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane prefHeight="40.0" prefWidth="40.0">
                                  <children>
