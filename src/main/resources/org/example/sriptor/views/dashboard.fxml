@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="730.0" prefWidth="1230.0" styleClass="panel" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.dashboardController">
+<AnchorPane maxHeight="730.0" prefHeight="730.0" prefWidth="1230.0" styleClass="panel" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.dashboardController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="6.0" layoutY="64.0" prefHeight="190.0" prefWidth="1230.0" spacing="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="160.0" prefHeight="160.0" prefWidth="292.5" styleClass="card">
+            <VBox alignment="CENTER" maxHeight="160.0" prefHeight="160.0" prefWidth="292.5" styleClass="kpi-main">
                <children>
                   <HBox prefHeight="30.0" prefWidth="290.0">
                      <children>
                         <Label prefHeight="25.0" prefWidth="205.0" text="Today's Revenue" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                      </children>
