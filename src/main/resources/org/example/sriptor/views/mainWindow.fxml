@@ -13,7 +13,7 @@
    <children>
       <HBox layoutX="492.0" layoutY="466.0" prefHeight="100.0" prefWidth="200.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="758.0" prefWidth="124.0" HBox.hgrow="NEVER">
+            <VBox prefHeight="768.0" prefWidth="124.0" HBox.hgrow="NEVER">
                <children>
                   <Region minHeight="30.0" prefHeight="30.0" prefWidth="120.0" />
                   <VBox fx:id="navBar" alignment="CENTER" minWidth="120.0" prefHeight="730.0" prefWidth="120.0" styleClass="navbar" VBox.vgrow="ALWAYS">
@@ -92,13 +92,14 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox prefHeight="768.0" prefWidth="1234.0">
+            <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="1234.0">
                <children>
-                  <AnchorPane fx:id="centerPanel" prefHeight="730.0" prefWidth="1230.0" styleClass="centerPanel" VBox.vgrow="ALWAYS" />
+                  <HBox prefHeight="30.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="centerPanel" maxHeight="730.0" prefHeight="730.0" prefWidth="1230.0" styleClass="centerPanel">
+                     <VBox.margin>
+                        <Insets bottom="8.0" />
+                     </VBox.margin></AnchorPane>
                </children>
-               <padding>
-                  <Insets bottom="8.0" top="30.0" />
-               </padding>
             </VBox>
          </children>
          <padding>

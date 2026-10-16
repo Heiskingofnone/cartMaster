@@ -36,7 +36,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="52.0" prefWidth="226.0" text="2000.00" textFill="WHITE">
+                        <Label fx:id="revenue" prefHeight="52.0" prefWidth="226.0" text="2000.00" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -74,7 +74,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="52.0" prefWidth="226.0" text="180.00" textFill="WHITE">
+                        <Label fx:id="netProfit" prefHeight="52.0" prefWidth="226.0" text="180.00" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -112,7 +112,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="52.0" prefWidth="226.0" text="75" textFill="WHITE">
+                        <Label fx:id="transactions" prefHeight="52.0" prefWidth="226.0" text="75" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -150,7 +150,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="52.0" prefWidth="226.0" text="2000.00" textFill="WHITE">
+                        <Label fx:id="supplierDues" prefHeight="52.0" prefWidth="226.0" text="2000.00" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
