@@ -21,8 +21,8 @@ public class dashboardController {
         dailyRevenueSummaryDTO dailyRevenueSummaryDTO = analyticsService.dailySummary();
         revenue.setText(String.valueOf(dailyRevenueSummaryDTO.getDailyRevenue()));
         transactions.setText(String.valueOf(dailyRevenueSummaryDTO.getTransactionCount()));
-        netProfit.setText("0.00");
-        supplierDues.setText("0.00");
+        netProfit.setText("0.00");//TODO: Connect net Profit to figures that represents it.
+        supplierDues.setText("0.00");//TODO: Connect Supplier dues to figures that represents it
 
     }
 }
