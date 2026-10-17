@@ -16,4 +16,14 @@ public class AnalyticsService {
         dashboardDAO dashboardDAO = new dashboardDAO();
         return dashboardDAO.getDailySummary(dbConnect.getConnection());
     }
+
+    public kpiSummaryDTO weeklySummary() throws SQLException{
+        dashboardDAO dashboardDAO = new dashboardDAO();
+        return dashboardDAO.getWeeklySummary(dbConnect.getConnection());
+    }
+
+    public kpiSummaryDTO monthlySummary() throws SQLException{
+        dashboardDAO dashboardDAO = new dashboardDAO();
+        return dashboardDAO.getMonthlySummary(dbConnect.getConnection());
+    }
 }
