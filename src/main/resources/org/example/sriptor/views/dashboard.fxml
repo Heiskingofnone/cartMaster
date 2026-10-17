@@ -18,17 +18,16 @@
    <children>
       <VBox spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="450.0" spacing="12.0">
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="450.0" spacing="12.0">
                      <children>
-                        <StackPane prefWidth="40.0">
+                        <StackPane fx:id="filterButton" onMouseClicked="#refreshFilter" prefWidth="40.0">
                            <children>
                               <FontIcon iconColor="WHITE" iconLiteral="bi-filter" iconSize="20" />
                            </children>
                         </StackPane>
-                        <ComboBox prefWidth="150.0" />
-                        <ComboBox prefWidth="150.0" />
+                        <ComboBox fx:id="periodComboBox" prefWidth="150.0" />
                      </children>
                   </HBox>
                </children>

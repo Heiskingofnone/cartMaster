@@ -26,4 +26,7 @@ public class AnalyticsService {
         dashboardDAO dashboardDAO = new dashboardDAO();
         return dashboardDAO.getMonthlySummary(dbConnect.getConnection());
     }
+
+
+
 }
