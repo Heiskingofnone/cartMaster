@@ -1,10 +1,10 @@
 package org.example.sriptor.dto;
 
-public class dailyRevenueSummaryDTO {
+public class kpiSummaryDTO {
     private double dailyRevenue;
     private int transactionCount;
 
-    public dailyRevenueSummaryDTO(double dailyRevenue, int transactionCount){
+    public kpiSummaryDTO(double dailyRevenue, int transactionCount){
         this.dailyRevenue = dailyRevenue;
         this.transactionCount = transactionCount;
     }
