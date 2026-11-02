@@ -11,7 +11,6 @@ import org.example.sriptor.utils.uniqueIdentification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static java.lang.System.out;
 
 public class userDAO {
 

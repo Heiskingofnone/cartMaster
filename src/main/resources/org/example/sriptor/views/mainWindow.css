@@ -1,14 +1,29 @@
 .parent{
+    -fx-background-image: none;
     -fx-background-color: #404040;
 }
 .navbar{
-    -fx-background-color: #242424;
-    -fx-background-radius: 16px;
+    -fx-background-color: #18191b;
+    -fx-background-radius: 12px;
 }
-.navbar-label{
-    -fx-text-fill: #ffffff;
+.navbar-item{
+    -fx-background-color: #18191b;
+    -fx-background-radius: 12px;
 }
+.navbar-item:hover{
+    -fx-background-color: #265AFF;
+    -fx-background-radius: 12px;
+}
+
+.navbar-item .navbar-icon{
+    -fx-fill: #ffffff;
+}
+.navbar-item .navbar-label{
+    -fx-fill: #ffffff;
+}
+
+
 .centerPanel{
-    -fx-background-color: #242424;
+    -fx-background-color: #18191b;
     -fx-background-radius: 16px;
 }
