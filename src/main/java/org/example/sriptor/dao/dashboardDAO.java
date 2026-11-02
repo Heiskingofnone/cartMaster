@@ -68,8 +68,8 @@ public class dashboardDAO {
                 "SUM(total_amount) AS daily_revenue " +
                 "FROM SALE " +
                 //using date(sale_date) instead of juz sale_date ensures proper filtering which would include today
-                "WHERE date(sale_date) >= date('now', 'weekday 1', '-6 days', 'localtime')" +
-                "AND date(sale_date) <= date('now', 'localtime')" +
+                "WHERE date(sale_date) > date('now', 'weekday 1', '-6 days', 'localtime') " +
+                "AND date(sale_date) <= date('now', 'localtime') " +
                 "GROUP BY date(sale_date) " +
                 "ORDER BY sale_date ASC";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
