@@ -207,9 +207,9 @@
                               <Insets left="12.0" right="12.0" />
                            </padding>
                         </VBox>
-                        <AreaChart>
+                        <AreaChart fx:id="revenueChart">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />

@@ -1,8 +1,9 @@
 package org.example.sriptor.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +22,9 @@ public class dashboardController {
     @FXML private Label supplierDues;
     @FXML private StackPane filterButton;
     @FXML private ComboBox<TimePeriod> periodComboBox;
+
+    @FXML private AreaChart<String, Double> revenueChart;
+
 
 
 
@@ -44,7 +48,7 @@ public class dashboardController {
         transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
         netProfit.setText("0.00");//TODO: Connect net Profit to figures that represents it.
         supplierDues.setText("0.00");//TODO: Connect Supplier dues to figures that represents it
-
+        loadAnalyticsChartData();
     }
 
     @FXML public void refreshFilter(MouseEvent event) throws SQLException {
@@ -69,6 +73,16 @@ public class dashboardController {
             }
         }
     }
+
+    public void loadAnalyticsChartData() throws SQLException {
+        AnalyticsService analyticsService = new AnalyticsService();
+        XYChart.Series<String, Double> processedSeries = analyticsService.parseMapeToSeries();
+
+        revenueChart.getData().clear();
+        revenueChart.getData().add(processedSeries);
+    }
+
+
 
 
 }
