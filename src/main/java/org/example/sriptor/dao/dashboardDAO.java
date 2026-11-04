@@ -62,16 +62,17 @@ public class dashboardDAO {
         }
     }
 
-    public Map<LocalDate, Double> revenueData(Connection connection) throws SQLException{
-        String sql = "SELECT " +
+    public Map<LocalDate, Double> dailyComparisonData(Connection connection) throws SQLException{
+        String sql =
+                "SELECT " +
                 "DATE(sale_date) AS sale_date, " +
                 "SUM(total_amount) AS daily_revenue " +
                 "FROM SALE " +
-                //using date(sale_date) instead of juz sale_date ensures proper filtering which would include today
+                        //using date(sale_date) instead of juz sale_date ensures proper filtering which would include today
                 "WHERE date(sale_date) > date('now', 'weekday 1', '-6 days', 'localtime') " +
                 "AND date(sale_date) <= date('now', 'localtime') " +
                 "GROUP BY date(sale_date) " +
-                "ORDER BY sale_date ASC";
+                "ORDER BY sale_date ASC ";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
             Map<LocalDate, Double> dailyRevenue = new LinkedHashMap<>();
             try(ResultSet rs  = stmt.executeQuery()){
@@ -86,6 +87,59 @@ public class dashboardDAO {
             }
             return dailyRevenue;
 
+        }
+    }
+
+    public Map<LocalDate, Double> weeklyComparisonData(Connection connection) throws SQLException{
+        String sql =
+                "SELECT * FROM (" +
+                        "SELECT " +
+                        "date('sale_date', 'weekday 1', '-7 days') AS week_start, " +
+                        "date('sale_date', 'weekday 1', '-1 days') AS week_end, " +
+                        "SUM(total_amount) AS weekly_revenue " +
+                        "FROM SALE " +
+                        "WHERE date(sale_date) <= date('now', 'localtime') " +
+                        "GROUP BY week_start, week_end " +
+                        "ORDER BY week_start DESC " +
+                        "LIMIT 4" +
+                        ") sub " +
+                        "ORDER BY week_start ASC;";
+        try(PreparedStatement pstmt = connection.prepareStatement(sql)){
+            Map<LocalDate, Double> weeklyRevenue = new LinkedHashMap<>();
+            try(ResultSet rs = pstmt.executeQuery()){
+                while(rs.next()){
+                    LocalDate date = LocalDate.parse(rs.getString("sale_date"));
+                    double revenue = rs.getDouble("weekly_revenue");
+                    weeklyRevenue.put(date, revenue);
+                }
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+            return weeklyRevenue;
+        }
+    }
+
+    public Map<LocalDate, Double> monthlyComparisonData(Connection connection) throws SQLException {
+        String sql ="SELECT " +
+                "strftime('%Y-%m', sale_date) AS month_key, " +
+                "SUM(total_amount) AS monthly_revenue " +
+                "FROM SALE " +
+                "WHERE strftime('%Y', sale_date) = strftime('%Y', 'now', 'localtime') " +
+                "GROUP BY month_key " +
+                "ORDER BY month_key ASC;";
+        try(PreparedStatement pstmt = connection.prepareStatement(sql)){
+            Map<LocalDate, Double> monthlyRevenue = new LinkedHashMap<>();
+            try(ResultSet rs = pstmt.executeQuery()){
+                while(rs.next()){
+                    LocalDate date = LocalDate.parse(rs.getString("sale_date"));
+                    double revenue = rs.getDouble("monthly_revenue");
+                    monthlyRevenue.put(date, revenue);
+                }
+            }
+            catch(SQLException e){
+                e.printStackTrace();
+            }
+            return  monthlyRevenue;
         }
     }
 
