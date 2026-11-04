@@ -1,7 +1,5 @@
 package org.example.sriptor.services;
 
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import org.example.sriptor.config.connectDB;
 import org.example.sriptor.dao.dashboardDAO;
@@ -10,7 +8,6 @@ import org.example.sriptor.dto.kpiSummaryDTO;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class AnalyticsService {
@@ -37,7 +34,7 @@ public class AnalyticsService {
 
     public XYChart.Series<String, Double> parseMapeToSeries() throws SQLException {
         dashboardDAO dashboardDAO = new dashboardDAO();
-        Map<LocalDate, Double> inputMap = dashboardDAO.revenueData(dbConnect.getConnection());
+        Map<LocalDate, Double> inputMap = dashboardDAO.dailyComparisonData(dbConnect.getConnection());
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         inputMap.forEach((dateKey, doubleValue)->{
             String formattedDate = dateKey.format(DateTimeFormatter.ISO_LOCAL_DATE);
