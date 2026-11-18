@@ -68,8 +68,7 @@ public class dashboardDAO {
                 "DATE(sale_date) AS sale_date, " +
                 "SUM(total_amount) AS daily_revenue " +
                 "FROM SALE " +
-                        //using date(sale_date) instead of juz sale_date ensures proper filtering which would include today
-                "WHERE date(sale_date) > date('now', 'weekday 1', '-6 days', 'localtime') " +
+                "WHERE date(sale_date) >= date('now', 'localtime', '-6 days') " +
                 "AND date(sale_date) <= date('now', 'localtime') " +
                 "GROUP BY date(sale_date) " +
                 "ORDER BY sale_date ASC ";
@@ -77,49 +76,43 @@ public class dashboardDAO {
             Map<LocalDate, Double> dailyRevenue = new LinkedHashMap<>();
             try(ResultSet rs  = stmt.executeQuery()){
                 while(rs.next()){
-                    //String dateStr = rs.getString("sale_date");
                     LocalDate date = LocalDate.parse(rs.getString("sale_date"));
                     double revenue = rs.getDouble("daily_revenue");
                     dailyRevenue.put(date, revenue);
                 }
-            } catch(SQLException e){
-                e.printStackTrace();
             }
             return dailyRevenue;
-
         }
     }
 
-    public Map<LocalDate, Double> weeklyComparisonData(Connection connection) throws SQLException{
+    public Map<String, Double> weeklyComparisonData(Connection connection) throws SQLException{
         String sql =
                 "SELECT * FROM (" +
                         "SELECT " +
-                        "date('sale_date', 'weekday 1', '-7 days') AS week_start, " +
-                        "date('sale_date', 'weekday 1', '-1 days') AS week_end, " +
+                        "date(sale_date, '-' || ((CAST(strftime('%w', sale_date) AS INTEGER) + 6) % 7) || ' days') AS week_start, " +
                         "SUM(total_amount) AS weekly_revenue " +
                         "FROM SALE " +
-                        "WHERE date(sale_date) <= date('now', 'localtime') " +
-                        "GROUP BY week_start, week_end " +
+                        "WHERE date(sale_date) >= date('now', 'localtime', '-6 days', 'weekday 1', '-21 days') " +
+                        "AND date(sale_date) <= date('now', 'localtime') " +
+                        "GROUP BY week_start " +
                         "ORDER BY week_start DESC " +
                         "LIMIT 4" +
                         ") sub " +
                         "ORDER BY week_start ASC;";
         try(PreparedStatement pstmt = connection.prepareStatement(sql)){
-            Map<LocalDate, Double> weeklyRevenue = new LinkedHashMap<>();
+            Map<String, Double> weeklyRevenue = new LinkedHashMap<>();
             try(ResultSet rs = pstmt.executeQuery()){
                 while(rs.next()){
-                    LocalDate date = LocalDate.parse(rs.getString("sale_date"));
+                    String weekStart = rs.getString("week_start");
                     double revenue = rs.getDouble("weekly_revenue");
-                    weeklyRevenue.put(date, revenue);
+                    weeklyRevenue.put(weekStart, revenue);
                 }
-            } catch(SQLException e){
-                e.printStackTrace();
             }
             return weeklyRevenue;
         }
     }
 
-    public Map<LocalDate, Double> monthlyComparisonData(Connection connection) throws SQLException {
+    public Map<String, Double> monthlyComparisonData(Connection connection) throws SQLException {
         String sql ="SELECT " +
                 "strftime('%Y-%m', sale_date) AS month_key, " +
                 "SUM(total_amount) AS monthly_revenue " +
@@ -128,18 +121,15 @@ public class dashboardDAO {
                 "GROUP BY month_key " +
                 "ORDER BY month_key ASC;";
         try(PreparedStatement pstmt = connection.prepareStatement(sql)){
-            Map<LocalDate, Double> monthlyRevenue = new LinkedHashMap<>();
+            Map<String, Double> monthlyRevenue = new LinkedHashMap<>();
             try(ResultSet rs = pstmt.executeQuery()){
                 while(rs.next()){
-                    LocalDate date = LocalDate.parse(rs.getString("sale_date"));
+                    String month = rs.getString("month_key");
                     double revenue = rs.getDouble("monthly_revenue");
-                    monthlyRevenue.put(date, revenue);
+                    monthlyRevenue.put(month, revenue);
                 }
             }
-            catch(SQLException e){
-                e.printStackTrace();
-            }
-            return  monthlyRevenue;
+            return monthlyRevenue;
         }
     }
 

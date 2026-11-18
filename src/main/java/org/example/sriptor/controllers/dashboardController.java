@@ -21,63 +21,34 @@ public class dashboardController {
     @FXML private Label netProfit;
     @FXML private Label supplierDues;
     @FXML private StackPane filterButton;
-    @FXML private ComboBox<TimePeriod> periodComboBox;
+    @FXML private ComboBox<AnalyticsService.TimePeriod> periodComboBox;
 
     @FXML private AreaChart<String, Double> revenueChart;
 
-
-
-
-    public enum TimePeriod{
-        DAILY("Daily"),
-        Weekly("Weekly"),
-        MONTHLY("Monthly");
-
-        private final String displayName;
-        TimePeriod(String displayName){this.displayName = displayName;}
-        @Override
-        public String toString(){return this.displayName;}
-    }
-
     public void initialize() throws SQLException {
-        periodComboBox.setItems(FXCollections.observableArrayList(TimePeriod.values()));
-        periodComboBox.setValue(TimePeriod.DAILY);
+        periodComboBox.setItems(FXCollections.observableArrayList(AnalyticsService.TimePeriod.values()));
+        periodComboBox.setValue(AnalyticsService.TimePeriod.DAILY);
         AnalyticsService analyticsService = new AnalyticsService();
-        kpiSummaryDTO kpiSummaryDTO = analyticsService.dailySummary();
+        kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(AnalyticsService.TimePeriod.DAILY);
         revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
         transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
         netProfit.setText("0.00");//TODO: Connect net Profit to figures that represents it.
         supplierDues.setText("0.00");//TODO: Connect Supplier dues to figures that represents it
-        loadAnalyticsChartData();
+        updateRevenueChart(analyticsService, AnalyticsService.TimePeriod.DAILY);
     }
 
     @FXML public void refreshFilter(MouseEvent event) throws SQLException {
-        switch (periodComboBox.getValue()){
-            case DAILY -> {
-                AnalyticsService analyticsService = new AnalyticsService();
-                kpiSummaryDTO kpiSummaryDTO = analyticsService.dailySummary();
-                revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
-                transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
-            }
-            case Weekly -> {
-                AnalyticsService analyticsService = new AnalyticsService();
-                kpiSummaryDTO kpiSummaryDTO = analyticsService.weeklySummary();
-                revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
-                transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
-            }
-            case MONTHLY -> {
-                AnalyticsService analyticsService = new AnalyticsService();
-                kpiSummaryDTO kpiSummaryDTO = analyticsService.monthlySummary();
-                revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
-                transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
-            }
-        }
+        AnalyticsService analyticsService = new AnalyticsService();
+        AnalyticsService.TimePeriod period = periodComboBox.getValue();
+        kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(period);
+        revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
+        transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
+        updateRevenueChart(analyticsService, period);
     }
 
-    public void loadAnalyticsChartData() throws SQLException {
-        AnalyticsService analyticsService = new AnalyticsService();
-        XYChart.Series<String, Double> processedSeries = analyticsService.parseMapeToSeries();
-
+    private void updateRevenueChart(AnalyticsService analyticsService, AnalyticsService.TimePeriod period)
+            throws SQLException {
+        XYChart.Series<String, Double> processedSeries = analyticsService.revenueSeriesFor(period);
         revenueChart.getData().clear();
         revenueChart.getData().add(processedSeries);
     }
