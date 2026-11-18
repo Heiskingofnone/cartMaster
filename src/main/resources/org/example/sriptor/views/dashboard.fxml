@@ -2,9 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.example.sriptor.components.SmoothAreaChart?>
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="730.0" prefWidth="1230.0" styleClass="panel" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.dashboardController">
    <children>
@@ -191,7 +189,7 @@
                   <Insets left="12.0" right="12.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" minHeight="270.0" prefHeight="270.0" maxHeight="270.0" prefWidth="1230.0" spacing="12.0">
+            <HBox alignment="TOP_LEFT" minHeight="270.0" prefHeight="270.0" maxHeight="270.0" prefWidth="1230.0" spacing="12.0">
                <children>
                   <VBox prefHeight="270.0" prefWidth="685.0" styleClass="card" HBox.hgrow="ALWAYS">
                      <children>
@@ -207,19 +205,13 @@
                               <Insets left="12.0" right="12.0" />
                            </padding>
                         </VBox>
-                        <AreaChart fx:id="revenueChart" VBox.vgrow="ALWAYS">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </AreaChart>
+                        <SmoothAreaChart fx:id="revenueChart" animated="false" createSymbols="false" legendVisible="false" minHeight="0.0" minWidth="0.0" VBox.vgrow="ALWAYS">
+                        </SmoothAreaChart>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" maxHeight="200.0" prefWidth="509.0" styleClass="card" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="200.0" maxHeight="200.0" prefWidth="509.0" spacing="4.0" styleClass="card" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="0.0" prefWidth="25.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="25.0">
                            <children>
                               <Label text="Top Sellers">
                                  <font>
@@ -227,19 +219,12 @@
                                  </font>
                               </Label>
                            </children>
-                           <padding>
-                              <Insets left="12.0" right="12.0" />
-                           </padding>
                         </HBox>
-                        <BarChart VBox.vgrow="ALWAYS">
-                          <xAxis>
-                            <NumberAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <CategoryAxis side="LEFT" />
-                          </yAxis>
-                        </BarChart>
+                        <VBox fx:id="topSellersChart" fillWidth="true" spacing="3.0" VBox.vgrow="ALWAYS" />
                      </children>
+                     <padding>
+                        <Insets bottom="5.0" left="12.0" right="12.0" top="5.0" />
+                     </padding>
                   </VBox>
                </children>
                <padding>

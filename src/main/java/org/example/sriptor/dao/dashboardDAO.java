@@ -1,19 +1,60 @@
 package org.example.sriptor.dao;
 
 import org.example.sriptor.dto.kpiSummaryDTO;
+import org.example.sriptor.dto.TopSellerDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class dashboardDAO {
     private static final Logger logger = LoggerFactory.getLogger(dashboardDAO.class);
+    private static final int TOP_SELLERS_LIMIT = 5;
+
+    public List<TopSellerDTO> getTopSellers(Connection connection, LocalDate startDate,
+                                            LocalDate endDateExclusive) throws SQLException {
+        String sql = "SELECT p.product_name, " +
+                "SUM(si.quantity) AS units_sold, " +
+                "SUM(si.quantity * si.unit_price) AS revenue " +
+                "FROM SALE_ITEMS si " +
+                "JOIN SALE s ON s.sale_id = si.sale_id " +
+                "JOIN PRODUCT p ON p.product_id = si.product_id " +
+                "WHERE DATE(s.sale_date) >= DATE(?) AND DATE(s.sale_date) < DATE(?) " +
+                "GROUP BY p.product_id, p.product_name " +
+                "ORDER BY units_sold DESC, revenue DESC, p.product_name ASC " +
+                "LIMIT ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, startDate.toString());
+            stmt.setString(2, endDateExclusive.toString());
+            stmt.setInt(3, TOP_SELLERS_LIMIT);
+
+            List<TopSellerDTO> topSellers = new ArrayList<>();
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    topSellers.add(new TopSellerDTO(
+                            rs.getString("product_name"),
+                            rs.getInt("units_sold"),
+                            rs.getDouble("revenue")
+                    ));
+                }
+            }
+            logger.debug("Retrieved {} top-selling products for {} through {}",
+                    topSellers.size(), startDate, endDateExclusive.minusDays(1));
+            return topSellers;
+        } catch (SQLException e) {
+            logger.error("Failed to retrieve top-selling products", e);
+            throw e;
+        }
+    }
 
     public kpiSummaryDTO getDailySummary(Connection connection) throws SQLException {
         String sql = "SELECT " +
