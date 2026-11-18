@@ -5,27 +5,23 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 
-import static java.lang.System.err;
-import static java.lang.System.out;
-
-
 public class connectDB {
 
 
 private final Connection connection;
 
-public final Logger logger = LoggerFactory.getLogger(connectDB.class);
+private static final Logger logger = LoggerFactory.getLogger(connectDB.class);
 
 
     public connectDB() throws SQLException{
         String url = "jdbc:sqlite:pos_store.db";//database url
-        logger.debug("Attempting to connect to database{}", url);
+        logger.debug("Attempting to connect to SQLite database at {}", url);
         try {
             connection = DriverManager.getConnection(url);
-            logger.debug("connection successful");
+            logger.debug("Connected to SQLite database");
         } catch (SQLException e) {
-            logger.error("Error connecting to database");
-            throw new RuntimeException(e);
+            logger.error("Failed to connect to SQLite database", e);
+            throw e;
         }
 
     }
@@ -36,25 +32,25 @@ public final Logger logger = LoggerFactory.getLogger(connectDB.class);
         try{
             if(connection != null){
                 connection.close();
-                logger.debug("Database Connection closed");
+                logger.debug("Database connection closed");
 
             }
         } catch (SQLException e) {
-            logger.error("Cannot close non-existent connection");
+            logger.error("Failed to close database connection", e);
             throw new RuntimeException(e);
         }
     }
 
     public boolean tableExists(Connection getConnection) throws SQLException{
         DatabaseMetaData meta = getConnection.getMetaData();
-        logger.debug("Checking If table Exists");
+        logger.debug("Checking whether the users table exists");
         try(ResultSet rs = meta.getTables(null, null, "USERS", new String[]{"TABLE"})){
             return rs.next();
         }
     }
 
     public void createTableInstance(Connection getConnection) throws SQLException {
-        logger.debug("Attempting to create Table Instance");
+        logger.debug("Ensuring database tables exist");
         String sql = "CREATE TABLE IF NOT EXISTS USERS ("
                     +"user_id TEXT NOT NULL ,"
                     +"first_name TEXT NOT NULL,"
@@ -117,10 +113,10 @@ public final Logger logger = LoggerFactory.getLogger(connectDB.class);
                 ");";
         try(Statement stmt = getConnection.createStatement()){
             stmt.executeUpdate(sql);
-            logger.debug("Users Table Created Successfully");
+            logger.info("Database tables ensured");
         } catch (SQLException e) {
-            logger.error("Users Table already exists");
-            throw new RuntimeException(e);
+            logger.error("Failed to ensure database tables exist", e);
+            throw e;
         }
     }
 

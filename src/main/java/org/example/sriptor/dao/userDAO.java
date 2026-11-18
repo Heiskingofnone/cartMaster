@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
 
 public class userDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(userDAO.class);
+    private static final Logger logger = LoggerFactory.getLogger(userDAO.class);
     public void save(user user, Connection connection) throws SQLException {
-        logger.debug("Attempting to write User: {} to database", user.getFirstName());
+        logger.debug("Attempting to save a user account");
         String sql = "INSERT INTO USERS (user_id, first_name, last_name, email, password, role, phone_number)" +
                 "VALUES(?, ?, ?, ?, ?, ?, ?);";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
@@ -31,24 +31,17 @@ public class userDAO {
 
             stmt.executeUpdate();
 
-            logger.debug("Successfully saved User: {} to database", user.getUserId());
+            logger.debug("Successfully saved a user account");
 
-        } catch(SQLException e){
-            logger.error("Failed to write User: {} to offline database", user.getUserId(), e);
-            throw e;
         }
     }
     public boolean checkByEmail(String email, Connection connection) throws SQLException{
         String sql = "SELECT 1 FROM USERS WHERE LOWER(email) = LOWER(?);";
-        //out.println(email);
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
-            logger.debug("Attempting search for User by email: {} within database", email);
+            logger.debug("Checking whether a user account exists");
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()){
                 return rs.next();
-            }catch (SQLException e) {
-                logger.error("Error executing query");
-                throw new RuntimeException(e);
             }
 
         }
@@ -57,16 +50,13 @@ public class userDAO {
     public String getStoredPHC(String email, Connection connection) throws SQLException{
         String sql = "SELECT password FROM USERS WHERE LOWER(email) = LOWER(?)";
         try(PreparedStatement stmt = connection.prepareStatement(sql)) {
-            logger.debug("Retrieving password for user {}", email);
+            logger.debug("Retrieving stored authentication credential");
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()){
                 if(rs.next()) return rs.getString(1);
-
-            } catch (SQLException e) {
-                logger.error("Error executing query");
-                throw new RuntimeException(e);
             }
         }
+        logger.debug("No stored authentication credential was found");
         return null;
     }
 }

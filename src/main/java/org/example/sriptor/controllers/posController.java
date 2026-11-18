@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import org.example.sriptor.models.cart;
 import org.example.sriptor.models.product;
 import org.example.sriptor.models.saleItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class posController {
+    private static final Logger logger = LoggerFactory.getLogger(posController.class);
 
     @FXML public GridPane productGrid;
 
@@ -29,6 +32,7 @@ public class posController {
     private cart cartItem = new cart();
 
     public void initialize() {
+        logger.debug("Initializing point-of-sale screen");
         int columns = 5;
         List<product> productList = new ArrayList<>();
 
@@ -61,12 +65,14 @@ public class posController {
                 productGrid.setVgap(25);
 
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Failed to load a product card for the point-of-sale screen", e);
             }
         }
+        logger.info("Point-of-sale screen initialized with {} products", productList.size());
     }
 
     public void addItemToCart(product product) {
+        logger.debug("Adding product to the current cart");
         cartItem.addProduct(product, 1);
         updateTotal();
 
@@ -88,7 +94,7 @@ public class posController {
             saleItemList.setVgap(5);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to load a sale-item card", e);
         }
     }
     public void updateTotal(){
@@ -98,6 +104,7 @@ public class posController {
     }
     @FXML
     public void clearCart(){
+        logger.debug("Clearing the current cart");
         cartItem.clear();
         saleItemList.getChildren().clear();
         saleItemList.getRowConstraints().clear();
@@ -106,6 +113,7 @@ public class posController {
     @FXML
     public void handleCheckout(){
         if(cartItem.getItems().isEmpty()){
+            logger.warn("Checkout was requested with an empty cart");
             showAlert("Checkout Failed", "Your cart is empty! Add items before checking out");
             return;
         }
@@ -114,6 +122,8 @@ public class posController {
             Double Total = items.getProduct().getProductPrice() * items.getSaleItemQuantity();
             grandTotal += Total;
         }
+        logger.warn("Checkout confirmation displayed for {} cart items; sale persistence is not implemented",
+                cartItem.getItems().size());
         showAlert("Successful Checkout", "checkout completed! Total: GHS " + grandTotal);
         clearCart();
 

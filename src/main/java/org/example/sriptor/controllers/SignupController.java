@@ -17,6 +17,8 @@ import org.example.sriptor.models.organizations;
 import org.example.sriptor.models.stores;
 import org.example.sriptor.models.user;
 import org.example.sriptor.services.AuthService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,6 +27,7 @@ import java.util.regex.Pattern;
 
 
 public class SignupController {
+    private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
     //Slides
     @FXML private VBox accountCreationSlide ;
     @FXML private VBox enterpriseDetailsSlide;
@@ -232,15 +235,17 @@ public class SignupController {
                     //TODO: Direct to landing page
                     break;
                 case ALREADY_EXISTS://TODO: Add popup that tells user that their credentials already exists in an account so they should either login or create a new user with different credentials
+                    logger.info("Account registration was not completed because the account already exists");
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     toLogInPage(stage);
                     break;
                 case FAILURE:
+                    logger.error("Account registration could not be completed");
                     //TODO: Add a an alert that tells the user thatt an error occurred and they should try and sign up later
                     break;
             }
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error("Account registration failed", e);
         }
 
 
@@ -251,7 +256,7 @@ public class SignupController {
         try {
             toLogInPage(stage);
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error("Failed to navigate to the login screen", e);
         }
     }
     public void toLogInPage(Stage stage)throws IOException {
@@ -344,10 +349,6 @@ public class SignupController {
 
     //Button enabling and disabling
     public void enableAccountCreateButton(){
-        //out.println("email is validated "+ emailIsValid);
-        //out.println("password is strong "+passwordIsStrong);
-        //out.println("password is validated "+passwordValidated);
-        //out.println("All fields are inputted "+allInputEnsured);
         if(passwordIsStrong && passwordValidated && allInputEnsured && emailIsValid){
             accountCreateButton.setDisable(false);
         }

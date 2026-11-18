@@ -10,8 +10,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AnalyticsService {
+    private static final Logger logger = LoggerFactory.getLogger(AnalyticsService.class);
     private final connectDB dbConnect = new connectDB();
 
     public enum TimePeriod {
@@ -35,15 +38,23 @@ public class AnalyticsService {
     }
 
     public kpiSummaryDTO summaryFor(TimePeriod period) throws SQLException {
+        if (period == null) {
+            throw new IllegalArgumentException("Time period must not be null");
+        }
         dashboardDAO dashboardDAO = new dashboardDAO();
-        return switch (period) {
+        kpiSummaryDTO summary = switch (period) {
             case DAILY -> dashboardDAO.getDailySummary(dbConnect.getConnection());
             case WEEKLY -> dashboardDAO.getWeeklySummary(dbConnect.getConnection());
             case MONTHLY -> dashboardDAO.getMonthlySummary(dbConnect.getConnection());
         };
+        logger.debug("Generated {} analytics summary", period);
+        return summary;
     }
 
     public XYChart.Series<String, Double> revenueSeriesFor(TimePeriod period) throws SQLException {
+        if (period == null) {
+            throw new IllegalArgumentException("Time period must not be null");
+        }
         dashboardDAO dashboardDAO = new dashboardDAO();
         Map<String, Double> revenueByPeriod = new LinkedHashMap<>();
         switch (period) {
@@ -56,6 +67,7 @@ public class AnalyticsService {
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         revenueByPeriod.forEach((label, amount) ->
                 series.getData().add(new XYChart.Data<>(label, amount)));
+        logger.debug("Generated {} revenue chart series with {} data points", period, revenueByPeriod.size());
         return series;
     }
 

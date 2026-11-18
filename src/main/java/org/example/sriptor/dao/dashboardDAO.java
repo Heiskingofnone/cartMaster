@@ -9,8 +9,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class dashboardDAO {
+    private static final Logger logger = LoggerFactory.getLogger(dashboardDAO.class);
+
     public kpiSummaryDTO getDailySummary(Connection connection) throws SQLException {
         String sql = "SELECT " +
                 "COALESCE (SUM (Total_amount),0.0) AS daily_revenue, " +
@@ -21,10 +25,10 @@ public class dashboardDAO {
                 double revenue = rs.getDouble("daily_revenue");
                 int transactions = rs.getInt("transactions_count");
                 return new kpiSummaryDTO(revenue, transactions);
-            } catch (SQLException e){
-                e.printStackTrace();
             }
-            return new kpiSummaryDTO(0.0, 0);
+        } catch (SQLException e) {
+            logger.error("Failed to retrieve daily dashboard summary", e);
+            throw e;
         }
     }
 
@@ -38,10 +42,10 @@ public class dashboardDAO {
                 double revenue = rs.getDouble("daily_revenue");
                 int transactions = rs.getInt("transactions_count");
                 return new kpiSummaryDTO(revenue, transactions);
-            } catch (SQLException e){
-                e.printStackTrace();
             }
-            return new kpiSummaryDTO(0.0, 0);
+        } catch (SQLException e) {
+            logger.error("Failed to retrieve weekly dashboard summary", e);
+            throw e;
         }
     }
 
@@ -55,10 +59,10 @@ public class dashboardDAO {
                 double revenue = rs.getDouble("daily_revenue");
                 int transactions = rs.getInt("transactions_count");
                 return new kpiSummaryDTO(revenue, transactions);
-            } catch (SQLException e){
-                e.printStackTrace();
             }
-            return new kpiSummaryDTO(0.0, 0);
+        } catch (SQLException e) {
+            logger.error("Failed to retrieve monthly dashboard summary", e);
+            throw e;
         }
     }
 
@@ -82,6 +86,9 @@ public class dashboardDAO {
                 }
             }
             return dailyRevenue;
+        } catch (SQLException e) {
+            logger.error("Failed to retrieve daily revenue comparison data", e);
+            throw e;
         }
     }
 
@@ -109,6 +116,9 @@ public class dashboardDAO {
                 }
             }
             return weeklyRevenue;
+        } catch (SQLException e) {
+            logger.error("Failed to retrieve weekly revenue comparison data", e);
+            throw e;
         }
     }
 
@@ -130,6 +140,9 @@ public class dashboardDAO {
                 }
             }
             return monthlyRevenue;
+        } catch (SQLException e) {
+            logger.error("Failed to retrieve monthly revenue comparison data", e);
+            throw e;
         }
     }
 

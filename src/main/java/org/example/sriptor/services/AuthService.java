@@ -31,19 +31,19 @@ public class AuthService {
             try(Connection connection = dbConnect.getConnection()) {
                 userDAO userDao = new userDAO();
                 if(userDao.checkByEmail(email, connection)){
-                    logger.debug("Account by email: {} already exists", email);
+                    logger.debug("Account registration rejected because the account already exists");
                     return SignupController.SignupStatus.ALREADY_EXISTS;
                 }
                 else{
-                    logger.debug("Account by email: {} does not exist", email);
                     String hash = hashArgon.registerPasswordPHC(password);
                     UUID newUuid = uniqueIdentification.generateUID();
                     user newuser = new user(newUuid, fname, lname, email, hash, ADMIN, phoneNumber);
                     userDao.save(newuser, connection);
+                    logger.info("New account registered");
                     return SignupController.SignupStatus.SUCCESS;
                 }
             } catch (Exception e) {
-                logger.error("An error occurred whiles singing up");
+                logger.error("An error occurred while registering an account", e);
                 throw new RuntimeException(e);
             }
         }
@@ -56,22 +56,21 @@ public class AuthService {
             try(Connection connection = dbConnect.getConnection()) {
                 userDAO userDao = new userDAO();
                 if(userDao.checkByEmail(email, connection)){
-                    logger.debug("Account by email {} exist", email);
                     String storedPassword = userDao.getStoredPHC(email, connection);
                     if(hashArgon.verifyLogin(password, storedPassword)){
-                        logger.info("Password was a match, account {} verified and authenticated", email);
+                        logger.debug("Account authentication succeeded");
                         return loginController.LoginStatus.AUTHENTIC;
                     }else{
-                        logger.info("Account not verified or Authentic");
+                        logger.debug("Account authentication failed");
                         return loginController.LoginStatus.INAUTHENTIC;
                     }
                 }
                 else{
-                    logger.debug("Account by email {} does not exist", email);
+                    logger.debug("Account authentication failed");
                     return loginController.LoginStatus.ACCOUNT_DOESNT_EXIST;
                 }
             } catch(Exception e){
-                logger.error("An error occurred when logging in");
+                logger.error("An error occurred while authenticating an account", e);
                 throw new RuntimeException(e);
 
             }

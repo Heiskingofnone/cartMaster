@@ -14,14 +14,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.sriptor.services.AuthService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.swing.tree.DefaultTreeModel;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
 //Controls verification at the front end level. Takes input from form the form and stores it in variables for later use for confirmation
 public class loginController {
+    private static final Logger logger = LoggerFactory.getLogger(loginController.class);
+
     @FXML private TextField loginUsername;// an instance of a textfield is acknowledged
     @FXML private PasswordField loginPassword;//an instance of a textfield is acknowledged
 
@@ -62,19 +65,24 @@ public class loginController {
         LoginStatus status = authService.loginValidation(username, password);
         switch (status){
             case AUTHENTIC -> {
+                logger.info("Authenticated user; opening the main application window");
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 try {
                     mainWindowSetpage(stage);
                 } catch (Exception e){
-                    e.printStackTrace();
+                    logger.error("Failed to open the main application window", e);
                 }
             }
             case ACCOUNT_DOESNT_EXIST, INAUTHENTIC -> {
+                logger.warn("User authentication failed");
                 errorlabel.setText("Invalid username or password, try again.");
                 loginPassword.clear();
                 loginUsername.clear();
             }
-            case FAILURE -> errorlabel.setText("An Error occurred, try again later.");
+            case FAILURE -> {
+                logger.error("Authentication service reported a failure");
+                errorlabel.setText("An Error occurred, try again later.");
+            }
 
 
         }
@@ -90,7 +98,7 @@ public class loginController {
         try{
             signupSetpage(stage);
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error("Failed to navigate to the signup screen", e);
         }
     }
 
@@ -121,6 +129,7 @@ public class loginController {
 
     //Closes our application
     public void logout(Stage stage){
+        logger.debug("Displaying application close confirmation");
         Alert closeAlert = new Alert(Alert.AlertType.CONFIRMATION);
         closeAlert.setTitle("Closing Cart Master");
         closeAlert.setHeaderText("You are about to logout,");

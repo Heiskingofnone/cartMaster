@@ -6,10 +6,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.example.sriptor.models.product;
 import org.example.sriptor.models.saleItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class productSelectController {
+    private static final Logger logger = LoggerFactory.getLogger(productSelectController.class);
 
     private posController posController;
     private product currentProduct;
@@ -44,7 +47,7 @@ public class productSelectController {
             posController.addItemToCart(this.currentProduct);
 
         } else {
-            System.out.println("Click failed: currentProduct or posController is null.");
+            logger.warn("Product selection ignored because its product or POS controller is missing");
         }
     }
 
@@ -56,6 +59,7 @@ public class productSelectController {
                 quantity++;
                 productQuantityText.setText(String.valueOf(quantity));
             } catch (NumberFormatException e) {
+                logger.warn("Invalid product quantity displayed; resetting it to one", e);
                 productQuantityText.setText("1");
             }
         }
@@ -71,6 +75,7 @@ public class productSelectController {
                     productQuantityText.setText(String.valueOf(quantity));
                 }
             } catch (NumberFormatException e) {
+                logger.warn("Invalid product quantity displayed; resetting it to one", e);
                 productQuantityText.setText("1");
             }
         }
