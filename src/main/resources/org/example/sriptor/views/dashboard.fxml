@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="730.0" prefHeight="730.0" prefWidth="1230.0" styleClass="panel" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.dashboardController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="730.0" prefWidth="1230.0" styleClass="panel" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.dashboardController">
    <children>
       <VBox spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -38,7 +38,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="205.0" text="Today's Revenue" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Label prefHeight="25.0" prefWidth="205.0" text="Today's Revenue" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -50,12 +50,12 @@
                         </HBox>
                         <VBox prefHeight="75.0">
                            <children>
-                              <Label text="GHS:" textFill="WHITE">
+                              <Label text="GHS:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="revenue" prefHeight="52.0" prefWidth="226.0" text="2000.00" textFill="WHITE">
+                              <Label fx:id="revenue" prefHeight="52.0" prefWidth="226.0" text="2000.00">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -76,7 +76,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="205.0" text="Estimated Net Profit" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Label prefHeight="25.0" prefWidth="205.0" text="Estimated Net Profit" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -88,12 +88,12 @@
                         </HBox>
                         <VBox prefHeight="75.0">
                            <children>
-                              <Label text="GHS:" textFill="WHITE">
+                              <Label text="GHS:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="netProfit" prefHeight="52.0" prefWidth="226.0" text="180.00" textFill="WHITE">
+                              <Label fx:id="netProfit" prefHeight="52.0" prefWidth="226.0" text="180.00">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -114,7 +114,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="205.0" text="Today's Transactions" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Label prefHeight="25.0" prefWidth="205.0" text="Today's Transactions" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -126,12 +126,12 @@
                         </HBox>
                         <VBox prefHeight="75.0">
                            <children>
-                              <Label text="orders" textFill="WHITE">
+                              <Label text="orders">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="transactions" prefHeight="52.0" prefWidth="226.0" text="75" textFill="WHITE">
+                              <Label fx:id="transactions" prefHeight="52.0" prefWidth="226.0" text="75">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -152,7 +152,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="205.0" text="Supplier payables Due" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Label prefHeight="25.0" prefWidth="205.0" text="Supplier payables Due" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -164,12 +164,12 @@
                         </HBox>
                         <VBox prefHeight="75.0">
                            <children>
-                              <Label text="GHS:" textFill="WHITE">
+                              <Label text="GHS:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="supplierDues" prefHeight="52.0" prefWidth="226.0" text="2000.00" textFill="WHITE">
+                              <Label fx:id="supplierDues" prefHeight="52.0" prefWidth="226.0" text="2000.00">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -191,13 +191,13 @@
                   <Insets left="12.0" right="12.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="270.0" prefWidth="1230.0" spacing="12.0">
+            <HBox alignment="CENTER_LEFT" minHeight="270.0" prefHeight="270.0" maxHeight="270.0" prefWidth="1230.0" spacing="12.0">
                <children>
-                  <VBox prefHeight="270.0" prefWidth="685.0" styleClass="card">
+                  <VBox prefHeight="270.0" prefWidth="685.0" styleClass="card" HBox.hgrow="ALWAYS">
                      <children>
                         <VBox prefHeight="40.0" prefWidth="100.0">
                            <children>
-                              <Label text="Revenue Over Time" textFill="WHITE">
+                              <Label text="Revenue Over Time">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -207,9 +207,9 @@
                               <Insets left="12.0" right="12.0" />
                            </padding>
                         </VBox>
-                        <AreaChart fx:id="revenueChart">
+                        <AreaChart fx:id="revenueChart" VBox.vgrow="ALWAYS">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" />
+                            <CategoryAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
@@ -217,11 +217,11 @@
                         </AreaChart>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="509.0" styleClass="card">
+                  <VBox prefHeight="200.0" maxHeight="200.0" prefWidth="509.0" styleClass="card" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox prefHeight="0.0" prefWidth="25.0">
                            <children>
-                              <Label text="Top Sellers" textFill="WHITE">
+                              <Label text="Top Sellers">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -231,7 +231,7 @@
                               <Insets left="12.0" right="12.0" />
                            </padding>
                         </HBox>
-                        <BarChart>
+                        <BarChart VBox.vgrow="ALWAYS">
                           <xAxis>
                             <NumberAxis side="BOTTOM" />
                           </xAxis>

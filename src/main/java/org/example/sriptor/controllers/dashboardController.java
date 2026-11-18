@@ -10,74 +10,56 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import org.example.sriptor.dto.kpiSummaryDTO;
 import org.example.sriptor.services.AnalyticsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
 
 public class dashboardController {
+    private static final Logger logger = LoggerFactory.getLogger(dashboardController.class);
+
     @FXML
     private Label revenue;
     @FXML private Label transactions;
     @FXML private Label netProfit;
     @FXML private Label supplierDues;
     @FXML private StackPane filterButton;
-    @FXML private ComboBox<TimePeriod> periodComboBox;
+    @FXML private ComboBox<AnalyticsService.TimePeriod> periodComboBox;
 
     @FXML private AreaChart<String, Double> revenueChart;
 
-
-
-
-    public enum TimePeriod{
-        DAILY("Daily"),
-        Weekly("Weekly"),
-        MONTHLY("Monthly");
-
-        private final String displayName;
-        TimePeriod(String displayName){this.displayName = displayName;}
-        @Override
-        public String toString(){return this.displayName;}
-    }
-
     public void initialize() throws SQLException {
-        periodComboBox.setItems(FXCollections.observableArrayList(TimePeriod.values()));
-        periodComboBox.setValue(TimePeriod.DAILY);
+        logger.debug("Initializing analytics dashboard");
+        periodComboBox.setItems(FXCollections.observableArrayList(AnalyticsService.TimePeriod.values()));
+        periodComboBox.setValue(AnalyticsService.TimePeriod.DAILY);
         AnalyticsService analyticsService = new AnalyticsService();
-        kpiSummaryDTO kpiSummaryDTO = analyticsService.dailySummary();
+        kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(AnalyticsService.TimePeriod.DAILY);
         revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
         transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
         netProfit.setText("0.00");//TODO: Connect net Profit to figures that represents it.
         supplierDues.setText("0.00");//TODO: Connect Supplier dues to figures that represents it
-        loadAnalyticsChartData();
+        updateRevenueChart(analyticsService, AnalyticsService.TimePeriod.DAILY);
+        logger.info("Analytics dashboard initialized");
     }
 
     @FXML public void refreshFilter(MouseEvent event) throws SQLException {
-        switch (periodComboBox.getValue()){
-            case DAILY -> {
-                AnalyticsService analyticsService = new AnalyticsService();
-                kpiSummaryDTO kpiSummaryDTO = analyticsService.dailySummary();
-                revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
-                transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
-            }
-            case Weekly -> {
-                AnalyticsService analyticsService = new AnalyticsService();
-                kpiSummaryDTO kpiSummaryDTO = analyticsService.weeklySummary();
-                revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
-                transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
-            }
-            case MONTHLY -> {
-                AnalyticsService analyticsService = new AnalyticsService();
-                kpiSummaryDTO kpiSummaryDTO = analyticsService.monthlySummary();
-                revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
-                transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
-            }
+        AnalyticsService analyticsService = new AnalyticsService();
+        AnalyticsService.TimePeriod period = periodComboBox.getValue();
+        if (period == null) {
+            logger.warn("Ignoring analytics refresh because no time period is selected");
+            return;
         }
+        kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(period);
+        revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
+        transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
+        updateRevenueChart(analyticsService, period);
+        logger.debug("Refreshed analytics dashboard for {}", period);
     }
 
-    public void loadAnalyticsChartData() throws SQLException {
-        AnalyticsService analyticsService = new AnalyticsService();
-        XYChart.Series<String, Double> processedSeries = analyticsService.parseMapeToSeries();
-
+    private void updateRevenueChart(AnalyticsService analyticsService, AnalyticsService.TimePeriod period)
+            throws SQLException {
+        XYChart.Series<String, Double> processedSeries = analyticsService.revenueSeriesFor(period);
         revenueChart.getData().clear();
         revenueChart.getData().add(processedSeries);
     }

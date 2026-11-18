@@ -2,28 +2,29 @@ package org.example.sriptor;
 
 import javafx.application.Application;
 import org.example.sriptor.config.connectDB;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
-import static java.lang.System.out;
-
 public class Launcher {
+    private static final Logger logger = LoggerFactory.getLogger(Launcher.class);
+
     public static void main(String[] args) {
         try {
             connectDB dbConnect = new connectDB();
-            if(dbConnect.getConnection() != null){
-                if(dbConnect.tableExists(dbConnect.getConnection())){
-                    out.println("Tables Exist, Moving on >>>");
-                }
-                else {
-                    dbConnect.createTableInstance(dbConnect.getConnection());
-                }
-                dbConnect.closeConnection();
+            if(dbConnect.tableExists(dbConnect.getConnection())){
+                logger.info("Database schema is already initialized");
             }
-
+            else {
+                dbConnect.createTableInstance(dbConnect.getConnection());
+            }
+            dbConnect.closeConnection();
         } catch (SQLException e) {
+            logger.error("Application startup failed while initializing the database", e);
             throw new RuntimeException(e);
         }
+        logger.info("Starting CartMaster");
         Application.launch(posApplication.class, args);
     }
 }
