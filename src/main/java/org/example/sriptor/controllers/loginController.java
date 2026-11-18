@@ -1,5 +1,6 @@
 package org.example.sriptor.controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.sriptor.services.AuthService;
 import org.slf4j.Logger;
@@ -119,12 +121,26 @@ public class loginController {
     }
     public void mainWindowSetpage(Stage stage) throws IOException{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/mainWindow.fxml")));
-        stage.setScene(new Scene(root));
-        root.requestLayout();//done to prevent cursor mismatch or rendiering and functionality mismatch
+        Scene previousScene = stage.getScene();
+        double sceneWidth = previousScene != null && previousScene.getWidth() > 0
+                ? previousScene.getWidth() : 1366;
+        double sceneHeight = previousScene != null && previousScene.getHeight() > 0
+                ? previousScene.getHeight() : 768;
+        Scene mainScene = new Scene(root, sceneWidth, sceneHeight);
+        stage.setScene(mainScene);
         stage.setMaximized(true);//Sets the window to maximized on default
         stage.show();
+        Platform.runLater(() -> layoutSceneAfterTransition(stage, mainScene));
         stage.setOnCloseRequest( event -> {event.consume(); logout(stage);});
+    }
 
+    private void layoutSceneAfterTransition(Stage stage, Scene scene) {
+        if (!stage.isShowing() || stage.getScene() != scene) {
+            return;
+        }
+        scene.getRoot().applyCss();
+        scene.getRoot().requestLayout();
+        scene.getRoot().layout();
     }
 
     //Closes our application
@@ -134,9 +150,16 @@ public class loginController {
         closeAlert.setTitle("Closing Cart Master");
         closeAlert.setHeaderText("You are about to logout,");
         closeAlert.setContentText("Do you want to save?");
+        closeAlert.initOwner(stage);
+        closeAlert.initModality(Modality.WINDOW_MODAL);
         if(closeAlert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK){
             stage.setOnCloseRequest(null);
             stage.close();
+        } else {
+            Scene scene = stage.getScene();
+            if (scene != null) {
+                Platform.runLater(() -> layoutSceneAfterTransition(stage, scene));
+            }
         }
     }
 
