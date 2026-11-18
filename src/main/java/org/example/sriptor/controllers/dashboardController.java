@@ -6,10 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -31,7 +31,7 @@ public class dashboardController {
     @FXML private Label transactions;
     @FXML private Label netProfit;
     @FXML private Label supplierDues;
-    @FXML private StackPane filterButton;
+    @FXML private Button refreshButton;
     @FXML private ComboBox<AnalyticsService.TimePeriod> periodComboBox;
 
     @FXML private AreaChart<String, Number> revenueChart;
@@ -58,16 +58,31 @@ public class dashboardController {
         netProfit.setText("0.00");//TODO: Connect net Profit to figures that represents it.
         supplierDues.setText("0.00");//TODO: Connect Supplier dues to figures that represents it
         refreshCharts(analyticsService, AnalyticsService.TimePeriod.DAILY);
+        periodComboBox.valueProperty().addListener((observable, previousPeriod, selectedPeriod) -> {
+            if (selectedPeriod == null || selectedPeriod == previousPeriod) {
+                return;
+            }
+            try {
+                refreshDashboard(selectedPeriod);
+            } catch (SQLException e) {
+                logger.error("Failed to refresh analytics for {}", selectedPeriod, e);
+                throw new RuntimeException("Failed to refresh analytics for " + selectedPeriod, e);
+            }
+        });
         logger.info("Analytics dashboard initialized");
     }
 
-    @FXML public void refreshFilter(MouseEvent event) throws SQLException {
-        AnalyticsService analyticsService = new AnalyticsService();
+    @FXML public void refreshFilter() throws SQLException {
         AnalyticsService.TimePeriod period = periodComboBox.getValue();
         if (period == null) {
             logger.warn("Ignoring analytics refresh because no time period is selected");
             return;
         }
+        refreshDashboard(period);
+    }
+
+    private void refreshDashboard(AnalyticsService.TimePeriod period) throws SQLException {
+        AnalyticsService analyticsService = new AnalyticsService();
         kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(period);
         revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
         transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
