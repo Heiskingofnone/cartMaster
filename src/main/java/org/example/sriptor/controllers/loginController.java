@@ -111,14 +111,7 @@ public class loginController {
     }
     public void mainWindowSetpage(Stage stage) throws IOException{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/mainWindow.fxml")));
-        String cssStyle = Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/mainWindow.css")).toExternalForm();
-        //Scene scene = new Scene(root);//created new scene because I don't want UI
-        //from older scene to be shown in any way in the new one
-        //displaying a root alone allows the reuse of the same scene which means
-        //same background UI
-        root.getStylesheets().clear();
-        root.getStylesheets().add(cssStyle);
-        stage.getScene().setRoot(root);
+        stage.setScene(new Scene(root));
         root.requestLayout();//done to prevent cursor mismatch or rendiering and functionality mismatch
         stage.setMaximized(true);//Sets the window to maximized on default
         stage.show();
@@ -132,7 +125,8 @@ public class loginController {
         closeAlert.setTitle("Closing Cart Master");
         closeAlert.setHeaderText("You are about to logout,");
         closeAlert.setContentText("Do you want to save?");
-        if(closeAlert.showAndWait().get() == ButtonType.OK){
+        if(closeAlert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK){
+            stage.setOnCloseRequest(null);
             stage.close();
         }
     }

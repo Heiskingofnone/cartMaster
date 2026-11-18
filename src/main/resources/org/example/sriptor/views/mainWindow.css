@@ -1,29 +1,64 @@
-.parent{
-    -fx-background-image: none;
-    -fx-background-color: #404040;
-}
-.navbar{
-    -fx-background-color: #18191b;
-    -fx-background-radius: 12px;
-}
-.navbar-item{
-    -fx-background-color: #18191b;
-    -fx-background-radius: 12px;
-}
-.navbar-item:hover{
-    -fx-background-color: #265AFF;
-    -fx-background-radius: 12px;
+.parent {
+    -fx-background-color: linear-gradient(to bottom right, #F8FAFF, #EAF0F9);
+    -fx-font-family: "System";
 }
 
-.navbar-item .navbar-icon{
-    -fx-fill: #ffffff;
-}
-.navbar-item .navbar-label{
-    -fx-fill: #ffffff;
+.navbar {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 18px;
+    -fx-padding: 10px 6px;
+    -fx-spacing: 6px;
+    -fx-effect: dropshadow(gaussian, rgba(28, 48, 84, 0.08), 18, 0.12, 0, 5);
 }
 
+.navbar-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 11px;
+    -fx-cursor: hand;
+    -fx-padding: 0 4px;
+    -fx-spacing: 2px;
+    -fx-alignment: center-left;
+}
 
-.centerPanel{
-    -fx-background-color: #18191b;
-    -fx-background-radius: 16px;
+.navbar-item:hover {
+    -fx-background-color: #EEF3FF;
+}
+
+.navbar-item.active {
+    -fx-background-color: #EAF0FF;
+    -fx-border-color: #DCE7FF;
+    -fx-border-radius: 11px;
+    -fx-border-width: 1px;
+}
+
+.navbar-item .navbar-icon {
+    -fx-icon-color: #62728A;
+}
+
+.navbar-item .navbar-label {
+    -fx-text-fill: #53627A;
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+}
+
+.navbar-item:hover .navbar-icon {
+    -fx-icon-color: #265AFF;
+}
+
+.navbar-item:hover .navbar-label {
+    -fx-text-fill: #265AFF;
+}
+
+.navbar-item.active .navbar-icon {
+    -fx-icon-color: #2456D8;
+}
+
+.navbar-item.active .navbar-label {
+    -fx-text-fill: #2456D8;
+    -fx-font-weight: 600;
+}
+
+.centerPanel {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20px;
 }

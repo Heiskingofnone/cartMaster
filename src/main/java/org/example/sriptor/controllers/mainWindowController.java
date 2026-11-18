@@ -17,9 +17,11 @@ public class mainWindowController {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/dashboard.fxml")));
             AnchorPane dashboard = loader.load();
-            if(dashboard != null) {
-                centerPanel.getChildren().setAll(dashboard);
-            }
+            AnchorPane.setTopAnchor(dashboard, 0.0);
+            AnchorPane.setRightAnchor(dashboard, 0.0);
+            AnchorPane.setBottomAnchor(dashboard, 0.0);
+            AnchorPane.setLeftAnchor(dashboard, 0.0);
+            centerPanel.getChildren().setAll(dashboard);
             if(mainWindow != null){
                 mainWindow.requestLayout();
                 mainWindow.applyCss();
