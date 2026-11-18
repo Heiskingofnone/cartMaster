@@ -24,6 +24,10 @@
     -fx-background-color: #EEF3FF;
 }
 
+.navbar-item.active:hover {
+    -fx-background-color: #E3ECFF;
+}
+
 .navbar-item.active {
     -fx-background-color: #EAF0FF;
     -fx-border-color: #DCE7FF;
@@ -45,7 +49,15 @@
     -fx-icon-color: #265AFF;
 }
 
+.navbar-item.active:hover .navbar-icon {
+    -fx-icon-color: #265AFF;
+}
+
 .navbar-item:hover .navbar-label {
+    -fx-text-fill: #265AFF;
+}
+
+.navbar-item.active:hover .navbar-label {
     -fx-text-fill: #265AFF;
 }
 

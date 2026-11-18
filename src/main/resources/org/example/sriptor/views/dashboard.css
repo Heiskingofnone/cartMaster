@@ -27,20 +27,22 @@
     -fx-text-fill: #FFFFFF;
 }
 
-#filterButton {
+#refreshButton {
     -fx-background-color: #265AFF;
     -fx-background-radius: 12px;
     -fx-cursor: hand;
-    -fx-min-height: 38px;
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
     -fx-min-width: 40px;
+    -fx-padding: 0;
     -fx-effect: dropshadow(gaussian, rgba(38, 90, 255, 0.2), 10, 0.1, 0, 3);
 }
 
-#filterButton:hover {
+#refreshButton:hover {
     -fx-background-color: #1748E5;
 }
 
-#filterButton:pressed {
+#refreshButton:pressed {
     -fx-background-color: #123BC4;
 }
 
