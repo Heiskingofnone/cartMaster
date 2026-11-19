@@ -9,11 +9,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableCell;
@@ -45,6 +47,7 @@ public class inventoryController {
     private final FilteredList<product> filteredProducts = new FilteredList<>(products, item -> true);
 
     @FXML private TextField searchField;
+    @FXML private ComboBox<String> shopSelector;
     @FXML private TableView<product> productTable;
     @FXML private TableColumn<product, String> nameColumn;
     @FXML private TableColumn<product, String> categoryColumn;
@@ -55,6 +58,11 @@ public class inventoryController {
 
     @FXML
     public void initialize() {
+        shopSelector.setItems(FXCollections.observableArrayList("Shop 1"));
+        shopSelector.getSelectionModel().selectFirst();
+        shopSelector.setDisable(true);
+        shopSelector.setTooltip(new javafx.scene.control.Tooltip(
+                "Shop selection will be available when multi-shop inventory is implemented."));
         nameColumn.setCellValueFactory(cell ->
                 new javafx.beans.property.ReadOnlyStringWrapper(cell.getValue().getProductName()));
         categoryColumn.setCellValueFactory(cell ->
@@ -69,6 +77,22 @@ public class inventoryController {
         statusColumn.setCellValueFactory(cell ->
                 new javafx.beans.property.ReadOnlyStringWrapper(
                         cell.getValue().getProductQuantity() == 0 ? "Out of stock" : "In stock"));
+        statusColumn.setCellFactory(column -> new TableCell<>() {
+            private final Label status = new Label();
+
+            @Override
+            protected void updateItem(String value, boolean empty) {
+                super.updateItem(value, empty);
+                if (empty || value == null) {
+                    setGraphic(null);
+                    return;
+                }
+                status.setText(value);
+                status.getStyleClass().setAll("stock-status",
+                        value.equals("Out of stock") ? "out-of-stock" : "in-stock");
+                setGraphic(status);
+            }
+        });
         actionsColumn.setCellFactory(column -> new TableCell<>() {
             private final javafx.scene.control.Button editButton = new javafx.scene.control.Button("Edit");
 
@@ -143,7 +167,14 @@ public class inventoryController {
                 addFormRow(form, 5, "Starting stock", quantityField);
             }
             GridPane.setHgrow(nameField, Priority.ALWAYS);
-            dialog.getDialogPane().setContent(form);
+            ScrollPane formScrollPane = new ScrollPane(form);
+            formScrollPane.setFitToWidth(true);
+            formScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            formScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+            formScrollPane.setPrefViewportHeight(420);
+            formScrollPane.setMaxHeight(480);
+            formScrollPane.getStyleClass().add("product-form-scroll");
+            dialog.getDialogPane().setContent(formScrollPane);
 
             dialog.getDialogPane().lookupButton(saveButton).addEventFilter(
                     javafx.event.ActionEvent.ACTION, event -> {

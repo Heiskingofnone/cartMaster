@@ -73,7 +73,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="205.0" text="Estimated Net Profit" HBox.hgrow="ALWAYS">
+                              <Label prefHeight="25.0" prefWidth="205.0" text="Estimated Gross Profit" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

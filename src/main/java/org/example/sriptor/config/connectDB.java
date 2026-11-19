@@ -85,7 +85,8 @@ private static final Logger logger = LoggerFactory.getLogger(connectDB.class);
                 "sale_id TEXT REFERENCES SALE(sale_id)," +
                 "product_id TEXT REFERENCES PRODUCT(product_id)," +
                 "quantity INTEGER NOT NULL," +
-                "unit_price DECIMAL(10,2) NOT NULL ); " +
+                "unit_price DECIMAL(10,2) NOT NULL," +
+                "cost_price_at_sale DECIMAL(10,2)); " +
                 "create table IF NOT EXISTS ORGANIZATIONS \n" +
                 "(\n" +
                 "    org_name            TEXT not null,\n" +
@@ -122,6 +123,17 @@ private static final Logger logger = LoggerFactory.getLogger(connectDB.class);
                     "ALTER TABLE PRODUCT ADD COLUMN sku TEXT");
             ensureColumn(getConnection, "PRODUCT", "is_archived",
                     "ALTER TABLE PRODUCT ADD COLUMN is_archived INTEGER NOT NULL DEFAULT 0");
+            ensureColumn(getConnection, "SALE_ITEMS", "cost_price_at_sale",
+                    "ALTER TABLE SALE_ITEMS ADD COLUMN cost_price_at_sale DECIMAL(10,2)");
+            try (Statement statement = getConnection.createStatement()) {
+                int updated = statement.executeUpdate(
+                        "UPDATE SALE_ITEMS SET cost_price_at_sale = " +
+                                "(SELECT cost_price FROM PRODUCT WHERE PRODUCT.product_id = SALE_ITEMS.product_id) " +
+                                "WHERE cost_price_at_sale IS NULL");
+                if (updated > 0) {
+                    logger.info("Backfilled cost snapshots for {} existing sale items", updated);
+                }
+            }
             try (Statement migration = getConnection.createStatement()) {
                 migration.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORIES (" +
                         "product_id TEXT NOT NULL REFERENCES PRODUCT(product_id) ON DELETE CASCADE," +

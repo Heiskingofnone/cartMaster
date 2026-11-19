@@ -59,13 +59,15 @@ public class dashboardDAO {
     public kpiSummaryDTO getDailySummary(Connection connection) throws SQLException {
         String sql = "SELECT " +
                 "COALESCE (SUM (Total_amount),0.0) AS daily_revenue, " +
-                "COUNT (sale_id) AS transactions_count " +
+                "COUNT (sale_id) AS transactions_count, " +
+                estimatedProfitSubquery("DATE(s.sale_date) = DATE('now')") +
+                " AS estimated_profit " +
                 "FROM SALE WHERE DATE(sale_date) = DATE('now')";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
             try(ResultSet rs = stmt.executeQuery()){
                 double revenue = rs.getDouble("daily_revenue");
                 int transactions = rs.getInt("transactions_count");
-                return new kpiSummaryDTO(revenue, transactions);
+                return new kpiSummaryDTO(revenue, transactions, rs.getDouble("estimated_profit"));
             }
         } catch (SQLException e) {
             logger.error("Failed to retrieve daily dashboard summary", e);
@@ -76,13 +78,16 @@ public class dashboardDAO {
     public kpiSummaryDTO getWeeklySummary(Connection connection) throws SQLException{
         String sql = "SELECT " +
                 "COALESCE (SUM (Total_amount),0.0) AS daily_revenue, " +
-                "COUNT (sale_id) AS transactions_count " +
+                "COUNT (sale_id) AS transactions_count, " +
+                estimatedProfitSubquery("DATE(s.sale_date) >= DATE('now', 'weekday 1', '-7 days') " +
+                        "AND DATE(s.sale_date) <= DATE('now')") +
+                " AS estimated_profit " +
                 "FROM SALE WHERE DATE(sale_date) >= DATE('now', 'weekday 1', '-7 days')";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
             try(ResultSet rs = stmt.executeQuery()){
                 double revenue = rs.getDouble("daily_revenue");
                 int transactions = rs.getInt("transactions_count");
-                return new kpiSummaryDTO(revenue, transactions);
+                return new kpiSummaryDTO(revenue, transactions, rs.getDouble("estimated_profit"));
             }
         } catch (SQLException e) {
             logger.error("Failed to retrieve weekly dashboard summary", e);
@@ -93,18 +98,31 @@ public class dashboardDAO {
     public kpiSummaryDTO getMonthlySummary(Connection connection) throws SQLException{
         String sql = "SELECT " +
                 "COALESCE (SUM (Total_amount),0.0) AS daily_revenue, " +
-                "COUNT (sale_id) AS transactions_count " +
+                "COUNT (sale_id) AS transactions_count, " +
+                estimatedProfitSubquery("DATE(s.sale_date) >= DATE('now', 'start of month') " +
+                        "AND DATE(s.sale_date) <= DATE('now')") +
+                " AS estimated_profit " +
                 "FROM SALE WHERE DATE(sale_date) >= DATE('now', 'start of month')";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
             try(ResultSet rs = stmt.executeQuery()){
                 double revenue = rs.getDouble("daily_revenue");
                 int transactions = rs.getInt("transactions_count");
-                return new kpiSummaryDTO(revenue, transactions);
+                return new kpiSummaryDTO(revenue, transactions, rs.getDouble("estimated_profit"));
             }
+
         } catch (SQLException e) {
             logger.error("Failed to retrieve monthly dashboard summary", e);
             throw e;
         }
+    }
+
+    private String estimatedProfitSubquery(String dateCondition) {
+        return "COALESCE((SELECT SUM(si.quantity * (si.unit_price - " +
+                "COALESCE(si.cost_price_at_sale, p.cost_price, 0))) " +
+                "FROM SALE_ITEMS si " +
+                "JOIN SALE s ON s.sale_id = si.sale_id " +
+                "JOIN PRODUCT p ON p.product_id = si.product_id " +
+                "WHERE " + dateCondition + "), 0.0)";
     }
 
     public Map<LocalDate, Double> dailyComparisonData(Connection connection) throws SQLException{

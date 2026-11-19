@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.Locale;
 
 
 public class dashboardController {
@@ -56,9 +57,9 @@ public class dashboardController {
         updatePeriodLabels(AnalyticsService.TimePeriod.DAILY);
         AnalyticsService analyticsService = new AnalyticsService();
         kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(AnalyticsService.TimePeriod.DAILY);
-        revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
+        revenue.setText(formatAmount(kpiSummaryDTO.getDailyRevenue()));
         transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
-        netProfit.setText("0.00");//TODO: Connect net Profit to figures that represents it.
+        netProfit.setText(formatAmount(kpiSummaryDTO.getEstimatedProfit()));
         supplierDues.setText("0.00");//TODO: Connect Supplier dues to figures that represents it
         refreshCharts(analyticsService, AnalyticsService.TimePeriod.DAILY);
         periodComboBox.valueProperty().addListener((observable, previousPeriod, selectedPeriod) -> {
@@ -87,8 +88,9 @@ public class dashboardController {
     private void refreshDashboard(AnalyticsService.TimePeriod period) throws SQLException {
         AnalyticsService analyticsService = new AnalyticsService();
         kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(period);
-        revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
+        revenue.setText(formatAmount(kpiSummaryDTO.getDailyRevenue()));
         transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
+        netProfit.setText(formatAmount(kpiSummaryDTO.getEstimatedProfit()));
         updatePeriodLabels(period);
         refreshCharts(analyticsService, period);
         logger.debug("Refreshed analytics dashboard for {}", period);
@@ -102,6 +104,10 @@ public class dashboardController {
         };
         revenueTitle.setText(periodDescription + " Revenue");
         transactionsTitle.setText(periodDescription + " Transactions");
+    }
+
+    private String formatAmount(double amount) {
+        return String.format(Locale.US, "%,.2f", amount);
     }
 
     private void refreshCharts(AnalyticsService analyticsService, AnalyticsService.TimePeriod period)
