@@ -75,8 +75,11 @@ private static final Logger logger = LoggerFactory.getLogger(connectDB.class);
                 "product_name TEXT NOT NULL," +
                 "category_id TEXT REFERENCES CATEGORY(category_id)," +
                 "price DECIMAL(10,2) NOT NULL," +
+                "cost_price DECIMAL(10,2) NOT NULL DEFAULT 0," +
                 "quantity INTEGER NOT NULL," +
-                "image_path TEXT); " +
+                "image_path TEXT," +
+                "sku TEXT," +
+                "is_archived INTEGER NOT NULL DEFAULT 0 CHECK(is_archived IN (0,1))); " +
                 "CREATE TABLE IF NOT EXISTS SALE_ITEMS(" +
                 "sale_item_id TEXT PRIMARY KEY DEFAULT (hex(randomblob(4)))," +
                 "sale_id TEXT REFERENCES SALE(sale_id)," +
@@ -113,6 +116,20 @@ private static final Logger logger = LoggerFactory.getLogger(connectDB.class);
                 ");";
         try(Statement stmt = getConnection.createStatement()){
             stmt.executeUpdate(sql);
+            ensureColumn(getConnection, "PRODUCT", "cost_price",
+                    "ALTER TABLE PRODUCT ADD COLUMN cost_price DECIMAL(10,2) NOT NULL DEFAULT 0");
+            ensureColumn(getConnection, "PRODUCT", "sku",
+                    "ALTER TABLE PRODUCT ADD COLUMN sku TEXT");
+            ensureColumn(getConnection, "PRODUCT", "is_archived",
+                    "ALTER TABLE PRODUCT ADD COLUMN is_archived INTEGER NOT NULL DEFAULT 0");
+            try (Statement migration = getConnection.createStatement()) {
+                migration.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORIES (" +
+                        "product_id TEXT NOT NULL REFERENCES PRODUCT(product_id) ON DELETE CASCADE," +
+                        "category_id TEXT NOT NULL REFERENCES CATEGORY(category_id) ON DELETE CASCADE," +
+                        "PRIMARY KEY(product_id, category_id))");
+                migration.executeUpdate("INSERT OR IGNORE INTO PRODUCT_CATEGORIES(product_id, category_id) " +
+                        "SELECT product_id, category_id FROM PRODUCT WHERE category_id IS NOT NULL");
+            }
             logger.info("Database tables ensured");
         } catch (SQLException e) {
             logger.error("Failed to ensure database tables exist", e);
@@ -120,8 +137,19 @@ private static final Logger logger = LoggerFactory.getLogger(connectDB.class);
         }
     }
 
-
-
-
-
+    private void ensureColumn(Connection connection, String table, String column, String alterSql)
+            throws SQLException {
+        try (Statement statement = connection.createStatement();
+             ResultSet columns = statement.executeQuery("PRAGMA table_info(" + table + ")")) {
+            while (columns.next()) {
+                if (column.equalsIgnoreCase(columns.getString("name"))) {
+                    return;
+                }
+            }
+        }
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate(alterSql);
+            logger.info("Added missing {}.{} column", table, column);
+        }
+    }
 }

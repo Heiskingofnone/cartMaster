@@ -13,12 +13,7 @@ public class Launcher {
     public static void main(String[] args) {
         try {
             connectDB dbConnect = new connectDB();
-            if(dbConnect.tableExists(dbConnect.getConnection())){
-                logger.info("Database schema is already initialized");
-            }
-            else {
-                dbConnect.createTableInstance(dbConnect.getConnection());
-            }
+            dbConnect.createTableInstance(dbConnect.getConnection());
             dbConnect.closeConnection();
         } catch (SQLException e) {
             logger.error("Application startup failed while initializing the database", e);

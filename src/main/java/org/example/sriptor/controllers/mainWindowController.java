@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,18 +16,19 @@ public class mainWindowController {
 
     @FXML private AnchorPane centerPanel;
     @FXML private VBox navbar;
+    @FXML private HBox dashboardNavItem;
+    @FXML private HBox inventoryNavItem;
+
+    private AnchorPane dashboardView;
+    private AnchorPane inventoryView;
 
     public void initialize(){
         try {
             configureNavigationSelection();
             logger.debug("Loading dashboard into the main window");
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/org/example/sriptor/views/dashboard.fxml")));
-            AnchorPane dashboard = loader.load();
-            AnchorPane.setTopAnchor(dashboard, 0.0);
-            AnchorPane.setRightAnchor(dashboard, 0.0);
-            AnchorPane.setBottomAnchor(dashboard, 0.0);
-            AnchorPane.setLeftAnchor(dashboard, 0.0);
-            centerPanel.getChildren().setAll(dashboard);
+            dashboardView = loader.load();
+            displayDashboard();
             logger.info("Main window initialized");
 
         } catch (Exception e) {
@@ -36,28 +38,55 @@ public class mainWindowController {
     }
 
     private void configureNavigationSelection() {
-        Node dashboardItem = null;
+        dashboardNavItem.getStyleClass().add("active");
         for (Node item : navbar.getChildren()) {
             if (!item.getStyleClass().contains("navbar-item")) {
                 continue;
             }
+            item.setOnMouseClicked(event -> navigate(item));
+        }
+    }
 
-            if (dashboardItem == null) {
-                dashboardItem = item;
+    private void navigate(Node selectedItem) {
+        for (Node navItem : navbar.getChildren()) {
+            if (navItem.getStyleClass().contains("navbar-item")) {
+                navItem.getStyleClass().remove("active");
             }
-
-            item.setOnMouseClicked(event -> {
-                for (Node navItem : navbar.getChildren()) {
-                    if (navItem.getStyleClass().contains("navbar-item")) {
-                        navItem.getStyleClass().remove("active");
-                    }
-                }
-                item.getStyleClass().add("active");
-            });
         }
+        selectedItem.getStyleClass().add("active");
 
-        if (dashboardItem != null) {
-            dashboardItem.getStyleClass().add("active");
+        if (selectedItem == dashboardNavItem) {
+            displayDashboard();
+        } else if (selectedItem == inventoryNavItem) {
+            try {
+                displayInventory();
+            } catch (Exception e) {
+                logger.error("Failed to load inventory view", e);
+                throw new RuntimeException(e);
+            }
+        } else {
+            centerPanel.getChildren().clear();
         }
+    }
+
+    private void displayDashboard() {
+        AnchorPane.setTopAnchor(dashboardView, 0.0);
+        AnchorPane.setRightAnchor(dashboardView, 0.0);
+        AnchorPane.setBottomAnchor(dashboardView, 0.0);
+        AnchorPane.setLeftAnchor(dashboardView, 0.0);
+        centerPanel.getChildren().setAll(dashboardView);
+    }
+
+    private void displayInventory() throws java.io.IOException {
+        if (inventoryView == null) {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
+                    getClass().getResource("/org/example/sriptor/views/inventory.fxml")));
+            inventoryView = loader.load();
+        }
+        AnchorPane.setTopAnchor(inventoryView, 0.0);
+        AnchorPane.setRightAnchor(inventoryView, 0.0);
+        AnchorPane.setBottomAnchor(inventoryView, 0.0);
+        AnchorPane.setLeftAnchor(inventoryView, 0.0);
+        centerPanel.getChildren().setAll(inventoryView);
     }
 }

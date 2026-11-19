@@ -28,7 +28,9 @@ public class dashboardController {
 
     @FXML
     private Label revenue;
+    @FXML private Label revenueTitle;
     @FXML private Label transactions;
+    @FXML private Label transactionsTitle;
     @FXML private Label netProfit;
     @FXML private Label supplierDues;
     @FXML private Button refreshButton;
@@ -51,6 +53,7 @@ public class dashboardController {
         });
         periodComboBox.setItems(FXCollections.observableArrayList(AnalyticsService.TimePeriod.values()));
         periodComboBox.setValue(AnalyticsService.TimePeriod.DAILY);
+        updatePeriodLabels(AnalyticsService.TimePeriod.DAILY);
         AnalyticsService analyticsService = new AnalyticsService();
         kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(AnalyticsService.TimePeriod.DAILY);
         revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
@@ -86,8 +89,19 @@ public class dashboardController {
         kpiSummaryDTO kpiSummaryDTO = analyticsService.summaryFor(period);
         revenue.setText(String.valueOf(kpiSummaryDTO.getDailyRevenue()));
         transactions.setText(String.valueOf(kpiSummaryDTO.getTransactionCount()));
+        updatePeriodLabels(period);
         refreshCharts(analyticsService, period);
         logger.debug("Refreshed analytics dashboard for {}", period);
+    }
+
+    private void updatePeriodLabels(AnalyticsService.TimePeriod period) {
+        String periodDescription = switch (period) {
+            case DAILY -> "Today's";
+            case WEEKLY -> "This Week's";
+            case MONTHLY -> "This Month's";
+        };
+        revenueTitle.setText(periodDescription + " Revenue");
+        transactionsTitle.setText(periodDescription + " Transactions");
     }
 
     private void refreshCharts(AnalyticsService analyticsService, AnalyticsService.TimePeriod period)

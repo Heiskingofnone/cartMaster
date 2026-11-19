@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import org.example.sriptor.components.SmoothAreaChart?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="730.0" prefWidth="1230.0" styleClass="panel" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.sriptor.controllers.dashboardController">
    <children>
@@ -37,7 +35,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="205.0" text="Today's Revenue" HBox.hgrow="ALWAYS">
+                              <Label fx:id="revenueTitle" prefHeight="25.0" prefWidth="280.0" text="Today's Revenue" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -113,7 +111,7 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="205.0" text="Today's Transactions" HBox.hgrow="ALWAYS">
+                              <Label fx:id="transactionsTitle" prefHeight="25.0" prefWidth="272.0" text="Today's Transactions" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -190,13 +188,13 @@
                   <Insets left="12.0" right="12.0" />
                </padding>
             </HBox>
-            <HBox alignment="TOP_LEFT" minHeight="270.0" prefHeight="270.0" maxHeight="270.0" prefWidth="1230.0" spacing="12.0">
+            <HBox alignment="TOP_LEFT" maxHeight="270.0" minHeight="270.0" prefHeight="270.0" prefWidth="1230.0" spacing="12.0">
                <children>
                   <VBox prefHeight="270.0" prefWidth="685.0" styleClass="card" HBox.hgrow="ALWAYS">
                      <children>
                         <VBox prefHeight="40.0" prefWidth="100.0">
                            <children>
-                              <Label text="Revenue Over Time">
+                              <Label prefHeight="25.0" prefWidth="275.0" text="Revenue Over Time">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -210,7 +208,7 @@
                         </SmoothAreaChart>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" maxHeight="200.0" prefWidth="509.0" spacing="4.0" styleClass="card" HBox.hgrow="ALWAYS">
+                  <VBox maxHeight="200.0" prefHeight="200.0" prefWidth="509.0" spacing="4.0" styleClass="card" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="25.0">
                            <children>

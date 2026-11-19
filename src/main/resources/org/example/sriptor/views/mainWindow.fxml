@@ -21,7 +21,7 @@
                         <Insets bottom="8.0" />
                      </VBox.margin>
                      <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
+                        <HBox fx:id="dashboardNavItem" alignment="CENTER_LEFT" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane prefHeight="40.0" prefWidth="40.0">
                                  <children>
@@ -54,7 +54,7 @@
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="94.0" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
+                        <HBox fx:id="inventoryNavItem" alignment="CENTER_LEFT" layoutX="10.0" layoutY="94.0" maxWidth="120.0" prefHeight="40.0" prefWidth="122.0" styleClass="navbar-item">
                            <children>
                               <StackPane prefHeight="40.0" prefWidth="40.0">
                                  <children>
